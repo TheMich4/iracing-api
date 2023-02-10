@@ -1,3 +1,7 @@
 {
-    "editor.defaultFormatter": "rome.rome"
+    "editor.defaultFormatter": "rome.rome",
+    "cSpell.words": [
+        "carclass",
+        "cust"
+    ]
 }

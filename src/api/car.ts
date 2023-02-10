@@ -1,18 +1,7 @@
-import axios from "axios";
-import { axiosInstance } from "../axios";
+import { getData } from "../helpers";
 
-const getCars = async () => {
-	const { data } = await axiosInstance.get("data/car/get");
+const getCarAssets = async () => await getData("data/car/assets/get");
 
-	if (data.link) {
-		const { data: carData } = await axios.get(data.link);
+const getCars = async () => await getData("data/car/get");
 
-		if (carData && carData.length > 0) {
-			return carData;
-		}
-	}
-
-	return undefined;
-};
-
-export { getCars };
+export { getCarAssets, getCars };

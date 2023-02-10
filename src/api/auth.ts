@@ -6,7 +6,7 @@ const login = async (email: string, password: string) => {
 		CryptoJS.SHA256(password + email.toLowerCase()),
 	);
 
-	return await axiosInstance.post("/auth", {
+	await axiosInstance.post("/auth", {
 		email,
 		password: hashPassword,
 	});
