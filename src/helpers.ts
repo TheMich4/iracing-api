@@ -9,7 +9,7 @@ const getLinkData = async (link: string | undefined) => {
 	return data;
 };
 
-const getData = async <Parameters, Data>(
+const getData = async <Data, Parameters>(
 	endpoint: string,
 	params?: Parameters | Record<string, any>,
 ): Promise<Data | Record<string, any> | undefined> => {
