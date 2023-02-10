@@ -1,0 +1,35 @@
+{
+  "name": "iracing-api-js",
+  "version": "0.0.1",
+  "description": "Javascript client for iracing API",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "format": "npx rome format src/ --write",
+    "prepare": "npm run build",
+    "prepublishOnly" : "npm run format",
+    "version" : "npm run format && git add -A src",
+    "postversion" : "git push && git push --tags"
+  },
+  "files": ["lib/**/*"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheMich4/iracing-api-js.git"
+  },
+  "author": "Michal Dyczkowski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TheMich4/iracing-api-js/issues"
+  },
+  "homepage": "https://github.com/TheMich4/iracing-api-js#readme",
+  "devDependencies": {
+    "rome": "^11.0.0",
+    "typescript": "^4.9.5"
+  },
+  "keywords": [
+    "iracing",
+    "api",
+    "client",
+    "javascript"
+  ]
+}
