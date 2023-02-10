@@ -25,6 +25,28 @@ export interface CarAssets {
 	[carId: string]: CarAsset;
 }
 
+export interface CarPaintRule {
+	AllowNumberColorChanges?: boolean;
+	AllowNumberFontChanges?: boolean;
+	Color1: string;
+	Color2: string;
+	Color3: string;
+	NumberColor1?: string;
+	NumberColor2?: string;
+	NumberColor3?: string;
+	NumberFont?: string;
+	PaintCarAvailable: boolean;
+	RulesExplanation: string;
+	Sponsor1Available: boolean;
+	Sponsor2Available: boolean;
+	Sponsor1: string;
+	Sponsor2: string;
+}
+
+export interface CarPaintRules {
+	[id: string]: CarPaintRule;
+}
+
 export interface CarData {
 	ai_enabled: boolean;
 	allow_number_colors: boolean;
@@ -53,6 +75,7 @@ export interface CarData {
 	max_weight_penalty_kf: number;
 	min_power_adjust_pct: number;
 	package_id: number;
+	paint_rules?: CarPaintRules;
 	patterns: number;
 	price: number;
 	price_display: string;
