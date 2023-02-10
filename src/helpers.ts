@@ -11,8 +11,8 @@ const getLinkData = async (link: string | undefined) => {
 
 const getData = async <Parameters, Data>(
 	endpoint: string,
-	params?: Parameters | Record<string, unknown>,
-): Promise<Data | Record<string, unknown> | undefined> => {
+	params?: Parameters | Record<string, any>,
+): Promise<Data | Record<string, any> | undefined> => {
 	const { data } = await axiosInstance.get(endpoint, { params });
 
 	return await getLinkData(data?.link);
