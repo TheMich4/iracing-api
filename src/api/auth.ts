@@ -1,3 +1,4 @@
+import CryptoJS from "crypto-js";
 import { axiosInstance } from "../axios";
 
 const login = async (email: string, password: string) => {
