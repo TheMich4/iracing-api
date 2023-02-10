@@ -5,11 +5,13 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
+    "build": "tsc",
     "format": "npx rome format src/ --write",
     "prepare": "npm run build",
     "prepublishOnly" : "npm run format",
     "version" : "npm run format && git add -A src",
-    "postversion" : "git push && git push --tags"
+    "postversion" : "git push && git push --tags",
+    "patch":"npm version patch"
   },
   "files": ["lib/**/*"],
   "repository": {
