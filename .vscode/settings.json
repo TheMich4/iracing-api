@@ -2,6 +2,8 @@
     "editor.defaultFormatter": "rome.rome",
     "cSpell.words": [
         "carclass",
-        "cust"
+        "cust",
+        "simsession",
+        "subsession"
     ]
 }
