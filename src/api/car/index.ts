@@ -1,6 +1,6 @@
 import type { CarAssets, CarData } from "./types";
 
-import { getData } from "../helpers";
+import { getData } from "../../helpers";
 
 const getCarAssets = async () =>
 	await getData<CarAssets>("data/car/assets/get");
