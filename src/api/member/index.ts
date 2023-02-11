@@ -1,4 +1,11 @@
-import { getData } from "../helpers";
+import {
+	ChartDataResponse,
+	MemberDataResponse,
+	MemberInfo,
+	ParticipationInformation,
+} from "./types";
+
+import { getData } from "../../helpers";
 
 const getMemberAwards = (customerId: number) =>
 	getData("data/member/awards", { cust_id: customerId });
@@ -10,7 +17,7 @@ const getMemberChartData = (
 	categoryId: number,
 	chartType: number,
 ) =>
-	getData("data/member/chart", {
+	getData<ChartDataResponse>("data/member/chart", {
 		cust_id: customerId,
 		category_id: categoryId,
 		chart_type: chartType,
@@ -21,15 +28,17 @@ const getMemberData = async (
 	customerIds: Array<number>,
 	includeLicenses: boolean = true,
 ) =>
-	await getData("data/member/get", {
+	await getData<MemberDataResponse>("data/member/get", {
 		cust_ids: customerIds,
 		include_licenses: includeLicenses,
 	});
 
-const getMemberInfo = async () => await getData("data/member/info");
+const getMemberInfo = async () => await getData<MemberInfo>("data/member/info");
 
 const getMemberParticipationCredits = async () =>
-	await getData("data/member/participation_credits");
+	await getData<Array<ParticipationInformation>>(
+		"data/member/participation_credits",
+	);
 
 const getMemberProfile = async (customerId: number) =>
 	await getData("data/member/profile", { cust_id: customerId });

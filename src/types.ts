@@ -9,10 +9,26 @@ export interface Helmet {
 	pattern: number;
 }
 
+export interface Suit {
+	body_type: number;
+	color1: string;
+	color2: string;
+	color3: string;
+	pattern: number;
+}
+
 export interface Customer {
 	cust_id: number;
 	display_name: string;
 	helmet: Helmet;
+}
+
+export interface Member extends Customer {
+	ai: boolean;
+	club_id: number;
+	club_name: string;
+	last_login: string;
+	member_since: string;
 }
 
 export interface Track {
