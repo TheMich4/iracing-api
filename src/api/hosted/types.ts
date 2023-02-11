@@ -138,3 +138,9 @@ export interface HostedCombinedSessionsResponse {
 	subscribed: boolean;
 	success: boolean;
 }
+
+export interface HostedSessionsResponse {
+	sessions: Array<Session>;
+	subscribed: boolean;
+	success: boolean;
+}
