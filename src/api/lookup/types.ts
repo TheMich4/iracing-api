@@ -1,37 +1,37 @@
 import { Customer } from "../../types";
 
 export interface Club {
-	club_id: number;
-	club_name: string;
+	clubId: number;
+	clubName: string;
 	region: string;
-	season_quarter: number;
-	season_year: number;
+	seasonQuarter: number;
+	seasonYear: number;
 }
 
 export interface Country {
-	country_name: string;
-	country_code: string;
+	countryName: string;
+	countryCode: string;
 }
 
 export interface Driver extends Customer {
-	profile_disabled: boolean;
+	profileDisabled: boolean;
 }
 
 export interface LicenseLevel {
-	license_id: number;
-	license_group: number;
+	licenseId: number;
+	licenseGroup: number;
 	license: string;
-	short_name: string;
-	license_letter: string;
+	shortName: string;
+	licenseLetter: string;
 	color: string;
 }
 
 export interface License {
-	license_group: number;
-	group_name: string;
-	min_num_races: number;
-	participation_credits: number;
-	min_sr_to_fast_track: number;
+	licenseGroup: number;
+	groupName: string;
+	minNumRaces: number;
+	participationCredits: number;
+	minSrToFastTrack: number;
 	levels: Array<License>;
-	min_num_tt: number;
+	minNumTt: number;
 }

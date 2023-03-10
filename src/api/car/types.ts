@@ -1,24 +1,24 @@
 export interface CarRule {
-	rule_category: string;
+	ruleCategory: string;
 	text: string;
 }
 
 export interface CarAsset {
-	car_id: number;
-	car_rules: Array<CarRule>;
-	detail_copy: string;
-	detail_screen_shot_images: string;
-	detail_techspecs_copy: string;
+	carId: number;
+	carRules: Array<CarRule>;
+	detailCopy: string;
+	detailScreenShotImages: string;
+	detailTechspecsCopy: string;
 	folder: string;
-	gallery_images: string;
-	gallery_prefix: null;
-	group_image: null;
-	group_name: null;
-	large_image: string;
+	galleryImages: string;
+	galleryPrefix: null;
+	groupImage: null;
+	groupName: null;
+	largeImage: string;
 	logo: string;
-	small_image: string;
-	sponsor_logo: null;
-	template_path: string;
+	smallImage: string;
+	sponsorLogo: null;
+	templatePath: string;
 }
 
 export interface CarAssets {
@@ -48,38 +48,38 @@ export interface CarPaintRules {
 }
 
 export interface CarData {
-	ai_enabled: boolean;
-	allow_number_colors: boolean;
-	allow_number_font: boolean;
-	allow_sponsor1: boolean;
-	allow_sponsor2: boolean;
-	allow_wheel_color: boolean;
-	award_exempt: boolean;
-	car_dirpath: string;
-	car_id: number;
-	car_name: string;
-	car_name_abbreviated: string;
-	car_types: Array<Record<string, string>>;
-	car_weight: number;
+	aiEnabled: boolean;
+	allowNumberColors: boolean;
+	allowNumberFont: boolean;
+	allowSponsor1: boolean;
+	allowSponsor2: boolean;
+	allowWheelColor: boolean;
+	awardExempt: boolean;
+	carDirpath: string;
+	carId: number;
+	carName: string;
+	carNameAbbreviated: string;
+	carTypes: Array<Record<string, string>>;
+	carWeight: number;
 	// TODO enum
 	categories: Array<string>;
 	created: string;
-	first_sale: string;
-	forum_url: string;
-	free_with_subscription: boolean;
-	has_headlights: boolean;
-	has_multiple_dry_tire_types: boolean;
+	firstSale: string;
+	forumUrl: string;
+	freeWithSubscription: boolean;
+	hasHeadlights: boolean;
+	hasMultipleDryTireTypes: boolean;
 	hp: number;
-	is_ps_purchasable: boolean;
-	max_power_adjust_pct: number;
-	max_weight_penalty_kf: number;
-	min_power_adjust_pct: number;
-	package_id: number;
-	paint_rules?: CarPaintRules;
+	isPsPurchasable: boolean;
+	maxPowerAdjustPct: number;
+	maxWeightPenaltyKf: number;
+	minPowerAdjustPt: number;
+	packageId: number;
+	paintRules?: CarPaintRules;
 	patterns: number;
 	price: number;
-	price_display: string;
+	priceDisplay: string;
 	retired: boolean;
-	search_filters: string;
+	searchFilters: string;
 	sku: string;
 }

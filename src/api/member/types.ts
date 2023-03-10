@@ -7,112 +7,112 @@ export interface ChartData {
 
 export interface ChartDataResponse {
 	blackout: boolean;
-	category_id: number;
-	chart_type: number;
-	cust_id: number;
+	categoryId: number;
+	chartType: number;
+	custId: number;
 	data: Array<ChartData>;
 	success: boolean;
 }
 
 export interface MemberDataResponse {
-	cust_ids: Array<number>;
+	custIds: Array<number>;
 	members: Array<Member>;
 	success: boolean;
 }
 
 export interface MemberAccount {
-	ir_credits: number;
-	ir_dollars: number;
+	irCredits: number;
+	irDollars: number;
 	status: string;
 }
 
 export interface CarPackage {
-	content_ids: Array<number>;
-	package_id: number;
+	contentIds: Array<number>;
+	packageId: number;
 }
 
 export interface MemberLicense {
 	category: string;
-	category_id: number;
+	categoryId: number;
 	color: string;
 	cpi: number;
-	group_id: number;
-	group_name: string;
+	groupId: number;
+	groupName: string;
 	irating: number;
-	license_level: number;
-	mpr_num_races: number;
-	mpr_num_tts: number;
-	pro_promotable: boolean;
-	safety_rating: number;
-	tt_rating: number;
+	licenseLevel: number;
+	mprNumRaces: number;
+	mprNumTts: number;
+	proPromotable: boolean;
+	safetyRating: number;
+	ttRating: number;
 }
 
 export interface MemberLicenses {
-	dirt_oval: MemberLicense;
-	dirt_road: MemberLicense;
+	dirtOval: MemberLicense;
+	dirtRoad: MemberLicense;
 	oval: MemberLicense;
 	road: MemberLicense;
 }
 
 export interface TrackPackage {
-	content_ids: Array<number>;
-	package_id: number;
+	contentIds: Array<number>;
+	packageId: number;
 }
 
 export interface MemberInfo {
 	account: MemberAccount;
-	alpha_tester: boolean;
+	alphaTester: boolean;
 	ai: boolean;
-	bypass_hosted_password: boolean;
-	car_packages: Array<CarPackage>;
-	club_id: number;
-	club_name: string;
-	connection_type: string;
-	cust_id: number;
-	display_name: string;
-	download_server: string;
+	bypassHostedPassword: boolean;
+	carPackages: Array<CarPackage>;
+	clubId: number;
+	clubName: string;
+	connectionType: string;
+	custId: number;
+	displayName: string;
+	downloadServer: string;
 	email: string;
-	first_name: string;
+	firstName: string;
 	flags: number;
-	flags_hex: string;
-	has_read_comp_rules: boolean;
-	has_read_pp: boolean;
-	has_read_tc: boolean;
+	flagsHex: string;
+	hasReadCompRules: boolean;
+	hasReadPp: boolean;
+	hasReadTc: boolean;
 	helmet: Helmet;
-	hundred_pct_club: boolean;
-	last_login: string;
-	last_name: string;
-	last_season: number;
-	last_test_car: number;
-	last_test_track: number;
-	member_since: string;
-	on_car_name: string;
-	other_owned_packages: number[];
-	read_comp_rules: Date;
-	read_pp: Date;
-	read_tc: Date;
-	race_official: boolean;
+	hundredPctClub: boolean;
+	lastLogin: string;
+	lastName: string;
+	lastSeason: number;
+	lastTestCar: number;
+	lastTestTrack: number;
+	memberSince: string;
+	onCarName: string;
+	otherOwnedPackages: number[];
+	readCompRules: Date;
+	readPp: Date;
+	readTc: Date;
+	raceOfficial: boolean;
 	// TODO: Add type
 	restrictions: Record<string, any>;
 	suit: Suit;
 	licenses: MemberLicenses;
-	track_packages: Array<TrackPackage>;
-	twenty_pct_discount: boolean;
+	trackPackages: Array<TrackPackage>;
+	twentyPctDiscount: boolean;
 	username: string;
 	broadcaster: boolean;
 	dev: boolean;
 }
 
 export interface ParticipationInformation {
-	cust_id: number;
-	season_id: number;
-	series_id: number;
-	series_name: string;
-	license_group: number;
-	license_group_name: string;
-	participation_credits: number;
-	min_weeks: number;
+	custId: number;
+	seasonId: number;
+	seriesId: number;
+	seriesName: string;
+	licenseGroup: number;
+	licenseGroupName: string;
+	participationCredits: number;
+	minWeeks: number;
 	weeks: number;
-	earned_credits: number;
-	total_credits: number;
+	earnedCredits: number;
+	totalCredits: number;
 }

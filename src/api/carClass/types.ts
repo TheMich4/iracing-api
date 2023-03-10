@@ -1,14 +1,14 @@
 export interface CarInClass {
-	car_dirpath: string;
-	car_id: number;
+	carDirpath: string;
+	carId: number;
 	retired: boolean;
 }
 
 export interface CarClass {
-	car_class_id: number;
-	cars_in_class: Array<CarInClass>;
-	cust_id: number;
+	carClassId: number;
+	carsInClass: Array<CarInClass>;
+	custId: number;
 	name: string;
-	relative_speed: number;
-	short_name: string;
+	relativeSpeed: number;
+	shortName: string;
 }
