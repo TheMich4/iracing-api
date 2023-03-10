@@ -1,23 +1,32 @@
 import { Club, Country, Driver, License } from "./types";
 
+import { AxiosInstance } from "axios";
 import { getData } from "../../helpers";
 
-const getClubHistory = async (seasonYear: number, seasonQuarter: number) =>
-	await getData<Array<Club>>("data/lookup/club_history", {
+const getClubHistory = async (
+	axiosInstance: AxiosInstance,
+	seasonYear: number,
+	seasonQuarter: number,
+) =>
+	await getData<Array<Club>>(axiosInstance, "data/lookup/club_history", {
 		season_year: seasonYear,
 		season_quarter: seasonQuarter,
 	});
 
-const getCountries = async () =>
-	await getData<Array<Country>>("data/lookup/countries");
+const getCountries = async (axiosInstance: AxiosInstance) =>
+	await getData<Array<Country>>(axiosInstance, "data/lookup/countries");
 
-const getDrivers = async (searchTerm: string, leagueId?: number) =>
-	await getData<Array<Driver>>("data/lookup/drivers", {
+const getDrivers = async (
+	axiosInstance: AxiosInstance,
+	searchTerm: string,
+	leagueId?: number,
+) =>
+	await getData<Array<Driver>>(axiosInstance, "data/lookup/drivers", {
 		search_term: searchTerm,
 		league_id: leagueId,
 	});
 
-const getLicenses = async () =>
-	await getData<Array<License>>("data/lookup/licenses");
+const getLicenses = async (axiosInstance: AxiosInstance) =>
+	await getData<Array<License>>(axiosInstance, "data/lookup/licenses");
 
 export { getClubHistory, getCountries, getDrivers, getLicenses };

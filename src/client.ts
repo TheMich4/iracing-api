@@ -5,17 +5,18 @@ import { wrapper } from "axios-cookiejar-support";
 
 const jar = new CookieJar();
 
-const axiosInstance = wrapper(
-	axios.create({
-		baseURL: API_URL,
-		timeout: 5000,
-		headers: {
-			"X-Requested-With": "XMLHttpRequest",
-			"Content-Type": "application/json",
-		},
-		jar,
-		withCredentials: true,
-	}),
-);
+export const createAxiosInstance = () =>
+	wrapper(
+		axios.create({
+			baseURL: API_URL,
+			timeout: 5000,
+			headers: {
+				"X-Requested-With": "XMLHttpRequest",
+				"Content-Type": "application/json",
+			},
+			jar,
+			withCredentials: true,
+		}),
+	);
 
-export { axiosInstance };
+export const axiosInstance = createAxiosInstance();

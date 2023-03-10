@@ -3,15 +3,21 @@ import {
 	HostedSessionsResponse,
 } from "./types";
 
+import { AxiosInstance } from "axios";
 import { getData } from "../../helpers";
 
-const getHostedCombinedSessions = async (packageId?: number) =>
-	await getData<HostedCombinedSessionsResponse>(
+const getHostedCombinedSessions = async (
+	axiosInstance: AxiosInstance,
+	packageId?: number,
+) => {
+	return await getData<HostedCombinedSessionsResponse>(
+		axiosInstance,
 		"data/hosted/combined_sessions",
 		{ package_id: packageId },
 	);
+};
 
-const getHostedSessions = async () =>
-	await getData<HostedSessionsResponse>("data/hosted/sessions");
+const getHostedSessions = async (axiosInstance: AxiosInstance) =>
+	await getData<HostedSessionsResponse>(axiosInstance, "data/hosted/sessions");
 
 export { getHostedCombinedSessions, getHostedSessions };

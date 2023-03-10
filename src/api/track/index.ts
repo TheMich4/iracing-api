@@ -1,7 +1,10 @@
+import { AxiosInstance } from "axios";
 import { getData } from "../../helpers";
 
-const getTrackAssets = async () => await getData("data/track/assets");
+const getTrackAssets = async (axiosInstance: AxiosInstance) =>
+	await getData(axiosInstance, "data/track/assets");
 
-const getTracks = async () => await getData("data/track/get");
+const getTracks = async (axiosInstance: AxiosInstance) =>
+	await getData(axiosInstance, "data/track/get");
 
 export { getTrackAssets, getTracks };
