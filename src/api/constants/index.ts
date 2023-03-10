@@ -1,6 +1,6 @@
 import { Category, Division, EventType } from "./types";
 
-import { axiosInstance } from "../../axios";
+import { axiosInstance } from "../../client";
 
 const getCategories = async (): Promise<Array<Category> | undefined> => {
 	const response = await axiosInstance("data/constants/categories");

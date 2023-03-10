@@ -1,5 +1,5 @@
 import axios from "axios";
-import { axiosInstance } from "./axios";
+import { axiosInstance } from "./client";
 import camelcaseKeys from "camelcase-keys";
 
 const getLinkData = async (link: string | undefined) => {
