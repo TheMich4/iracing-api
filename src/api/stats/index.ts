@@ -1,4 +1,4 @@
-import { getData } from "../helpers";
+import { getData } from "../../helpers";
 
 const getMemberBests = async (customerId?: number, carId?: number) =>
 	await getData("data/stats/member_bests", {

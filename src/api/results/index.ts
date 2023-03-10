@@ -1,4 +1,4 @@
-import { getData } from "../helpers";
+import { getData } from "../../helpers";
 
 const getResults = async (subsessionId: number, includeLicenses?: boolean) =>
 	await getData("data/results/get", {

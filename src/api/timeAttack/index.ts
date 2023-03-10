@@ -1,4 +1,4 @@
-import { getData } from "../helpers";
+import { getData } from "../../helpers";
 
 const getTimeAttackSeasonResults = (seasonId: number) =>
 	getData("data/time_attack/member_season_results", {

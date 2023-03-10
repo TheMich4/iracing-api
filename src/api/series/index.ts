@@ -1,4 +1,4 @@
-import { getData } from "../helpers";
+import { getData } from "../../helpers";
 
 const getSeriesAssets = async () => await getData("data/series/assets");
 

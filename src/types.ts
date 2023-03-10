@@ -17,6 +17,24 @@ export interface Suit {
 	pattern: number;
 }
 
+export interface Livery {
+	car_id: number;
+	car_number: string;
+	color1: string;
+	color2: string;
+	color3: string;
+	number_color1: string;
+	number_color2: string;
+	number_color3: string;
+	number_font: number;
+	number_slant: number;
+	pattern: number;
+	rim_type: number;
+	sponsor1: number;
+	sponsor2: number;
+	wheel_color: string;
+}
+
 export interface Customer {
 	cust_id: number;
 	display_name: string;

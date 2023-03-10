@@ -1,4 +1,4 @@
-import { getData } from "../helpers";
+import { getData } from "../../helpers";
 
 const getLeagueSessions = async (packageId?: number) =>
 	await getData("data/league/cust_league_sessions", { package_id: packageId });

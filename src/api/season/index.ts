@@ -1,4 +1,4 @@
-import { getData } from "../helpers";
+import { getData } from "../../helpers";
 
 const getSeasonList = async (seasonYear: number, seasonQuarter: number) =>
 	await getData("data/season/list", {

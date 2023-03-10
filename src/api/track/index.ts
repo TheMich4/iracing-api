@@ -1,4 +1,4 @@
-import { getData } from "../helpers";
+import { getData } from "../../helpers";
 
 const getTrackAssets = async () => await getData("data/track/assets");
 
