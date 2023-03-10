@@ -4,13 +4,13 @@ export interface Helmet {
 	color1: string;
 	color2: string;
 	color3: string;
-	face_type: number;
-	helmet_type: number;
+	faceType: number;
+	helmetType: number;
 	pattern: number;
 }
 
 export interface Suit {
-	body_type: number;
+	bodyType: number;
 	color1: string;
 	color2: string;
 	color3: string;
@@ -18,70 +18,70 @@ export interface Suit {
 }
 
 export interface Livery {
-	car_id: number;
-	car_number: string;
+	carId: number;
+	carNumber: string;
 	color1: string;
 	color2: string;
 	color3: string;
-	number_color1: string;
-	number_color2: string;
-	number_color3: string;
-	number_font: number;
-	number_slant: number;
+	numberColor1: string;
+	numberColor2: string;
+	numberColor3: string;
+	numberFont: number;
+	numberSlant: number;
 	pattern: number;
-	rim_type: number;
+	rimType: number;
 	sponsor1: number;
 	sponsor2: number;
-	wheel_color: string;
+	wheelColor: string;
 }
 
 export interface Customer {
-	cust_id: number;
-	display_name: string;
+	custId: number;
+	displayName: string;
 	helmet: Helmet;
 }
 
 export interface Member extends Customer {
 	ai: boolean;
-	club_id: number;
-	club_name: string;
-	last_login: string;
-	member_since: string;
+	clubId: number;
+	clubName: string;
+	lastLogin: string;
+	memberSince: string;
 }
 
 export interface Track {
-	config_name: string;
-	track_id: number;
-	track_name: string;
+	configName: string;
+	trackId: number;
+	trackName: string;
 }
 
 export interface TrackState {
-	leave_marbles: boolean;
-	practice_rubber: number;
-	qualify_rubber: number;
-	warmup_rubber: number;
-	race_rubber: number;
-	practice_grip_compound: number;
-	qualify_grip_compound: number;
-	warmup_grip_compound: number;
-	race_grip_compound: number;
+	leaveMarbles: boolean;
+	practiceRubber: number;
+	qualifyRubber: number;
+	warmupRubber: number;
+	raceRubber: number;
+	practiceGripCompound: number;
+	qualifyGripCompound: number;
+	warmupGripCompound: number;
+	raceGripCompound: number;
 }
 
 export interface Weather {
 	version: number;
 	type: number;
-	temp_units: number;
-	temp_value: number;
-	rel_humidity: number;
+	tempUnits: number;
+	tempValue: number;
+	relHumidity: number;
 	fog: number;
-	wind_dir: number;
-	wind_units: number;
-	wind_value: number;
+	windDir: number;
+	windUnits: number;
+	windValue: number;
 	skies: number;
-	weather_var_initial: number;
-	weather_var_ongoing: number;
-	time_of_day: number;
-	simulated_start_time: string;
-	simulated_time_offsets: Array<number>;
-	simulated_time_multiplier: number;
+	weatherVarInitial: number;
+	weatherVarOngoing: number;
+	timeOfDay: number;
+	simulatedStartTime: string;
+	simulatedTimeOffsets: Array<number>;
+	simulatedTimeMultiplier: number;
 }
