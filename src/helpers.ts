@@ -1,12 +1,15 @@
 import axios from "axios";
 import { axiosInstance } from "./axios";
+import camelcaseKeys from "camelcase-keys";
 
 const getLinkData = async (link: string | undefined) => {
 	if (!link) return undefined;
 
-	const { data } = await axios.get(link);
+	const response = await axios.get(link);
 
-	return data;
+	if (!response.data) return undefined;
+
+	return camelcaseKeys(response.data, { deep: true });
 };
 
 const getData = async <Data, Parameters = void>(
