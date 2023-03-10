@@ -132,6 +132,14 @@ export interface Session {
 	weather: Weather;
 }
 
+// Params
+
+export interface GetHostedCombinedSessionsParams {
+	packageId?: number;
+}
+
+// Responses
+
 export interface HostedCombinedSessionsResponse {
 	sequence: number;
 	sessions: Array<Session>;

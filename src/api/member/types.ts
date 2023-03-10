@@ -5,21 +5,6 @@ export interface ChartData {
 	when: string;
 }
 
-export interface ChartDataResponse {
-	blackout: boolean;
-	categoryId: number;
-	chartType: number;
-	custId: number;
-	data: Array<ChartData>;
-	success: boolean;
-}
-
-export interface MemberDataResponse {
-	custIds: Array<number>;
-	members: Array<Member>;
-	success: boolean;
-}
-
 export interface MemberAccount {
 	irCredits: number;
 	irDollars: number;
@@ -115,4 +100,42 @@ export interface ParticipationInformation {
 	weeks: number;
 	earnedCredits: number;
 	totalCredits: number;
+}
+
+// Params
+
+export interface GetMemberAwardsParams {
+	customerId: number;
+}
+
+export interface GetMemberChartDataParams {
+	customerId: number;
+	categoryId: number;
+	chartType: number;
+}
+
+export interface GetMemberDataParams {
+	customerIds: Array<number>;
+	includeLicenses?: boolean;
+}
+
+export interface GetMemberProfileParams {
+	customerId: number;
+}
+
+// Response
+
+export interface ChartDataResponse {
+	blackout: boolean;
+	categoryId: number;
+	chartType: number;
+	custId: number;
+	data: Array<ChartData>;
+	success: boolean;
+}
+
+export interface MemberDataResponse {
+	custIds: Array<number>;
+	members: Array<Member>;
+	success: boolean;
 }

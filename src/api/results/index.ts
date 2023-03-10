@@ -1,76 +1,66 @@
+import {
+	GetResultsEventDataParams,
+	GetResultsLapChartDataParams,
+	GetResultsLapDataParams,
+	GetResultsParams,
+	GetSeasonResultsParams,
+} from "./types";
+
 import { AxiosInstance } from "axios";
 import { getData } from "../../helpers";
 
-const getResults = async (
+export const getResults = async (
 	axiosInstance: AxiosInstance,
-	subsessionId: number,
-	includeLicenses?: boolean,
+	params: GetResultsParams,
 ) =>
 	await getData(axiosInstance, "data/results/get", {
-		subsession_id: subsessionId,
-		include_licenses: includeLicenses,
+		subsession_id: params.subsessionId,
+		include_licenses: params.includeLicenses,
 	});
 
-const getResultsEventData = async (
+export const getResultsEventData = async (
 	axiosInstance: AxiosInstance,
-	subsessionId: number,
-	simsessionNumber: number,
+	params: GetResultsEventDataParams,
 ) =>
 	await getData(axiosInstance, "data/results/event_data", {
-		subsession_id: subsessionId,
-		simsession_number: simsessionNumber,
+		subsession_id: params.subsessionId,
+		simsession_number: params.simsessionNumber,
 	});
 
-const getResultsLapChartData = async (
+export const getResultsLapChartData = async (
 	axiosInstance: AxiosInstance,
-	subsessionId: number,
-	simsessionNumber: number,
+	params: GetResultsLapChartDataParams,
 ) =>
 	await getData(axiosInstance, "data/results/lap_chart_data", {
-		subsession_id: subsessionId,
-		simsession_number: simsessionNumber,
+		subsession_id: params.subsessionId,
+		simsession_number: params.simsessionNumber,
 	});
 
-const getResultsLapData = async (
+export const getResultsLapData = async (
 	axiosInstance: AxiosInstance,
-	subsessionId: number,
-	simsessionNumber: number,
-	customerId?: number,
-	teamId?: number,
+	params: GetResultsLapDataParams,
 ) =>
 	await getData(axiosInstance, "data/results/lap_data", {
-		subsession_id: subsessionId,
-		simsession_number: simsessionNumber,
-		customer_id: customerId,
-		team_id: teamId,
+		subsession_id: params.subsessionId,
+		simsession_number: params.simsessionNumber,
+		customer_id: params.customerId,
+		team_id: params.teamId,
 	});
 
 // TODO: Add params
-const searchHosted = async (axiosInstance: AxiosInstance) =>
+export const searchHosted = async (axiosInstance: AxiosInstance) =>
 	await getData(axiosInstance, "data/results/search_hosted");
 
 // TODO: Add params
-const searchSeries = async (axiosInstance: AxiosInstance) =>
+export const searchSeries = async (axiosInstance: AxiosInstance) =>
 	await getData(axiosInstance, "data/results/search_series");
 
-const getSeasonResults = async (
+export const getSeasonResults = async (
 	axiosInstance: AxiosInstance,
-	seasonId: number,
-	eventType?: number,
-	raceWeekNumber?: number,
+	params: GetSeasonResultsParams,
 ) =>
 	await getData(axiosInstance, "data/results/season_results", {
-		season_id: seasonId,
-		event_type: eventType,
-		race_week_num: raceWeekNumber,
+		season_id: params.seasonId,
+		event_type: params.eventType,
+		race_week_num: params.raceWeekNumber,
 	});
-
-export {
-	getResults,
-	getResultsEventData,
-	getResultsLapChartData,
-	getResultsLapData,
-	searchHosted,
-	searchSeries,
-	getSeasonResults,
-};

@@ -1,85 +1,79 @@
+import {
+	GetLeagueDataParams,
+	GetLeagueMembershipParams,
+	GetLeaguePointSystemsParams,
+	GetLeagueSeasonSessionsParams,
+	GetLeagueSeasonStandingsParams,
+	GetLeagueSeasonsParams,
+	GetLeagueSessionsParams,
+} from "./types";
+
 import { AxiosInstance } from "axios";
 import { getData } from "../../helpers";
 
-const getLeagueSessions = async (
+export const getLeagueSessions = async (
 	axiosInstance: AxiosInstance,
-	packageId?: number,
+	params?: GetLeagueSessionsParams,
 ) =>
 	await getData(axiosInstance, "data/league/cust_league_sessions", {
-		package_id: packageId,
+		package_id: params?.packageId,
 	});
 
 // TODO: Add params
-const getLeagueDirectory = async (axiosInstance: AxiosInstance) =>
+export const getLeagueDirectory = async (axiosInstance: AxiosInstance) =>
 	await getData(axiosInstance, "data/league/directory");
 
-const getLeagueData = async (
+export const getLeagueData = async (
 	axiosInstance: AxiosInstance,
-	leagueId: number,
-	includeLicenses?: boolean,
+	params: GetLeagueDataParams,
 ) =>
 	await getData(axiosInstance, "data/league/league_data", {
-		league_id: leagueId,
-		include_licenses: includeLicenses,
+		league_id: params.leagueId,
+		include_licenses: params.includeLicenses,
 	});
 
-const getLeaguePointSystem = async (
+export const getLeaguePointSystem = async (
 	axiosInstance: AxiosInstance,
-	leagueId: number,
-	seasonId?: number,
+	params: GetLeaguePointSystemsParams,
 ) =>
 	await getData(axiosInstance, "data/league/league_point_system", {
-		league_id: leagueId,
-		season_id: seasonId,
+		league_id: params.leagueId,
+		season_id: params.seasonId,
 	});
 
-const getLeagueMembership = async (
+export const getLeagueMembership = async (
 	axiosInstance: AxiosInstance,
-	includeLeague?: boolean,
+	params?: GetLeagueMembershipParams,
 ) =>
 	await getData(axiosInstance, "data/league/membership", {
-		include_league: includeLeague,
+		include_league: params?.includeLeague,
 	});
 
-const getLeagueSeasons = async (
+export const getLeagueSeasons = async (
 	axiosInstance: AxiosInstance,
-	leagueId: number,
-	retired?: boolean,
+	params: GetLeagueSeasonsParams,
 ) =>
 	await getData(axiosInstance, "data/league/seasons", {
-		league_id: leagueId,
-		retired: retired,
+		league_id: params.leagueId,
+		retired: params.retired,
 	});
 
 // TODO: Add missing params
-const getLeagueSeasonStandings = async (
+export const getLeagueSeasonStandings = async (
 	axiosInstance: AxiosInstance,
-	leagueId: number,
-	seasonId: number,
+	params: GetLeagueSeasonStandingsParams,
 ) =>
 	await getData(axiosInstance, "data/league/season_standings", {
-		league_id: leagueId,
-		season_id: seasonId,
+		league_id: params.leagueId,
+		season_id: params.seasonId,
 	});
 
 // TODO: Add missing params
-const getLeagueSeasonSessions = async (
+export const getLeagueSeasonSessions = async (
 	axiosInstance: AxiosInstance,
-	leagueId: number,
-	seasonId: number,
+	params: GetLeagueSeasonSessionsParams,
 ) =>
 	await getData(axiosInstance, "data/league/season_sessions", {
-		league_id: leagueId,
-		season_id: seasonId,
+		league_id: params.leagueId,
+		season_id: params.seasonId,
 	});
-
-export {
-	getLeagueSessions,
-	getLeagueDirectory,
-	getLeagueData,
-	getLeaguePointSystem,
-	getLeagueMembership,
-	getLeagueSeasons,
-	getLeagueSeasonStandings,
-	getLeagueSeasonSessions,
-};

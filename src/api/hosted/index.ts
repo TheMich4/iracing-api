@@ -1,4 +1,5 @@
 import {
+	GetHostedCombinedSessionsParams,
 	HostedCombinedSessionsResponse,
 	HostedSessionsResponse,
 } from "./types";
@@ -6,18 +7,16 @@ import {
 import { AxiosInstance } from "axios";
 import { getData } from "../../helpers";
 
-const getHostedCombinedSessions = async (
+export const getHostedCombinedSessions = async (
 	axiosInstance: AxiosInstance,
-	packageId?: number,
+	params?: GetHostedCombinedSessionsParams,
 ) => {
 	return await getData<HostedCombinedSessionsResponse>(
 		axiosInstance,
 		"data/hosted/combined_sessions",
-		{ package_id: packageId },
+		{ package_id: params?.packageId },
 	);
 };
 
-const getHostedSessions = async (axiosInstance: AxiosInstance) =>
+export const getHostedSessions = async (axiosInstance: AxiosInstance) =>
 	await getData<HostedSessionsResponse>(axiosInstance, "data/hosted/sessions");
-
-export { getHostedCombinedSessions, getHostedSessions };

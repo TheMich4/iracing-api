@@ -1,24 +1,24 @@
+import { GetSeasonListParams, GetSeasonRaceGuideParams } from "./types";
+
 import { AxiosInstance } from "axios";
 import { getData } from "../../helpers";
 
 const getSeasonList = async (
 	axiosInstance: AxiosInstance,
-	seasonYear: number,
-	seasonQuarter: number,
+	params: GetSeasonListParams,
 ) =>
 	await getData(axiosInstance, "data/season/list", {
-		season_year: seasonYear,
-		season_quarter: seasonQuarter,
+		season_year: params.seasonYear,
+		season_quarter: params.seasonQuarter,
 	});
 
 const getSeasonRaceGuide = async (
 	axiosInstance: AxiosInstance,
-	from: string,
-	includeEndAfterFrom: boolean,
+	params: GetSeasonRaceGuideParams,
 ) =>
 	await getData(axiosInstance, "data/season/race_guide", {
-		from,
-		include_end_after_from: includeEndAfterFrom,
+		from: params.from,
+		include_end_after_from: params.includeEndAfterFrom,
 	});
 
 export { getSeasonList, getSeasonRaceGuide };

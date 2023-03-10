@@ -1,7 +1,7 @@
 import { AxiosInstance } from "axios";
 import { getData } from "../../helpers";
 
-const getTeamData = async (
+export const getTeamData = async (
 	axiosInstance: AxiosInstance,
 	teamId: number,
 	includeLicenses: boolean,
@@ -10,5 +10,3 @@ const getTeamData = async (
 		team_id: teamId,
 		include_licenses: includeLicenses,
 	});
-
-export { getTeamData };

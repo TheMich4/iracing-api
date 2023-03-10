@@ -1,7 +1,7 @@
 import { AxiosInstance } from "axios";
 import { getData } from "../../helpers";
 
-const getMemberBests = async (
+export const getMemberBests = async (
 	axiosInstance: AxiosInstance,
 	customerId?: number,
 	carId?: number,
@@ -11,7 +11,7 @@ const getMemberBests = async (
 		car_id: carId,
 	});
 
-const getMemberCareer = async (
+export const getMemberCareer = async (
 	axiosInstance: AxiosInstance,
 	customerId?: number,
 ) =>
@@ -19,7 +19,7 @@ const getMemberCareer = async (
 		cust_id: customerId,
 	});
 
-const getMemberDivision = async (
+export const getMemberDivision = async (
 	axiosInstance: AxiosInstance,
 	seasonId: number,
 	eventType: number,
@@ -29,7 +29,7 @@ const getMemberDivision = async (
 		event_type: eventType,
 	});
 
-const getMemberRecentRaces = async (
+export const getMemberRecentRaces = async (
 	axiosInstance: AxiosInstance,
 	customerId?: number,
 ) =>
@@ -37,7 +37,7 @@ const getMemberRecentRaces = async (
 		cust_id: customerId,
 	});
 
-const getMemberSummary = async (
+export const getMemberSummary = async (
 	axiosInstance: AxiosInstance,
 	customerId?: number,
 ) =>
@@ -45,7 +45,7 @@ const getMemberSummary = async (
 		cust_id: customerId,
 	});
 
-const getMemberYearlyStats = async (
+export const getMemberYearlyStats = async (
 	axiosInstance: AxiosInstance,
 	customerId?: number,
 ) =>
@@ -53,7 +53,7 @@ const getMemberYearlyStats = async (
 		cust_id: customerId,
 	});
 
-const getDriverSeasonStandings = async (
+export const getDriverSeasonStandings = async (
 	axiosInstance: AxiosInstance,
 	seasonId: number,
 	carClassId: number,
@@ -69,7 +69,7 @@ const getDriverSeasonStandings = async (
 		race_week_num: raceWeekNumber,
 	});
 
-const getSupersessionSeasonStandings = async (
+export const getSupersessionSeasonStandings = async (
 	axiosInstance: AxiosInstance,
 	seasonId: number,
 	carClassId: number,
@@ -85,7 +85,7 @@ const getSupersessionSeasonStandings = async (
 		race_week_num: raceWeekNumber,
 	});
 
-const getTeamSeasonStandings = async (
+export const getTeamSeasonStandings = async (
 	axiosInstance: AxiosInstance,
 	seasonId: number,
 	carClassId: number,
@@ -97,7 +97,7 @@ const getTeamSeasonStandings = async (
 		race_week_num: raceWeekNumber,
 	});
 
-const getTimeTrialSeasonStandings = async (
+export const getTimeTrialSeasonStandings = async (
 	axiosInstance: AxiosInstance,
 	seasonId: number,
 	carClassId: number,
@@ -113,7 +113,7 @@ const getTimeTrialSeasonStandings = async (
 		race_week_num: raceWeekNumber,
 	});
 
-const getTimeTrialSeasonResults = async (
+export const getTimeTrialSeasonResults = async (
 	axiosInstance: AxiosInstance,
 	seasonId: number,
 	carClassId: number,
@@ -129,7 +129,7 @@ const getTimeTrialSeasonResults = async (
 		division: division,
 	});
 
-const getQualifySeasonResults = async (
+export const getQualifySeasonResults = async (
 	axiosInstance: AxiosInstance,
 	seasonId: number,
 	carClassId: number,
@@ -145,7 +145,7 @@ const getQualifySeasonResults = async (
 		division: division,
 	});
 
-const getWorldRecords = async (
+export const getWorldRecords = async (
 	axiosInstance: AxiosInstance,
 	carId: number,
 	trackId: number,

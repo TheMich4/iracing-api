@@ -1,23 +1,27 @@
 import { Category, Division, EventType } from "./types";
 
-import { axiosInstance } from "../../client";
+import { AxiosInstance } from "axios";
 
-const getCategories = async (): Promise<Array<Category> | undefined> => {
-	const response = await axiosInstance("data/constants/categories");
-
-	return response?.data;
-};
-
-const getDivisions = async (): Promise<Array<Division> | undefined> => {
-	const response = await axiosInstance("data/constants/divisions");
+export const getCategories = async (
+	axiosInstance: AxiosInstance,
+): Promise<Array<Category> | undefined> => {
+	const response = await axiosInstance.get("data/constants/categories");
 
 	return response?.data;
 };
 
-const getEventTypes = async (): Promise<Array<EventType> | undefined> => {
-	const response = await axiosInstance("data/constants/event_types");
+export const getDivisions = async (
+	axiosInstance: AxiosInstance,
+): Promise<Array<Division> | undefined> => {
+	const response = await axiosInstance.get("data/constants/divisions");
 
 	return response?.data;
 };
 
-export { getCategories, getDivisions, getEventTypes };
+export const getEventTypes = async (
+	axiosInstance: AxiosInstance,
+): Promise<Array<EventType> | undefined> => {
+	const response = await axiosInstance.get("data/constants/event_types");
+
+	return response?.data;
+};

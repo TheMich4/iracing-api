@@ -9,6 +9,7 @@ export * from "./member";
 export * from "./results";
 export * from "./season";
 export * from "./series";
+export * from "./stats";
 export * from "./team";
 export * from "./timeAttack";
 export * from "./track";

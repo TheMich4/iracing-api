@@ -35,3 +35,15 @@ export interface License {
 	levels: Array<License>;
 	minNumTt: number;
 }
+
+// Params
+
+export interface GetClubHistoryParams {
+	seasonYear: number;
+	seasonQuarter: number;
+}
+
+export interface GetDriversParams {
+	searchTerm: string;
+	leagueId?: number;
+}

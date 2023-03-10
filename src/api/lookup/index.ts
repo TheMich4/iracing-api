@@ -1,16 +1,22 @@
-import { Club, Country, Driver, License } from "./types";
+import {
+	Club,
+	Country,
+	Driver,
+	GetClubHistoryParams,
+	GetDriversParams,
+	License,
+} from "./types";
 
 import { AxiosInstance } from "axios";
 import { getData } from "../../helpers";
 
 const getClubHistory = async (
 	axiosInstance: AxiosInstance,
-	seasonYear: number,
-	seasonQuarter: number,
+	params: GetClubHistoryParams,
 ) =>
 	await getData<Array<Club>>(axiosInstance, "data/lookup/club_history", {
-		season_year: seasonYear,
-		season_quarter: seasonQuarter,
+		season_year: params.seasonYear,
+		season_quarter: params.seasonQuarter,
 	});
 
 const getCountries = async (axiosInstance: AxiosInstance) =>
@@ -18,12 +24,11 @@ const getCountries = async (axiosInstance: AxiosInstance) =>
 
 const getDrivers = async (
 	axiosInstance: AxiosInstance,
-	searchTerm: string,
-	leagueId?: number,
+	params: GetDriversParams,
 ) =>
 	await getData<Array<Driver>>(axiosInstance, "data/lookup/drivers", {
-		search_term: searchTerm,
-		league_id: leagueId,
+		search_term: params.searchTerm,
+		league_id: params.leagueId,
 	});
 
 const getLicenses = async (axiosInstance: AxiosInstance) =>

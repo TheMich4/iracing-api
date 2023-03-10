@@ -1,35 +1,29 @@
+import { GetSeriesPastSeasonsParams, GetSeriesSeasonsParams } from "./types";
+
 import { AxiosInstance } from "axios";
 import { getData } from "../../helpers";
 
-const getSeriesAssets = async (axiosInstance: AxiosInstance) =>
+export const getSeriesAssets = async (axiosInstance: AxiosInstance) =>
 	await getData(axiosInstance, "data/series/assets");
 
-const getSeriesData = async (axiosInstance: AxiosInstance) =>
+export const getSeriesData = async (axiosInstance: AxiosInstance) =>
 	await getData(axiosInstance, "data/series/get");
 
-const getSeriesPastSeasons = async (
+export const getSeriesPastSeasons = async (
 	axiosInstance: AxiosInstance,
-	seriesId: number,
+	params: GetSeriesPastSeasonsParams,
 ) =>
 	await getData(axiosInstance, "data/series/past_seasons", {
-		series_id: seriesId,
+		series_id: params.seriesId,
 	});
 
-const getSeriesSeasons = async (
+export const getSeriesSeasons = async (
 	axiosInstance: AxiosInstance,
-	includeSeries?: boolean,
+	params?: GetSeriesSeasonsParams,
 ) =>
 	await getData(axiosInstance, "data/series/seasons", {
-		include_series: includeSeries,
+		include_series: params?.includeSeries,
 	});
 
-const getSeriesStats = async (axiosInstance: AxiosInstance) =>
+export const getSeriesStats = async (axiosInstance: AxiosInstance) =>
 	await getData(axiosInstance, "data/series/stats_series");
-
-export {
-	getSeriesAssets,
-	getSeriesData,
-	getSeriesPastSeasons,
-	getSeriesSeasons,
-	getSeriesStats,
-};
