@@ -1,14 +1,7 @@
-export interface Category {
-	label: string;
-	value: string;
-}
+import { Category, Division, EventType } from "../../types/constants";
 
-export interface Division {
-	label: string;
-	value: string;
-}
+// Response
 
-export interface EventType {
-	label: string;
-	value: string;
-}
+export type GetCategoriesResponse = Array<Category> | undefined;
+export type GetDivisionsResponse = Array<Division> | undefined;
+export type GetEventTypesResponse = Array<EventType> | undefined;

@@ -12,3 +12,7 @@ export interface CarClass {
 	relativeSpeed: number;
 	shortName: string;
 }
+
+// Response
+
+export type GetCarClassesResponse = Array<CarClass>;

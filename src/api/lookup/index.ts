@@ -1,10 +1,10 @@
 import {
-	Club,
-	Country,
-	Driver,
 	GetClubHistoryParams,
+	GetClubHistoryResponse,
+	GetCountriesResponse,
 	GetDriversParams,
-	License,
+	GetDriversResponse,
+	GetLicensesResponse,
 } from "./types.js";
 
 import { AxiosInstance } from "axios";
@@ -14,22 +14,26 @@ export const getClubHistory = async (
 	axiosInstance: AxiosInstance,
 	params: GetClubHistoryParams,
 ) =>
-	await getData<Array<Club>>(axiosInstance, "data/lookup/club_history", {
-		season_year: params.seasonYear,
-		season_quarter: params.seasonQuarter,
-	});
+	await getData<GetClubHistoryResponse>(
+		axiosInstance,
+		"data/lookup/club_history",
+		{
+			season_year: params.seasonYear,
+			season_quarter: params.seasonQuarter,
+		},
+	);
 
 export const getCountries = async (axiosInstance: AxiosInstance) =>
-	await getData<Array<Country>>(axiosInstance, "data/lookup/countries");
+	await getData<GetCountriesResponse>(axiosInstance, "data/lookup/countries");
 
 export const getDrivers = async (
 	axiosInstance: AxiosInstance,
 	params: GetDriversParams,
 ) =>
-	await getData<Array<Driver>>(axiosInstance, "data/lookup/drivers", {
+	await getData<GetDriversResponse>(axiosInstance, "data/lookup/drivers", {
 		search_term: params.searchTerm,
 		league_id: params.leagueId,
 	});
 
 export const getLicenses = async (axiosInstance: AxiosInstance) =>
-	await getData<Array<License>>(axiosInstance, "data/lookup/licenses");
+	await getData<GetLicensesResponse>(axiosInstance, "data/lookup/licenses");
