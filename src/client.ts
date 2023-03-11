@@ -1,4 +1,4 @@
-import { API_URL } from "./consts";
+import { API_URL } from "./consts.js";
 import { CookieJar } from "tough-cookie";
 import axios from "axios";
 import { wrapper } from "axios-cookiejar-support";

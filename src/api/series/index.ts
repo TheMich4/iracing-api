@@ -1,7 +1,7 @@
-import { GetSeriesPastSeasonsParams, GetSeriesSeasonsParams } from "./types";
+import { GetSeriesPastSeasonsParams, GetSeriesSeasonsParams } from "./types.js";
 
 import { AxiosInstance } from "axios";
-import { getData } from "../../helpers";
+import { getData } from "../../helpers.js";
 
 export const getSeriesAssets = async (axiosInstance: AxiosInstance) =>
 	await getData(axiosInstance, "data/series/assets");

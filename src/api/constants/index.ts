@@ -1,4 +1,4 @@
-import { Category, Division, EventType } from "./types";
+import { Category, Division, EventType } from "./types.js";
 
 import { AxiosInstance } from "axios";
 

@@ -1,4 +1,4 @@
-import { Customer, Track, TrackState, Weather } from "../../types";
+import { Customer, Track, TrackState, Weather } from "../../types.js";
 
 export interface Session {
 	// TODO: Add correct types

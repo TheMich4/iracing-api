@@ -7,10 +7,10 @@ import {
 	MemberDataResponse,
 	MemberInfo,
 	ParticipationInformation,
-} from "./types";
+} from "./types.js";
 
 import { AxiosInstance } from "axios";
-import { getData } from "../../helpers";
+import { getData } from "../../helpers.js";
 
 const getMemberAwards = (
 	axiosInstance: AxiosInstance,

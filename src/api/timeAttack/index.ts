@@ -1,5 +1,5 @@
 import { AxiosInstance } from "axios";
-import { getData } from "../../helpers";
+import { getData } from "../../helpers.js";
 
 const getTimeAttackSeasonResults = (
 	axiosInstance: AxiosInstance,

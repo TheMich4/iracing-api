@@ -1,4 +1,4 @@
-import { Helmet, Member, Suit } from "../../types";
+import { Helmet, Member, Suit } from "../../types.js";
 
 export interface ChartData {
 	value: number;

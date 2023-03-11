@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from "axios";
 
-import camelcaseKeys from "camelcase-keys";
+import { camelizeKeys } from "humps";
 
 const getLinkData = async (link: string | undefined) => {
 	if (!link) return undefined;
@@ -9,7 +9,7 @@ const getLinkData = async (link: string | undefined) => {
 
 	if (!response.data) return undefined;
 
-	return camelcaseKeys(response.data, { deep: true });
+	return camelizeKeys(response.data);
 };
 
 const getData = async <Data, Parameters = void>(

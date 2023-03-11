@@ -1,4 +1,4 @@
-import { GetClubHistoryParams, GetDriversParams } from "./api/lookup/types";
+import { GetClubHistoryParams, GetDriversParams } from "./api/lookup/types.js";
 import {
 	GetLeagueDataParams,
 	GetLeagueMembershipParams,
@@ -7,28 +7,28 @@ import {
 	GetLeagueSeasonStandingsParams,
 	GetLeagueSeasonsParams,
 	GetLeagueSessionsParams,
-} from "./api/league/types";
+} from "./api/league/types.js";
 import {
 	GetMemberAwardsParams,
 	GetMemberChartDataParams,
 	GetMemberDataParams,
 	GetMemberProfileParams,
-} from "./api/member/types";
+} from "./api/member/types.js";
 import {
 	GetResultsEventDataParams,
 	GetResultsLapChartDataParams,
 	GetResultsLapDataParams,
 	GetResultsParams,
 	GetSeasonResultsParams,
-} from "./api/results/types";
+} from "./api/results/types.js";
 import {
 	GetSeasonListParams,
 	GetSeasonRaceGuideParams,
-} from "./api/season/types";
+} from "./api/season/types.js";
 import {
 	GetSeriesPastSeasonsParams,
 	GetSeriesSeasonsParams,
-} from "./api/series/types";
+} from "./api/series/types.js";
 import {
 	getCarAssets,
 	getCarClasses,
@@ -84,14 +84,14 @@ import {
 	getWorldRecords,
 	searchHosted,
 	searchSeries,
-} from "./api";
+} from "./api/index.js";
 
 import { AxiosInstance } from "axios";
 import CryptoJS from "crypto-js";
-import { GetHostedCombinedSessionsParams } from "./api/hosted/types";
-import { createAxiosInstance } from "./client";
+import { GetHostedCombinedSessionsParams } from "./api/hosted/types.js";
+import { createAxiosInstance } from "./client.js";
 
-export * from "./api";
+// export * from "./api";
 
 export class IracingAPI {
 	instance: AxiosInstance;

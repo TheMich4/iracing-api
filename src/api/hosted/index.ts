@@ -2,10 +2,10 @@ import {
 	GetHostedCombinedSessionsParams,
 	HostedCombinedSessionsResponse,
 	HostedSessionsResponse,
-} from "./types";
+} from "./types.js";
 
 import { AxiosInstance } from "axios";
-import { getData } from "../../helpers";
+import { getData } from "../../helpers.js";
 
 export const getHostedCombinedSessions = async (
 	axiosInstance: AxiosInstance,

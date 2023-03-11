@@ -1,7 +1,7 @@
-import { GetSeasonListParams, GetSeasonRaceGuideParams } from "./types";
+import { GetSeasonListParams, GetSeasonRaceGuideParams } from "./types.js";
 
 import { AxiosInstance } from "axios";
-import { getData } from "../../helpers";
+import { getData } from "../../helpers.js";
 
 const getSeasonList = async (
 	axiosInstance: AxiosInstance,

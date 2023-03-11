@@ -6,10 +6,10 @@ import {
 	GetLeagueSeasonStandingsParams,
 	GetLeagueSeasonsParams,
 	GetLeagueSessionsParams,
-} from "./types";
+} from "./types.js";
 
 import { AxiosInstance } from "axios";
-import { getData } from "../../helpers";
+import { getData } from "../../helpers.js";
 
 export const getLeagueSessions = async (
 	axiosInstance: AxiosInstance,

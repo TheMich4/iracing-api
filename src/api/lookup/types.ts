@@ -1,4 +1,4 @@
-import { Customer } from "../../types";
+import { Customer } from "../../types.js";
 
 export interface Club {
 	clubId: number;
