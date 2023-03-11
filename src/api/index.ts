@@ -13,3 +13,17 @@ export * from "./stats/index.js";
 export * from "./team/index.js";
 export * from "./timeAttack/index.js";
 export * from "./track/index.js";
+
+export * from "./car/types.js";
+export * from "./carClass/types.js";
+export * from "./constants/types.js";
+export * from "./hosted/types.js";
+export * from "./league/types.js";
+export * from "./lookup/types.js";
+export * from "./member/types.js";
+// export * from "./results/types.js";
+export * from "./season/types.js";
+export * from "./series/types.js";
+export * from "./stats/types.js";
+export * from "./team/types.js";
+export * from "./timeAttack/types.js";

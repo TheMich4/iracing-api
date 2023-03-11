@@ -1,6 +1,10 @@
-import { GetClubHistoryParams, GetDriversParams } from "./api/lookup/types.js";
+import * as api from "./api/index.js";
+
 import {
+	GetClubHistoryParams,
 	GetCustLeagueSessionsParams,
+	GetDriverSeasonStandings,
+	GetDriversParams,
 	GetLeagueDataParams,
 	GetLeagueDirectoryParams,
 	GetLeagueMembershipParams,
@@ -8,13 +12,28 @@ import {
 	GetLeagueSeasonSessionsParams,
 	GetLeagueSeasonStandingsParams,
 	GetLeagueSeasonsParams,
-} from "./api/league/types.js";
-import {
 	GetMemberAwardsParams,
+	GetMemberBestsParams,
+	GetMemberCareerParams,
 	GetMemberChartDataParams,
 	GetMemberDataParams,
+	GetMemberDivisionParams,
 	GetMemberProfileParams,
-} from "./api/member/types.js";
+	GetMemberRecentRacesParams,
+	GetMemberSummaryParams,
+	GetMemberYearlyParams,
+	GetQualifySeasonResultsParams,
+	GetSeasonListParams,
+	GetSeasonRaceGuideParams,
+	GetSeasonSupersessionSeasonStandingsParams,
+	GetSeriesPastSeasonsParams,
+	GetSeriesSeasonsParams,
+	GetTeamDataParams,
+	GetTeamSeasonStandingsParams,
+	GetTimeAttackSeasonResultsParams,
+	GetTimeTrialSeasonStandingsParams,
+	GetWorldRecordsParams,
+} from "./api/index.js";
 import {
 	GetResultsEventDataParams,
 	GetResultsLapChartDataParams,
@@ -22,79 +41,15 @@ import {
 	GetResultsParams,
 	GetSeasonResultsParams,
 } from "./api/results/types.js";
-import {
-	GetSeasonListParams,
-	GetSeasonRaceGuideParams,
-} from "./api/season/types.js";
-import {
-	GetSeriesPastSeasonsParams,
-	GetSeriesSeasonsParams,
-} from "./api/series/types.js";
-import {
-	getCarAssets,
-	getCarClasses,
-	getCars,
-	getCategories,
-	getClubHistory,
-	getCountries,
-	getCustLeagueSessions,
-	getDivisions,
-	getDriverSeasonStandings,
-	getDrivers,
-	getEventTypes,
-	getHostedCombinedSessions,
-	getHostedSessions,
-	getLeagueData,
-	getLeagueDirectory,
-	getLeagueMembership,
-	getLeaguePointSystem,
-	getLeagueSeasonSessions,
-	getLeagueSeasonStandings,
-	getLeagueSeasons,
-	getLicenses,
-	getMemberAwards,
-	getMemberBests,
-	getMemberChartData,
-	getMemberData,
-	getMemberDivision,
-	getMemberInfo,
-	getMemberParticipationCredits,
-	getMemberProfile,
-	getMemberRecentRaces,
-	getMemberSummary,
-	getMemberYearlyStats,
-	getResults,
-	getResultsEventData,
-	getResultsLapChartData,
-	getResultsLapData,
-	getSeasonList,
-	getSeasonRaceGuide,
-	getSeasonResults,
-	getSeriesAssets,
-	getSeriesData,
-	getSeriesPastSeasons,
-	getSeriesSeasons,
-	getSeriesStats,
-	getSupersessionSeasonStandings,
-	getTeamData,
-	getTeamSeasonStandings,
-	getTimeAttackSeasonResults,
-	getTimeTrialSeasonStandings,
-	getTrackAssets,
-	getTracks,
-	getWorldRecords,
-	searchHosted,
-	searchSeries,
-} from "./api/index.js";
 
 import { AxiosInstance } from "axios";
 import CryptoJS from "crypto-js";
 import { GetHostedCombinedSessionsParams } from "./api/hosted/types.js";
 import { createAxiosInstance } from "./client.js";
 
-// export * from "./api";
+export * from "./api/index.js";
 
-export class IracingAPI {
+export default class IracingAPI {
 	instance: AxiosInstance;
 
 	constructor() {
@@ -113,118 +68,129 @@ export class IracingAPI {
 	};
 
 	// Car API
-	getCarAssets = async () => await getCarAssets(this.instance);
-	getCars = async () => await getCars(this.instance);
+	getCarAssets = async () => await api.getCarAssets(this.instance);
+	getCars = async () => await api.getCars(this.instance);
 
 	// Car Class API
-	getCarClasses = async () => await getCarClasses(this.instance);
+	getCarClasses = async () => await api.getCarClasses(this.instance);
 
 	// Constants API
-	getCategories = async () => await getCategories(this.instance);
-	getDivisions = async () => await getDivisions(this.instance);
-	getEventTypes = async () => await getEventTypes(this.instance);
+	getCategories = async () => await api.getCategories(this.instance);
+	getDivisions = async () => await api.getDivisions(this.instance);
+	getEventTypes = async () => await api.getEventTypes(this.instance);
 
 	// Hosted API
 	getHostedCombinedSessions = async (
 		params?: GetHostedCombinedSessionsParams,
-	) => await getHostedCombinedSessions(this.instance, params);
-	getHostedSessions = async () => await getHostedSessions(this.instance);
+	) => await api.getHostedCombinedSessions(this.instance, params);
+	getHostedSessions = async () => await api.getHostedSessions(this.instance);
 
 	// League API
 	getCustLeagueSessions = async (params?: GetCustLeagueSessionsParams) =>
-		await getCustLeagueSessions(this.instance, params);
+		await api.getCustLeagueSessions(this.instance, params);
 	getLeagueDirectory = async (params?: GetLeagueDirectoryParams) =>
-		await getLeagueDirectory(this.instance, params);
+		await api.getLeagueDirectory(this.instance, params);
 	getLeagueData = async (params: GetLeagueDataParams) =>
-		await getLeagueData(this.instance, params);
+		await api.getLeagueData(this.instance, params);
 	getLeaguePointSystem = async (params: GetLeaguePointSystemsParams) =>
-		await getLeaguePointSystem(this.instance, params);
+		await api.getLeaguePointSystem(this.instance, params);
 	getLeagueMembership = async (params?: GetLeagueMembershipParams) =>
-		await getLeagueMembership(this.instance, params);
+		await api.getLeagueMembership(this.instance, params);
 	getLeagueSeasons = async (params: GetLeagueSeasonsParams) =>
-		await getLeagueSeasons(this.instance, params);
+		await api.getLeagueSeasons(this.instance, params);
 	getLeagueSeasonStandings = async (params: GetLeagueSeasonStandingsParams) =>
-		await getLeagueSeasonStandings(this.instance, params);
+		await api.getLeagueSeasonStandings(this.instance, params);
 	getLeagueSeasonSessions = async (params: GetLeagueSeasonSessionsParams) =>
-		await getLeagueSeasonSessions(this.instance, params);
+		await api.getLeagueSeasonSessions(this.instance, params);
 
 	// Lookup API
 	getClubHistory = async (params: GetClubHistoryParams) =>
-		await getClubHistory(this.instance, params);
-	getCountries = async () => await getCountries(this.instance);
+		await api.getClubHistory(this.instance, params);
+	getCountries = async () => await api.getCountries(this.instance);
 	getDrivers = async (params: GetDriversParams) =>
-		await getDrivers(this.instance, params);
-	getLicenses = async () => await getLicenses(this.instance);
+		await api.getDrivers(this.instance, params);
+	getLicenses = async () => await api.getLicenses(this.instance);
 
 	// Member API
 	getMemberAwards = async (params: GetMemberAwardsParams) =>
-		await getMemberAwards(this.instance, params);
+		await api.getMemberAwards(this.instance, params);
 	getMemberChartData = async (params: GetMemberChartDataParams) =>
-		await getMemberChartData(this.instance, params);
+		await api.getMemberChartData(this.instance, params);
 	getMemberData = async (params: GetMemberDataParams) =>
-		await getMemberData(this.instance, params);
-	getMemberInfo = async () => await getMemberInfo(this.instance);
+		await api.getMemberData(this.instance, params);
+	getMemberInfo = async () => await api.getMemberInfo(this.instance);
 	getMemberParticipationCredits = async () =>
-		await getMemberParticipationCredits(this.instance);
+		await api.getMemberParticipationCredits(this.instance);
 	getMemberProfile = async (params: GetMemberProfileParams) =>
-		await getMemberProfile(this.instance, params);
+		await api.getMemberProfile(this.instance, params);
 
 	// Results API
 	getResults = async (params: GetResultsParams) =>
-		await getResults(this.instance, params);
+		await api.getResults(this.instance, params);
 	getResultsEventData = async (params: GetResultsEventDataParams) =>
-		await getResultsEventData(this.instance, params);
+		await api.getResultsEventData(this.instance, params);
 	getResultsLapChartData = async (params: GetResultsLapChartDataParams) =>
-		await getResultsLapChartData(this.instance, params);
+		await api.getResultsLapChartData(this.instance, params);
 	getResultsLapData = async (params: GetResultsLapDataParams) =>
-		await getResultsLapData(this.instance, params);
-	searchHosted = async () => await searchHosted(this.instance);
-	searchSeries = async () => await searchSeries(this.instance);
+		await api.getResultsLapData(this.instance, params);
+	searchHosted = async () => await api.searchHosted(this.instance);
+	searchSeries = async () => await api.searchSeries(this.instance);
 	getSeasonResults = async (params: GetSeasonResultsParams) =>
-		await getSeasonResults(this.instance, params);
+		await api.getSeasonResults(this.instance, params);
 
 	// Season API
 	getSeasonList = async (params: GetSeasonListParams) =>
-		await getSeasonList(this.instance, params);
+		await api.getSeasonList(this.instance, params);
 	getSeasonRaceGuide = async (params: GetSeasonRaceGuideParams) =>
-		await getSeasonRaceGuide(this.instance, params);
+		await api.getSeasonRaceGuide(this.instance, params);
 
 	// Series API
-	getSeriesAssets = async () => await getSeriesAssets(this.instance);
-	getSeriesData = async () => await getSeriesData(this.instance);
+	getSeriesAssets = async () => await api.getSeriesAssets(this.instance);
+	getSeriesData = async () => await api.getSeriesData(this.instance);
 	getSeriesPastSeasons = async (params: GetSeriesPastSeasonsParams) =>
-		await getSeriesPastSeasons(this.instance, params);
+		await api.getSeriesPastSeasons(this.instance, params);
 	getSeriesSeasons = async (params?: GetSeriesSeasonsParams) =>
-		await getSeriesSeasons(this.instance, params);
-	getSeriesStats = async () => await getSeriesStats(this.instance);
+		await api.getSeriesSeasons(this.instance, params);
+	getSeriesStats = async () => await api.getSeriesStats(this.instance);
 
 	// Stats API
-	// getMemberBests = async () => await getMemberBests(this.instance);
-	// getMemberCareerStats = async () => await getMemberCareerStats(this.instance);
-	// getMemberDivision = async () => await getMemberDivision(this.instance);
-	// getMemberRecentRaces = async () => await getMemberRecentRaces(this.instance);
-	// getMemberSummary = async () => await getMemberSummary(this.instance);
-	// getMemberYearlyStats = async () => await getMemberYearlyStats(this.instance);
-	// getDriverSeasonStandings = async () =>
-	// 	await getDriverSeasonStandings(this.instance);
-	// getSupersessionSeasonStandings = async () =>
-	// 	await getSupersessionSeasonStandings(this.instance);
-	// getTeamSeasonStandings = async () =>
-	// 	await getTeamSeasonStandings(this.instance);
-	// getTimeTrialSeasonStandings = async () =>
-	// 	await getTimeTrialSeasonStandings(this.instance);
-	// getQualifySeasonStandings = async () =>
-	// 	await getQualifySeasonStandings(this.instance);
-	// getWorldRecords = async () => await getWorldRecords(this.instance);
+	getMemberBests = async (params?: GetMemberBestsParams) =>
+		await api.getMemberBests(this.instance, params);
+	getMemberCareer = async (params?: GetMemberCareerParams) =>
+		await api.getMemberCareer(this.instance, params);
+	getMemberDivision = async (params: GetMemberDivisionParams) =>
+		await api.getMemberDivision(this.instance, params);
+	getMemberRecentRaces = async (params?: GetMemberRecentRacesParams) =>
+		await api.getMemberRecentRaces(this.instance, params);
+	getMemberSummary = async (params?: GetMemberSummaryParams) =>
+		await api.getMemberSummary(this.instance, params);
+	getMemberYearlyStats = async (params?: GetMemberYearlyParams) =>
+		await api.getMemberYearlyStats(this.instance, params);
+	getDriverSeasonStandings = async (params: GetDriverSeasonStandings) =>
+		await api.getDriverSeasonStandings(this.instance, params);
+	getSupersessionSeasonStandings = async (
+		params: GetSeasonSupersessionSeasonStandingsParams,
+	) => await api.getSupersessionSeasonStandings(this.instance, params);
+	getTeamSeasonStandings = async (params: GetTeamSeasonStandingsParams) =>
+		await api.getTeamSeasonStandings(this.instance, params);
+	getTimeTrialSeasonStandings = async (
+		params: GetTimeTrialSeasonStandingsParams,
+	) => await api.getTimeTrialSeasonStandings(this.instance, params);
+	getQualifySeasonStandings = async (params: GetQualifySeasonResultsParams) =>
+		await api.getQualifySeasonResults(this.instance, params);
+	getWorldRecords = async (params: GetWorldRecordsParams) =>
+		await api.getWorldRecords(this.instance, params);
 
 	// Team API
-	// getTeamData = async () => await getTeamData(this.instance);
+	getTeamData = async (params: GetTeamDataParams) =>
+		await api.getTeamData(this.instance, params);
 
 	// Time Attack API
-	// getTimeAttackSeasonResults = async () =>
-	// 	await getTimeAttackSeasonResults(this.instance);
+	getTimeAttackSeasonResults = async (
+		params: GetTimeAttackSeasonResultsParams,
+	) => await api.getTimeAttackSeasonResults(this.instance, params);
 
 	// Track API
-	getTrackAssets = async () => await getTrackAssets(this.instance);
-	getTracks = async () => await getTracks(this.instance);
+	getTrackAssets = async () => await api.getTrackAssets(this.instance);
+	getTracks = async () => await api.getTracks(this.instance);
 }
