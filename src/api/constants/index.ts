@@ -1,4 +1,8 @@
-import { GetCategoriesResponse, GetDivisionsResponse } from "./types";
+import {
+	GetCategoriesResponse,
+	GetDivisionsResponse,
+	GetEventTypesResponse,
+} from "./types";
 
 import { AxiosInstance } from "axios";
 

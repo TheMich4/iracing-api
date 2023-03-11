@@ -94,15 +94,6 @@ export interface SessionResult {
 	watched: boolean;
 }
 
-export interface Session {
-	results: Array<SessionResult>;
-	simsessionName: string;
-	simsessionNumber: number;
-	simsessionSubtype: number;
-	simsessionType: number;
-	simsessionTypeName: string;
-}
-
 export interface Result {
 	allowedLicenses: Array<AllowedLicense>;
 	associatedSubsessionIds: Array<number>;
