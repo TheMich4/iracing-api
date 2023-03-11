@@ -1,88 +1,8 @@
-import { Helmet, Member, Suit } from "../../types.js";
-
-import { TrackPackage } from "../../types/track.js";
+import { Member } from "../../types/member.js";
 
 export interface ChartData {
 	value: number;
 	when: string;
-}
-
-export interface MemberAccount {
-	irCredits: number;
-	irDollars: number;
-	status: string;
-}
-
-export interface CarPackage {
-	contentIds: Array<number>;
-	packageId: number;
-}
-
-export interface MemberLicense {
-	category: string;
-	categoryId: number;
-	color: string;
-	cpi: number;
-	groupId: number;
-	groupName: string;
-	irating: number;
-	licenseLevel: number;
-	mprNumRaces: number;
-	mprNumTts: number;
-	proPromotable: boolean;
-	safetyRating: number;
-	ttRating: number;
-}
-
-export interface MemberLicenses {
-	dirtOval: MemberLicense;
-	dirtRoad: MemberLicense;
-	oval: MemberLicense;
-	road: MemberLicense;
-}
-
-export interface MemberInfo {
-	account: MemberAccount;
-	alphaTester: boolean;
-	ai: boolean;
-	bypassHostedPassword: boolean;
-	carPackages: Array<CarPackage>;
-	clubId: number;
-	clubName: string;
-	connectionType: string;
-	custId: number;
-	displayName: string;
-	downloadServer: string;
-	email: string;
-	firstName: string;
-	flags: number;
-	flagsHex: string;
-	hasReadCompRules: boolean;
-	hasReadPp: boolean;
-	hasReadTc: boolean;
-	helmet: Helmet;
-	hundredPctClub: boolean;
-	lastLogin: string;
-	lastName: string;
-	lastSeason: number;
-	lastTestCar: number;
-	lastTestTrack: number;
-	memberSince: string;
-	onCarName: string;
-	otherOwnedPackages: number[];
-	readCompRules: Date;
-	readPp: Date;
-	readTc: Date;
-	raceOfficial: boolean;
-	// TODO: Add type
-	restrictions: Record<string, unknown>;
-	suit: Suit;
-	licenses: MemberLicenses;
-	trackPackages: Array<TrackPackage>;
-	twentyPctDiscount: boolean;
-	username: string;
-	broadcaster: boolean;
-	dev: boolean;
 }
 
 export interface ParticipationInformation {
@@ -122,6 +42,8 @@ export interface GetMemberProfileParams {
 
 // Response
 
+// TODO: Add categoryId type
+// TODO: Add chartType type
 export interface ChartDataResponse {
 	blackout: boolean;
 	categoryId: number;

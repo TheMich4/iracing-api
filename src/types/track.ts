@@ -4,6 +4,11 @@ export interface Track {
 	trackName: string;
 }
 
+export interface TrackPackage {
+	contentIds: Array<number>;
+	packageId: number;
+}
+
 export interface TrackState {
 	leaveMarbles: boolean;
 	practiceRubber: number;

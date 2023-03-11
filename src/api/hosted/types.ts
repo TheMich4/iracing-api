@@ -1,5 +1,6 @@
-import { Customer, Weather } from "../../types.js";
-import { Track, TrackState } from "../../types/index.js";
+import { Customer, Track, TrackState } from "../../types/index.js";
+
+import { Weather } from "../../types.js";
 
 export interface Session {
 	// TODO: Add correct types

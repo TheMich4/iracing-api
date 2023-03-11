@@ -1,3 +1,8 @@
+export interface CarPackage {
+	contentIds: Array<number>;
+	packageId: number;
+}
+
 export interface Livery {
 	carId: number;
 	carNumber: string;

@@ -5,11 +5,11 @@ import {
 	GetMemberDataParams,
 	GetMemberProfileParams,
 	MemberDataResponse,
-	MemberInfo,
 	ParticipationInformation,
 } from "./types.js";
 
 import { AxiosInstance } from "axios";
+import { MemberInfo } from "../../types/member.js";
 import { getData } from "../../helpers.js";
 
 export const getMemberAwards = (
@@ -18,8 +18,6 @@ export const getMemberAwards = (
 ) =>
 	getData(axiosInstance, "data/member/awards", { cust_id: params.customerId });
 
-// TODO: Add categoryId type
-// TODO: Add chartType type
 export const getMemberChartData = (
 	axiosInstance: AxiosInstance,
 	params: GetMemberChartDataParams,
