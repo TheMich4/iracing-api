@@ -12,7 +12,7 @@ import {
 import { AxiosInstance } from "axios";
 import { getData } from "../../helpers.js";
 
-const getMemberAwards = (
+export const getMemberAwards = (
 	axiosInstance: AxiosInstance,
 	params: GetMemberAwardsParams,
 ) =>
@@ -20,7 +20,7 @@ const getMemberAwards = (
 
 // TODO: Add categoryId type
 // TODO: Add chartType type
-const getMemberChartData = (
+export const getMemberChartData = (
 	axiosInstance: AxiosInstance,
 	params: GetMemberChartDataParams,
 ) =>
@@ -30,8 +30,7 @@ const getMemberChartData = (
 		chart_type: params.chartType,
 	});
 
-// TODO: Support single customer id
-const getMemberData = async (
+export const getMemberData = async (
 	axiosInstance: AxiosInstance,
 	params: GetMemberDataParams,
 ) =>
@@ -40,28 +39,21 @@ const getMemberData = async (
 		include_licenses: params.includeLicenses,
 	});
 
-const getMemberInfo = async (axiosInstance: AxiosInstance) =>
+export const getMemberInfo = async (axiosInstance: AxiosInstance) =>
 	await getData<MemberInfo>(axiosInstance, "data/member/info");
 
-const getMemberParticipationCredits = async (axiosInstance: AxiosInstance) =>
+export const getMemberParticipationCredits = async (
+	axiosInstance: AxiosInstance,
+) =>
 	await getData<Array<ParticipationInformation>>(
 		axiosInstance,
 		"data/member/participation_credits",
 	);
 
-const getMemberProfile = async (
+export const getMemberProfile = async (
 	axiosInstance: AxiosInstance,
 	params: GetMemberProfileParams,
 ) =>
 	await getData(axiosInstance, "data/member/profile", {
 		cust_id: params.customerId,
 	});
-
-export {
-	getMemberAwards,
-	getMemberChartData,
-	getMemberData,
-	getMemberInfo,
-	getMemberParticipationCredits,
-	getMemberProfile,
-};

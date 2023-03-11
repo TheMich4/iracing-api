@@ -1,6 +1,23 @@
 // Params
-export interface GetLeagueSessionsParams {
+
+export interface GetCustLeagueSessionsParams {
+	mine?: boolean;
 	packageId?: number;
+}
+
+export interface GetLeagueDirectoryParams {
+	search?: string;
+	tag?: string;
+	restrictToMember?: boolean;
+	restrictToRecruiting?: boolean;
+	restrictToFriends?: boolean;
+	restrictToWatched?: boolean;
+	minimumRosterCount?: number;
+	maximumRosterCount?: number;
+	lowerbound?: number;
+	upperbound?: number;
+	sort?: string;
+	order?: string;
 }
 
 export interface GetLeagueDataParams {
@@ -30,4 +47,6 @@ export interface GetLeagueSeasonStandingsParams {
 export interface GetLeagueSeasonSessionsParams {
 	leagueId: number;
 	seasonId: number;
+	carClassId?: number;
+	carId?: number;
 }

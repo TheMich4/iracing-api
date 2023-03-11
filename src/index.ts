@@ -1,12 +1,13 @@
 import { GetClubHistoryParams, GetDriversParams } from "./api/lookup/types.js";
 import {
+	GetCustLeagueSessionsParams,
 	GetLeagueDataParams,
+	GetLeagueDirectoryParams,
 	GetLeagueMembershipParams,
 	GetLeaguePointSystemsParams,
 	GetLeagueSeasonSessionsParams,
 	GetLeagueSeasonStandingsParams,
 	GetLeagueSeasonsParams,
-	GetLeagueSessionsParams,
 } from "./api/league/types.js";
 import {
 	GetMemberAwardsParams,
@@ -36,6 +37,7 @@ import {
 	getCategories,
 	getClubHistory,
 	getCountries,
+	getCustLeagueSessions,
 	getDivisions,
 	getDriverSeasonStandings,
 	getDrivers,
@@ -49,7 +51,6 @@ import {
 	getLeagueSeasonSessions,
 	getLeagueSeasonStandings,
 	getLeagueSeasons,
-	getLeagueSessions,
 	getLicenses,
 	getMemberAwards,
 	getMemberBests,
@@ -130,9 +131,10 @@ export class IracingAPI {
 	getHostedSessions = async () => await getHostedSessions(this.instance);
 
 	// League API
-	getLeagueSessions = async (params?: GetLeagueSessionsParams) =>
-		await getLeagueSessions(this.instance, params);
-	getLeagueDirectory = async () => await getLeagueDirectory(this.instance);
+	getCustLeagueSessions = async (params?: GetCustLeagueSessionsParams) =>
+		await getCustLeagueSessions(this.instance, params);
+	getLeagueDirectory = async (params?: GetLeagueDirectoryParams) =>
+		await getLeagueDirectory(this.instance, params);
 	getLeagueData = async (params: GetLeagueDataParams) =>
 		await getLeagueData(this.instance, params);
 	getLeaguePointSystem = async (params: GetLeaguePointSystemsParams) =>

@@ -10,7 +10,7 @@ import {
 import { AxiosInstance } from "axios";
 import { getData } from "../../helpers.js";
 
-const getClubHistory = async (
+export const getClubHistory = async (
 	axiosInstance: AxiosInstance,
 	params: GetClubHistoryParams,
 ) =>
@@ -19,10 +19,10 @@ const getClubHistory = async (
 		season_quarter: params.seasonQuarter,
 	});
 
-const getCountries = async (axiosInstance: AxiosInstance) =>
+export const getCountries = async (axiosInstance: AxiosInstance) =>
 	await getData<Array<Country>>(axiosInstance, "data/lookup/countries");
 
-const getDrivers = async (
+export const getDrivers = async (
 	axiosInstance: AxiosInstance,
 	params: GetDriversParams,
 ) =>
@@ -31,7 +31,5 @@ const getDrivers = async (
 		league_id: params.leagueId,
 	});
 
-const getLicenses = async (axiosInstance: AxiosInstance) =>
+export const getLicenses = async (axiosInstance: AxiosInstance) =>
 	await getData<Array<License>>(axiosInstance, "data/lookup/licenses");
-
-export { getClubHistory, getCountries, getDrivers, getLicenses };

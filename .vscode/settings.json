@@ -4,10 +4,12 @@
         "carclass",
         "cust",
         "Dirpath",
+        "lowerbound",
         "sess",
         "simsession",
         "subsession",
         "Techspecs",
-        "unsport"
+        "unsport",
+        "upperbound"
     ]
 }
