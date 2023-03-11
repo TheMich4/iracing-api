@@ -1,11 +1,5 @@
-import {
-	Helmet,
-	Livery,
-	Suit,
-	Track,
-	TrackState,
-	Weather,
-} from "../../types.js";
+import { Helmet, Suit, Weather } from "../../types.js";
+import { Livery, Track, TrackState } from "../../types/index.js";
 
 export interface AllowedLicense {
 	groupName: string;

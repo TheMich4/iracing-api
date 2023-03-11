@@ -17,24 +17,6 @@ export interface Suit {
 	pattern: number;
 }
 
-export interface Livery {
-	carId: number;
-	carNumber: string;
-	color1: string;
-	color2: string;
-	color3: string;
-	numberColor1: string;
-	numberColor2: string;
-	numberColor3: string;
-	numberFont: number;
-	numberSlant: number;
-	pattern: number;
-	rimType: number;
-	sponsor1: number;
-	sponsor2: number;
-	wheelColor: string;
-}
-
 export interface Customer {
 	custId: number;
 	displayName: string;
@@ -47,24 +29,6 @@ export interface Member extends Customer {
 	clubName: string;
 	lastLogin: string;
 	memberSince: string;
-}
-
-export interface Track {
-	configName: string;
-	trackId: number;
-	trackName: string;
-}
-
-export interface TrackState {
-	leaveMarbles: boolean;
-	practiceRubber: number;
-	qualifyRubber: number;
-	warmupRubber: number;
-	raceRubber: number;
-	practiceGripCompound: number;
-	qualifyGripCompound: number;
-	warmupGripCompound: number;
-	raceGripCompound: number;
 }
 
 export interface Weather {

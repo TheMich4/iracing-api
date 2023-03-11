@@ -1,5 +1,7 @@
 import { Helmet, Member, Suit } from "../../types.js";
 
+import { TrackPackage } from "../../types/track.js";
+
 export interface ChartData {
 	value: number;
 	when: string;
@@ -39,11 +41,6 @@ export interface MemberLicenses {
 	road: MemberLicense;
 }
 
-export interface TrackPackage {
-	contentIds: Array<number>;
-	packageId: number;
-}
-
 export interface MemberInfo {
 	account: MemberAccount;
 	alphaTester: boolean;
@@ -78,7 +75,7 @@ export interface MemberInfo {
 	readTc: Date;
 	raceOfficial: boolean;
 	// TODO: Add type
-	restrictions: Record<string, any>;
+	restrictions: Record<string, unknown>;
 	suit: Suit;
 	licenses: MemberLicenses;
 	trackPackages: Array<TrackPackage>;

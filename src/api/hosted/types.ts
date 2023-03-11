@@ -1,15 +1,16 @@
-import { Customer, Track, TrackState, Weather } from "../../types.js";
+import { Customer, Weather } from "../../types.js";
+import { Track, TrackState } from "../../types/index.js";
 
 export interface Session {
 	// TODO: Add correct types
 	admins: Array<Customer>;
 	aiAvoidPlayers: boolean;
 	// TODO: Add correct type
-	allowedClubs: Array<any>;
+	allowedClubs: Array<unknown>;
 	// TODO: Add correct type
-	allowedLeagues: Array<any>;
+	allowedLeagues: Array<unknown>;
 	// TODO: Add correct type
-	allowedTeams: Array<any>;
+	allowedTeams: Array<unknown>;
 	availableReservedBroadcasterSlots: number;
 	availableSpectatorSlots: number;
 	broadcaster: boolean;
@@ -40,7 +41,7 @@ export interface Session {
 		ownCar: boolean;
 		ownTrack: boolean;
 		// TODO: Add correct type
-		purchaseSkus: Array<any>;
+		purchaseSkus: Array<unknown>;
 		registered: boolean;
 		sessionFull: boolean;
 	};
