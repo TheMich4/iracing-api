@@ -1,6 +1,8 @@
 import axios, { AxiosInstance } from "axios";
 
-import { camelizeKeys } from "humps";
+import humps from "humps";
+
+const { camelizeKeys } = humps;
 
 const getLinkData = async (link: string | undefined) => {
 	if (!link) return undefined;
