@@ -64,7 +64,7 @@ export default class IracingAPI {
 			CryptoJS.SHA256(password + email.toLowerCase()),
 		);
 
-		await this.instance.post("/auth", {
+		return await this.instance.post("/auth", {
 			email,
 			password: hashPassword,
 		});
