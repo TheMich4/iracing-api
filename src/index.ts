@@ -41,19 +41,22 @@ import {
 	GetResultsParams,
 	GetSeasonResultsParams,
 } from "./api/results/types.js";
+import { createAxiosInstance, createJar } from "./client.js";
 
 import { AxiosInstance } from "axios";
+import { CookieJar } from "tough-cookie";
 import CryptoJS from "crypto-js";
 import { GetHostedCombinedSessionsParams } from "./api/hosted/types.js";
-import { createAxiosInstance } from "./client.js";
 
 export * from "./api/index.js";
 
 export default class IracingAPI {
+	jar: CookieJar;
 	instance: AxiosInstance;
 
 	constructor() {
-		this.instance = createAxiosInstance();
+		this.jar = createJar();
+		this.instance = createAxiosInstance(this.jar);
 	}
 
 	login = async (email: string, password: string) => {

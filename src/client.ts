@@ -3,9 +3,9 @@ import { CookieJar } from "tough-cookie";
 import axios from "axios";
 import { wrapper } from "axios-cookiejar-support";
 
-const jar = new CookieJar();
+export const createJar = () => new CookieJar();
 
-export const createAxiosInstance = () =>
+export const createAxiosInstance = (jar: CookieJar) =>
 	wrapper(
 		axios.create({
 			baseURL: API_URL,
@@ -19,4 +19,4 @@ export const createAxiosInstance = () =>
 		}),
 	);
 
-export const axiosInstance = createAxiosInstance();
+export const axiosInstance = createAxiosInstance(createJar());
