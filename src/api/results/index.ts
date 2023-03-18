@@ -1,6 +1,8 @@
 import {
 	GetResultParams,
-	GetResultsEventDataParams,
+	GetResultResponse,
+	GetResultsEventLogParams,
+	GetResultsEventLogResponse,
 	GetResultsLapChartDataParams,
 	GetResultsLapDataParams,
 	GetSeasonResultsParams,
@@ -13,19 +15,23 @@ export const getResult = async (
 	axiosInstance: AxiosInstance,
 	params: GetResultParams,
 ) =>
-	await getData(axiosInstance, "data/results/get", {
+	await getData<GetResultResponse>(axiosInstance, "data/results/get", {
 		subsession_id: params.subsessionId,
 		include_licenses: params.includeLicenses,
 	});
 
-export const getResultsEventData = async (
+export const getResultsEventLog = async (
 	axiosInstance: AxiosInstance,
-	params: GetResultsEventDataParams,
+	params: GetResultsEventLogParams,
 ) =>
-	await getData(axiosInstance, "data/results/event_data", {
-		subsession_id: params.subsessionId,
-		simsession_number: params.simsessionNumber,
-	});
+	await getData<GetResultsEventLogResponse>(
+		axiosInstance,
+		"data/results/event_log",
+		{
+			subsession_id: params.subsessionId,
+			simsession_number: params.simsessionNumber,
+		},
+	);
 
 export const getResultsLapChartData = async (
 	axiosInstance: AxiosInstance,

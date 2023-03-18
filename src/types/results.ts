@@ -1,5 +1,7 @@
+import { Helmet, Suit } from "./member";
 import { Track, TrackState } from "./track";
 
+import { Livery } from "./car";
 import { Weather } from "../types";
 
 export interface AllowedLicense {

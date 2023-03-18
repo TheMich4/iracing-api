@@ -1,6 +1,6 @@
 export interface Track {
-	category: string; // TODO: Enum?
-	categoryId: number;
+	category?: string; // TODO: Enum?
+	categoryId?: number;
 	configName: string;
 	trackId: number;
 	trackName: string;

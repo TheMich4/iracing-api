@@ -36,7 +36,7 @@ import {
 } from "./api/index.js";
 import {
 	GetResultParams,
-	GetResultsEventDataParams,
+	GetResultsEventLogParams,
 	GetResultsLapChartDataParams,
 	GetResultsLapDataParams,
 	GetSeasonResultsParams,
@@ -130,8 +130,8 @@ export default class IracingAPI {
 	// Results API
 	getResult = async (params: GetResultParams) =>
 		await api.getResult(this.instance, params);
-	getResultsEventData = async (params: GetResultsEventDataParams) =>
-		await api.getResultsEventData(this.instance, params);
+	getResultsEventLog = async (params: GetResultsEventLogParams) =>
+		await api.getResultsEventLog(this.instance, params);
 	getResultsLapChartData = async (params: GetResultsLapChartDataParams) =>
 		await api.getResultsLapChartData(this.instance, params);
 	getResultsLapData = async (params: GetResultsLapDataParams) =>

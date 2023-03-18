@@ -134,3 +134,20 @@ export interface Session {
 	warmupLength: number;
 	weather: Weather;
 }
+
+export interface SessionInfo {
+	eventType: number;
+	eventTypeName: string;
+	privateSessionId: number;
+	seasonName: string;
+	seasonShortName: string;
+	seriesName: string;
+	seriesShortName: string;
+	sessionId: number;
+	simsessionName: string;
+	simsessionNumber: number;
+	simsessionType: number;
+	startTime: string;
+	subsessionId: number;
+	track: Track;
+}
