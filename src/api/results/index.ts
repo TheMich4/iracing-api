@@ -1,17 +1,17 @@
 import {
+	GetResultParams,
 	GetResultsEventDataParams,
 	GetResultsLapChartDataParams,
 	GetResultsLapDataParams,
-	GetResultsParams,
 	GetSeasonResultsParams,
 } from "./types.js";
 
 import { AxiosInstance } from "axios";
 import { getData } from "../../helpers.js";
 
-export const getResults = async (
+export const getResult = async (
 	axiosInstance: AxiosInstance,
-	params: GetResultsParams,
+	params: GetResultParams,
 ) =>
 	await getData(axiosInstance, "data/results/get", {
 		subsession_id: params.subsessionId,

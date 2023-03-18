@@ -35,10 +35,10 @@ import {
 	GetWorldRecordsParams,
 } from "./api/index.js";
 import {
+	GetResultParams,
 	GetResultsEventDataParams,
 	GetResultsLapChartDataParams,
 	GetResultsLapDataParams,
-	GetResultsParams,
 	GetSeasonResultsParams,
 } from "./api/results/types.js";
 import { createAxiosInstance, createJar } from "./client.js";
@@ -128,8 +128,8 @@ export default class IracingAPI {
 		await api.getMemberProfile(this.instance, params);
 
 	// Results API
-	getResults = async (params: GetResultsParams) =>
-		await api.getResults(this.instance, params);
+	getResult = async (params: GetResultParams) =>
+		await api.getResult(this.instance, params);
 	getResultsEventData = async (params: GetResultsEventDataParams) =>
 		await api.getResultsEventData(this.instance, params);
 	getResultsLapChartData = async (params: GetResultsLapChartDataParams) =>

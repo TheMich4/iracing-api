@@ -2,10 +2,13 @@
     "editor.defaultFormatter": "rome.rome",
     "cSpell.words": [
         "carclass",
+        "cooldown",
         "cust",
         "Dirpath",
         "irating",
         "lowerbound",
+        "Nlaps",
+        "precip",
         "sess",
         "simsession",
         "subsession",

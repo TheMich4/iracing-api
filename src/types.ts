@@ -1,20 +1,20 @@
-// TODO: Clean up this file to separate files
-
 export interface Weather {
-	version: number;
-	type: number;
+	allowFog: boolean;
+	fog: number;
+	precipOption: number;
+	relHumidity: number;
+	simulatedStartUtcOffset: number;
+	simulatedStartUtcTime: string;
+	skies: number;
 	tempUnits: number;
 	tempValue: number;
-	relHumidity: number;
-	fog: number;
+	timeOfDay: number;
+	trackWater: number;
+	type: number;
+	version: number;
+	weatherVarInitial: number;
+	weatherVarOngoing: number;
 	windDir: number;
 	windUnits: number;
 	windValue: number;
-	skies: number;
-	weatherVarInitial: number;
-	weatherVarOngoing: number;
-	timeOfDay: number;
-	simulatedStartTime: string;
-	simulatedTimeOffsets: Array<number>;
-	simulatedTimeMultiplier: number;
 }
