@@ -1,5 +1,6 @@
 // Params
 
+import { ChunkInfo } from "../../types/common.js";
 import { Result } from "../../types/results.js";
 import { SessionInfo } from "../../types/session.js";
 
@@ -8,16 +9,25 @@ export interface GetResultParams {
 	includeLicenses?: boolean;
 }
 
+/**
+ * simsessionNumber - The main event is 0; the preceding event is -1, and so on.
+ */
 export interface GetResultsEventLogParams {
 	subsessionId: number;
 	simsessionNumber: number;
 }
 
+/**
+ * simsessionNumber - The main event is 0; the preceding event is -1, and so on.
+ */
 export interface GetResultsLapChartDataParams {
 	subsessionId: number;
 	simsessionNumber: number;
 }
 
+/**
+ * simsessionNumber - The main event is 0; the preceding event is -1, and so on.
+ */
 export interface GetResultsLapDataParams {
 	subsessionId: number;
 	simsessionNumber: number;
@@ -36,13 +46,7 @@ export interface GetSeasonResultsParams {
 export type GetResultResponse = Result;
 
 export interface GetResultsEventLogResponse {
-	chunkInfo: {
-		baseDownloadUrl: string;
-		chunkFileNames: Array<string>;
-		chunkSize: number;
-		numChunks: number;
-		rows: number;
-	};
+	chunkInfo: ChunkInfo;
 	sessionInfo: SessionInfo;
 	success: boolean;
 }

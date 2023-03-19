@@ -1,10 +1,11 @@
 import axios, { AxiosInstance } from "axios";
 
+import { ChunkInfo } from "./types/common";
 import humps from "humps";
 
 const { camelizeKeys } = humps;
 
-const getLinkData = async (link: string | undefined) => {
+export const getLinkData = async (link: string | undefined) => {
 	if (!link) return undefined;
 
 	const response = await axios.get(link);
@@ -14,7 +15,7 @@ const getLinkData = async (link: string | undefined) => {
 	return camelizeKeys(response.data);
 };
 
-const getData = async <Data, Parameters = void>(
+export const getData = async <Data, Parameters = void>(
 	axiosInstance: AxiosInstance,
 	endpoint: string,
 	params?: Parameters | Record<string, unknown>,
@@ -23,5 +24,3 @@ const getData = async <Data, Parameters = void>(
 
 	return await getLinkData(data?.link);
 };
-
-export { getData, getLinkData };
