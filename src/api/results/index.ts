@@ -9,12 +9,13 @@ import {
 } from "./types.js";
 
 import { AxiosInstance } from "axios";
+import { Result } from "../../types/results.js";
 import { getData } from "../../helpers.js";
 
 export const getResult = async (
 	axiosInstance: AxiosInstance,
 	params: GetResultParams,
-) =>
+): Promise<Result | undefined> =>
 	await getData<GetResultResponse>(axiosInstance, "data/results/get", {
 		subsession_id: params.subsessionId,
 		include_licenses: params.includeLicenses,
