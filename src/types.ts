@@ -3,8 +3,11 @@ export interface Weather {
 	fog: number;
 	precipOption: number;
 	relHumidity: number;
+	simulatedStartTime?: string;
 	simulatedStartUtcOffset: number;
 	simulatedStartUtcTime: string;
+	simulatedTimeMultiplier?: number;
+	simulatedTimeOffsets?: Array<number>;
 	skies: number;
 	tempUnits: number;
 	tempValue: number;

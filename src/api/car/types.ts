@@ -1,4 +1,4 @@
-import { CarAssets, CarData, CarRule } from "../../types/car.js";
+import { CarAssets, CarData } from "../../types/car.js";
 
 // Response
 

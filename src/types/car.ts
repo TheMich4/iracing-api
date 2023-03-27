@@ -84,6 +84,15 @@ export interface CarPaintRules {
 	[id: string]: CarPaintRule;
 }
 
+export interface CarRestriction {
+	carId: number;
+	maxDryTireSets: number;
+	maxPctFuelFill: number;
+	powerAdjustPct: number;
+	raceSetupId: number;
+	weightPenaltyKg: number;
+}
+
 export interface CarRule {
 	ruleCategory: string;
 	text: string;

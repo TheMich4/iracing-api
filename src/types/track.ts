@@ -12,13 +12,13 @@ export interface TrackPackage {
 }
 
 export interface TrackState {
-	leaveMarbles: boolean;
-	practiceRubber: number;
-	qualifyRubber: number;
-	warmupRubber: number;
-	raceRubber: number;
-	practiceGripCompound: number;
-	qualifyGripCompound: number;
-	warmupGripCompound: number;
-	raceGripCompound: number;
+	leaveMarbles?: boolean;
+	practiceGripCompound?: number;
+	practiceRubber?: number;
+	qualifyGripCompound?: number;
+	qualifyRubber?: number;
+	raceGripCompound?: number;
+	raceRubber?: number;
+	warmupGripCompound?: number;
+	warmupRubber?: number;
 }
