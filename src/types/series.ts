@@ -6,11 +6,13 @@ import { RaceTimeDescriptor } from "./common.js";
 import { Weather } from "../types.js";
 
 export interface Schedule {
+	carRestrictions?: Array<CarRestriction>;
 	enablePitlaneCollisions: boolean;
 	fullCourseCautions: boolean;
 	qualAttached: boolean;
 	raceLapLimit: number | null;
 	raceTimeLimit: number | null;
+	raceWeekNum?: number;
 	restartType: string;
 	scheduleName: string;
 	seasonId: number;
@@ -23,6 +25,7 @@ export interface Schedule {
 	startDate: string;
 	startType: string;
 	startZone: boolean;
+	track?: Track;
 }
 
 export interface Season {
