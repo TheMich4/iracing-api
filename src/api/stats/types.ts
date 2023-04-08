@@ -1,3 +1,11 @@
+import type {
+	CareerStat,
+	CarsDriven,
+	MemberBest,
+	MemberDivision,
+	YearlyStat,
+} from "../../types/stats.js";
+
 // Params
 
 export interface GetMemberBestsParams {
@@ -77,4 +85,35 @@ export interface GetWorldRecordsParams {
 	trackId: number;
 	seasonYear?: number;
 	seasonQuarter?: number;
+}
+
+// Response
+
+export interface GetMemberBestsResponse {
+	bests: Array<MemberBest>;
+	carsDriven: CarsDriven;
+	custId: number;
+	carId: number;
+}
+
+export interface GetMemberCareerResponse {
+	custId: number;
+	stats: Array<CareerStat>;
+}
+
+export type GetMemberDivisionResponse = MemberDivision;
+
+export interface GetMemberSummaryResponse {
+	custId: number;
+	thisYear: {
+		numOfficialSessions: number;
+		numLeagueSessions: number;
+		numOfficialWins: number;
+		numLeagueWins: number;
+	};
+}
+
+export interface getMemberYearlyStatsResponse {
+	stats: Array<YearlyStat>;
+	custId: number;
 }

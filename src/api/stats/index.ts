@@ -1,10 +1,14 @@
-import {
+import type {
 	GetDriverSeasonStandings,
 	GetMemberBestsParams,
+	GetMemberBestsResponse,
 	GetMemberCareerParams,
+	GetMemberCareerResponse,
 	GetMemberDivisionParams,
+	GetMemberDivisionResponse,
 	GetMemberRecentRacesParams,
 	GetMemberSummaryParams,
+	GetMemberSummaryResponse,
 	GetMemberYearlyParams,
 	GetQualifySeasonResultsParams,
 	GetSeasonSupersessionSeasonStandingsParams,
@@ -21,27 +25,39 @@ export const getMemberBests = async (
 	axiosInstance: AxiosInstance,
 	params?: GetMemberBestsParams,
 ) =>
-	await getData(axiosInstance, "data/stats/member_bests", {
-		cust_id: params?.customerId,
-		car_id: params?.carId,
-	});
+	await getData<GetMemberBestsResponse>(
+		axiosInstance,
+		"data/stats/member_bests",
+		{
+			cust_id: params?.customerId,
+			car_id: params?.carId,
+		},
+	);
 
 export const getMemberCareer = async (
 	axiosInstance: AxiosInstance,
 	params?: GetMemberCareerParams,
 ) =>
-	await getData(axiosInstance, "data/stats/member_career", {
-		cust_id: params?.customerId,
-	});
+	await getData<GetMemberCareerResponse>(
+		axiosInstance,
+		"data/stats/member_career",
+		{
+			cust_id: params?.customerId,
+		},
+	);
 
 export const getMemberDivision = async (
 	axiosInstance: AxiosInstance,
 	params: GetMemberDivisionParams,
 ) =>
-	await getData(axiosInstance, "data/stats/member_division", {
-		season_id: params.seasonId,
-		event_type: params.eventType,
-	});
+	await getData<GetMemberDivisionResponse>(
+		axiosInstance,
+		"data/stats/member_division",
+		{
+			season_id: params.seasonId,
+			event_type: params.eventType,
+		},
+	);
 
 export const getMemberRecentRaces = async (
 	axiosInstance: AxiosInstance,
@@ -55,9 +71,13 @@ export const getMemberSummary = async (
 	axiosInstance: AxiosInstance,
 	params?: GetMemberSummaryParams,
 ) =>
-	await getData(axiosInstance, "data/stats/member_summary", {
-		cust_id: params?.customerId,
-	});
+	await getData<GetMemberSummaryResponse>(
+		axiosInstance,
+		"data/stats/member_summary",
+		{
+			cust_id: params?.customerId,
+		},
+	);
 
 export const getMemberYearlyStats = async (
 	axiosInstance: AxiosInstance,
