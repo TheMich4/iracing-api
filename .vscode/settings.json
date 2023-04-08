@@ -10,6 +10,8 @@
         "multiclass",
         "Nlaps",
         "Pitlane",
+        "pitroad",
+        "Pitstalls",
         "precip",
         "sess",
         "simsession",
