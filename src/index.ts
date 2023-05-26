@@ -139,7 +139,8 @@ export default class IracingAPI {
 	getResultsLapData = async (params: GetResultsLapDataParams) =>
 		await api.getResultsLapData(this.instance, params);
 	searchHosted = async () => await api.searchHosted(this.instance);
-	searchSeries = async (params: SearchSeriesParams) => await api.searchSeries(this.instance, params);
+	searchSeries = async (params: SearchSeriesParams) =>
+		await api.searchSeries(this.instance, params);
 	getSeasonResults = async (params: GetSeasonResultsParams) =>
 		await api.getSeasonResults(this.instance, params);
 

@@ -60,8 +60,11 @@ export const searchHosted = async (axiosInstance: AxiosInstance) =>
 	await getData(axiosInstance, "data/results/search_hosted");
 
 // TODO: Add params
-export const searchSeries = async (axiosInstance: AxiosInstance, params: SearchSeriesParams) =>
-	await getData(axiosInstance, "data/results/search_series",{
+export const searchSeries = async (
+	axiosInstance: AxiosInstance,
+	params: SearchSeriesParams,
+) =>
+	await getData(axiosInstance, "data/results/search_series", {
 		season_year: params?.seasonYear,
 		season_quarter: params?.seasonQuarter,
 		start_range_begin: params?.startRangeBegin,
@@ -74,7 +77,6 @@ export const searchSeries = async (axiosInstance: AxiosInstance, params: SearchS
 		official_only: params?.officialOnly,
 		event_types: params?.eventTypes,
 		category_ids: params?.categoryIds,
-
 	});
 
 export const getSeasonResults = async (
