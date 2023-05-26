@@ -6,6 +6,7 @@ import {
 	GetResultsLapChartDataParams,
 	GetResultsLapDataParams,
 	GetSeasonResultsParams,
+	SearchSeriesParams,
 } from "./types.js";
 
 import { AxiosInstance } from "axios";
@@ -59,8 +60,22 @@ export const searchHosted = async (axiosInstance: AxiosInstance) =>
 	await getData(axiosInstance, "data/results/search_hosted");
 
 // TODO: Add params
-export const searchSeries = async (axiosInstance: AxiosInstance) =>
-	await getData(axiosInstance, "data/results/search_series");
+export const searchSeries = async (axiosInstance: AxiosInstance, params: SearchSeriesParams) =>
+	await getData(axiosInstance, "data/results/search_series",{
+		season_year: params?.seasonYear,
+		season_quarter: params?.seasonQuarter,
+		start_range_begin: params?.startRangeBegin,
+		start_range_end: params?.startRangeEnd,
+		finish_range_begin: params?.finishRangeBegin,
+		finish_range_end: params?.finishRangeEnd,
+		cust_id: params?.customerId,
+		series_id: params?.seriesId,
+		race_week_num: params?.raceWeekNum,
+		official_only: params?.officialOnly,
+		event_types: params?.eventTypes,
+		category_ids: params?.categoryIds,
+
+	});
 
 export const getSeasonResults = async (
 	axiosInstance: AxiosInstance,

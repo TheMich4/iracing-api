@@ -41,6 +41,7 @@ import {
 	GetResultsLapChartDataParams,
 	GetResultsLapDataParams,
 	GetSeasonResultsParams,
+	SearchSeriesParams,
 } from "./api/results/types.js";
 import { createAxiosInstance, createJar } from "./client.js";
 
@@ -138,7 +139,7 @@ export default class IracingAPI {
 	getResultsLapData = async (params: GetResultsLapDataParams) =>
 		await api.getResultsLapData(this.instance, params);
 	searchHosted = async () => await api.searchHosted(this.instance);
-	searchSeries = async () => await api.searchSeries(this.instance);
+	searchSeries = async (params: SearchSeriesParams) => await api.searchSeries(this.instance, params);
 	getSeasonResults = async (params: GetSeasonResultsParams) =>
 		await api.getSeasonResults(this.instance, params);
 

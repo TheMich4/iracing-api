@@ -41,6 +41,21 @@ export interface GetSeasonResultsParams {
 	raceWeekNumber?: number;
 }
 
+export interface SearchSeriesParams {
+	seasonYear?: number;
+	seasonQuarter?: number;
+	startRangeBegin?: number;
+	startRangeEnd?: number;
+	finishRangeBegin?: number;
+	finishRangeEnd?: number;
+	customerId?: number;
+	seriesId?: number;
+	raceWeekNum?: number;
+	officialOnly?: boolean;
+	eventTypes?: number[];
+	categoryIds?: number[];
+}
+
 // Response
 
 export type GetResultResponse = Result;
