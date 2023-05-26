@@ -6,6 +6,7 @@ import type {
 	GetMemberCareerResponse,
 	GetMemberDivisionParams,
 	GetMemberDivisionResponse,
+	GetMemberRecapParams,
 	GetMemberRecentRacesParams,
 	GetMemberSummaryParams,
 	GetMemberSummaryResponse,
@@ -65,6 +66,16 @@ export const getMemberRecentRaces = async (
 ) =>
 	await getData(axiosInstance, "stats/member_recent_races", {
 		cust_id: params?.customerId,
+	});
+
+export const getMemberRecap = async (
+	axiosInstance: AxiosInstance,
+	params?: GetMemberRecapParams,
+) =>
+	await getData(axiosInstance, "data/stats/member_recap", {
+		cust_id: params?.customerId,
+		year: params?.year,
+		season: params?.season,
 	});
 
 export const getMemberSummary = async (

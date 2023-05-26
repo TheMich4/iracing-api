@@ -26,6 +26,12 @@ export interface GetMemberRecentRacesParams {
 	customerId?: number;
 }
 
+export interface GetMemberRecapParams {
+	customerId?: number;
+	year?: number;
+	season?: number;
+}
+
 export interface GetMemberSummaryParams {
 	customerId?: number;
 }

@@ -19,6 +19,7 @@ import {
 	GetMemberDataParams,
 	GetMemberDivisionParams,
 	GetMemberProfileParams,
+	GetMemberRecapParams,
 	GetMemberRecentRacesParams,
 	GetMemberSummaryParams,
 	GetMemberYearlyParams,
@@ -165,6 +166,8 @@ export default class IracingAPI {
 		await api.getMemberDivision(this.instance, params);
 	getMemberRecentRaces = async (params?: GetMemberRecentRacesParams) =>
 		await api.getMemberRecentRaces(this.instance, params);
+	getMemberRecap = async (params?: GetMemberRecapParams) =>
+		await api.getMemberRecap(this.instance, params);
 	getMemberSummary = async (params?: GetMemberSummaryParams) =>
 		await api.getMemberSummary(this.instance, params);
 	getMemberYearlyStats = async (params?: GetMemberYearlyParams) =>
