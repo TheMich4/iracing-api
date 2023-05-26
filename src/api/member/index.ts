@@ -22,7 +22,7 @@ export const getMemberChartData = (
 	axiosInstance: AxiosInstance,
 	params: GetMemberChartDataParams,
 ) =>
-	getData<ChartDataResponse>(axiosInstance, "data/member/chart", {
+	getData<ChartDataResponse>(axiosInstance, "data/member/chart_data", {
 		cust_id: params.customerId,
 		category_id: params.categoryId,
 		chart_type: params.chartType,

@@ -1,6 +1,6 @@
 {
   "name": "iracing-api",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Javascript client for iracing API",
   "exports": "./lib/index.js",
   "types": "./lib/index.d.ts",
