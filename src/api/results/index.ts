@@ -59,7 +59,6 @@ export const getResultsLapData = async (
 export const searchHosted = async (axiosInstance: AxiosInstance) =>
 	await getData(axiosInstance, "data/results/search_hosted");
 
-// TODO: Add params
 export const searchSeries = async (
 	axiosInstance: AxiosInstance,
 	params: SearchSeriesParams,

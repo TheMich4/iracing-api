@@ -1,5 +1,6 @@
 import * as api from "./api/index.js";
 
+import { CrateAxiosConfig, createAxiosInstance, createJar } from "./client.js";
 import {
 	GetClubHistoryParams,
 	GetCustLeagueSessionsParams,
@@ -43,7 +44,6 @@ import {
 	GetSeasonResultsParams,
 	SearchSeriesParams,
 } from "./api/results/types.js";
-import { createAxiosInstance, createJar } from "./client.js";
 
 import { AxiosInstance } from "axios";
 import { CookieJar } from "tough-cookie";
@@ -56,9 +56,9 @@ export default class IracingAPI {
 	jar: CookieJar;
 	instance: AxiosInstance;
 
-	constructor() {
+	constructor(axiosConfig?: CrateAxiosConfig) {
 		this.jar = createJar();
-		this.instance = createAxiosInstance(this.jar);
+		this.instance = createAxiosInstance(this.jar, axiosConfig);
 	}
 
 	login = async (email: string, password: string) => {
