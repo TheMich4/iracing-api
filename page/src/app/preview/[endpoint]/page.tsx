@@ -1,4 +1,5 @@
 import { getIracingData } from "@/app/api/get-iracing-data";
+
 import { DataDisplay } from "./data-display";
 
 interface ActionPageProps {

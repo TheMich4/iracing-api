@@ -1,7 +1,7 @@
 "use server";
 
-import IracingAPI from "iracing-api";
 import { env } from "@/env.mjs";
+import IracingAPI from "iracing-api";
 
 export const getIracingData = async (endpoint: string) => {
   const ir = new IracingAPI();
