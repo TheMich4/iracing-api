@@ -8,10 +8,12 @@ export const siteConfig = {
       title: "Home",
       href: "/",
     },
+    {
+      title: "Preview",
+      href: "/preview",
+    },
   ],
   links: {
-    twitter: "https://twitter.com/themich4",
     github: "https://github.com/themich4/iracing-api",
-    docs: "https://ui.shadcn.com",
   },
 };
