@@ -11,8 +11,8 @@ import {
 	GetLeagueMembershipParams,
 	GetLeaguePointSystemsParams,
 	GetLeagueSeasonSessionsParams,
-	GetLeagueSeasonStandingsParams,
 	GetLeagueSeasonsParams,
+	GetLeagueSeasonStandingsParams,
 	GetMemberAwardsParams,
 	GetMemberBestsParams,
 	GetMemberCareerParams,
@@ -47,10 +47,13 @@ import {
 
 import { AxiosInstance } from "axios";
 import { CookieJar } from "tough-cookie";
-import CryptoJS from "crypto-js";
+
 import { GetHostedCombinedSessionsParams } from "./api/hosted/types.js";
+import { encryptPassword } from "./helpers.js";
 
 export * from "./api/index.js";
+export * from "./consts.js";
+export * from "./helpers.js";
 
 export default class IracingAPI {
 	jar: CookieJar;
@@ -62,9 +65,7 @@ export default class IracingAPI {
 	}
 
 	login = async (email: string, password: string) => {
-		const hashPassword = CryptoJS.enc.Base64.stringify(
-			CryptoJS.SHA256(password + email.toLowerCase()),
-		);
+		const hashPassword = encryptPassword(password, email.toLowerCase());
 
 		return await this.instance.post("/auth", {
 			email,

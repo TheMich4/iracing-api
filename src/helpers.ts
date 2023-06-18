@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from "axios";
-
+import CryptoJS from "crypto-js";
 import humps from "humps";
 
 const { camelizeKeys } = humps;
@@ -28,3 +28,8 @@ export const getData = async <
 
 	return await getLinkData<Data>(data?.link);
 };
+
+export const encryptPassword = (email: string, password: string) =>
+	CryptoJS.enc.Base64.stringify(
+		CryptoJS.SHA256(password + email.toLowerCase()),
+	);
