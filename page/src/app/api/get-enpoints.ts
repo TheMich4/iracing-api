@@ -4,7 +4,39 @@ import { env } from "@/env.mjs";
 import { API_URL, encryptPassword } from "iracing-api";
 import makeFetchCookie from "fetch-cookie";
 
-export const getEndpoints = async () => {
+type Service =
+  | "car"
+  | "carclass"
+  | "constants"
+  | "hosted"
+  | "league"
+  | "lookup"
+  | "member"
+  | "results"
+  | "season"
+  | "series"
+  | "stats"
+  | "team"
+  | "time_ttack"
+  | "track"
+  | string;
+
+interface Endpoints {
+  [key: Service]: {
+    link: string;
+    note?: string;
+    parameters: {
+      [parameter: string]: {
+        type: string;
+        required?: boolean;
+        note?: string;
+      };
+    };
+    expirationSeconds: number;
+  };
+}
+
+export const getEndpoints = async (): Promise<Endpoints | undefined> => {
   const fetchCookie = makeFetchCookie(fetch);
 
   const encryptedPassword = encryptPassword(
