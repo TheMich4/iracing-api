@@ -13,7 +13,7 @@ npm install iracing-api
 ## Basic Usage
 
 ```typescript
-import IracinAPI from "iracing-api";
+import IracingAPI from "iracing-api";
 
 const irUser = 'FOO@gmail.com';
 const irPass = 'BAR';
