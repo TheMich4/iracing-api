@@ -17,6 +17,9 @@ dependencies:
   clsx:
     specifier: ^1.2.1
     version: 1.2.1
+  fetch-cookie:
+    specifier: ^2.1.0
+    version: 2.1.0
   iracing-api:
     specifier: file:../
     version: file:..
@@ -1560,6 +1563,13 @@ packages:
     dependencies:
       reusify: 1.0.4
 
+  /fetch-cookie@2.1.0:
+    resolution: {integrity: sha512-39+cZRbWfbibmj22R2Jy6dmTbAWC+oqun1f1FzQaNurkPDUP4C38jpeZbiXCR88RKRVDp8UcDrbFXkNhN+NjYg==}
+    dependencies:
+      set-cookie-parser: 2.6.0
+      tough-cookie: 4.1.3
+    dev: false
+
   /file-entry-cache@6.0.1:
     resolution: {integrity: sha512-7Gps/XWymbLk2QLYK4NzpMOrYjMhdIxXuIvy2QBsLE6ljuodKvdkWs/cpyJJ3CVIVpH0Oi1Hvg1ovbMzLdFBBg==}
     engines: {node: ^10.12.0 || >=12.0.0}
@@ -2678,6 +2688,10 @@ packages:
     hasBin: true
     dependencies:
       lru-cache: 6.0.0
+
+  /set-cookie-parser@2.6.0:
+    resolution: {integrity: sha512-RVnVQxTXuerk653XfuliOxBP81Sf0+qfQE73LIYKcyMYHG94AuH0kgrQpRDuTZnSmjpysHmzxJXKNfa6PjFhyQ==}
+    dev: false
 
   /sharp@0.31.3:
     resolution: {integrity: sha512-XcR4+FCLBFKw1bdB+GEhnUNXNXvnt0tDo4WsBsraKymuo/IAuPuCBVAL2wIkUw2r/dwFW5Q5+g66Kwl2dgDFVg==}
