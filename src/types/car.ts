@@ -30,6 +30,8 @@ export interface CarData {
 	awardExempt: boolean;
 	carDirpath: string;
 	carId: number;
+	carMake?: string;
+	carModel?: string;
 	carName: string;
 	carNameAbbreviated: string;
 	carTypes: Array<Record<string, string>>;
@@ -54,6 +56,7 @@ export interface CarData {
 	priceDisplay: string;
 	retired: boolean;
 	searchFilters: string;
+	siteUrl?: string;
 	sku: string;
 }
 

@@ -1,12 +1,15 @@
 import {
 	GetCustLeagueSessionsParams,
+	GetCustLeagueSessionsResponse,
 	GetLeagueDataParams,
 	GetLeagueDirectoryParams,
+	GetLeagueDirectoryResponse,
 	GetLeagueMembershipParams,
+	GetLeagueMembershipResponse,
 	GetLeaguePointSystemsParams,
 	GetLeagueSeasonSessionsParams,
-	GetLeagueSeasonsParams,
 	GetLeagueSeasonStandingsParams,
+	GetLeagueSeasonsParams,
 } from "./types.js";
 
 import { AxiosInstance } from "axios";
@@ -16,29 +19,41 @@ export const getCustLeagueSessions = async (
 	axiosInstance: AxiosInstance,
 	params?: GetCustLeagueSessionsParams,
 ) =>
-	await getData(axiosInstance, "data/league/cust_league_sessions", {
-		mine: params?.mine,
-		package_id: params?.packageId,
-	});
+	(
+		await getData<GetCustLeagueSessionsResponse>(
+			axiosInstance,
+			"data/league/cust_league_sessions",
+			{
+				mine: params?.mine,
+				package_id: params?.packageId,
+			},
+		)
+	)?.sessions;
 
 export const getLeagueDirectory = async (
 	axiosInstance: AxiosInstance,
 	params?: GetLeagueDirectoryParams,
 ) =>
-	await getData(axiosInstance, "data/league/directory", {
-		search: params?.search,
-		tag: params?.tag,
-		restrict_to_member: params?.restrictToMember,
-		restrict_to_recruiting: params?.restrictToRecruiting,
-		restrict_to_friends: params?.restrictToFriends,
-		restrict_to_watched: params?.restrictToWatched,
-		minimum_roster_count: params?.minimumRosterCount,
-		maximum_roster_count: params?.maximumRosterCount,
-		lowerbound: params?.lowerbound,
-		upperbound: params?.upperbound,
-		sort: params?.sort,
-		order: params?.order,
-	});
+	(
+		await getData<GetLeagueDirectoryResponse>(
+			axiosInstance,
+			"data/league/directory",
+			{
+				search: params?.search,
+				tag: params?.tag,
+				restrict_to_member: params?.restrictToMember,
+				restrict_to_recruiting: params?.restrictToRecruiting,
+				restrict_to_friends: params?.restrictToFriends,
+				restrict_to_watched: params?.restrictToWatched,
+				minimum_roster_count: params?.minimumRosterCount,
+				maximum_roster_count: params?.maximumRosterCount,
+				lowerbound: params?.lowerbound,
+				upperbound: params?.upperbound,
+				sort: params?.sort,
+				order: params?.order,
+			},
+		)
+	)?.resultsPage;
 
 export const getLeagueData = async (
 	axiosInstance: AxiosInstance,
@@ -62,9 +77,13 @@ export const getLeagueMembership = async (
 	axiosInstance: AxiosInstance,
 	params?: GetLeagueMembershipParams,
 ) =>
-	await getData(axiosInstance, "data/league/membership", {
-		include_league: params?.includeLeague,
-	});
+	await getData<GetLeagueMembershipResponse>(
+		axiosInstance,
+		"data/league/membership",
+		{
+			include_league: params?.includeLeague,
+		},
+	);
 
 export const getLeagueSeasons = async (
 	axiosInstance: AxiosInstance,

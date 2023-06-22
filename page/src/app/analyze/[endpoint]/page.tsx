@@ -1,4 +1,4 @@
-import { getIracingData } from "@/app/api/get-iracing-data";
+import { getResponseTypes } from "./get-response-types";
 
 interface AnalyzeEndpointPageProps {
   params: {
@@ -9,19 +9,7 @@ interface AnalyzeEndpointPageProps {
 const AnalyzeEndpointPage = async ({
   params: { endpoint },
 }: AnalyzeEndpointPageProps) => {
-  const data = await getIracingData(endpoint);
-  const responseType = data?.reduce(
-    (acc: Record<string, string>, entry: any) => {
-      Object.entries(entry).forEach(([key, value]) => {
-        if (!acc[key]) {
-          acc[key] = typeof value;
-        }
-      });
-
-      return acc;
-    },
-    {}
-  );
+  const responseTypes = await getResponseTypes(endpoint);
 
   return (
     <div className="container flex flex-col gap-2 py-4">
@@ -31,8 +19,17 @@ const AnalyzeEndpointPage = async ({
       </h1>
 
       <pre className="flex flex-col gap-1 rounded-md bg-primary/5 p-2">
-        {Object.entries(responseType).map(([key, valueType]) => (
-          <div>{`${key}: ${valueType}`}</div>
+        {Object.entries(responseTypes).map(([key, { type, optional }]) => (
+          <div key={key}>
+            <span className="font-bold">{key}</span>
+            {": "}
+            <span className="italic">{type}</span>
+            {optional && (
+              <span className="text-xs italic text-primary/80">
+                {" (optional)"}
+              </span>
+            )}
+          </div>
         ))}
       </pre>
     </div>
