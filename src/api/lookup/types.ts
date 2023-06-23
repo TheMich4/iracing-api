@@ -1,6 +1,6 @@
-import { Club, Country } from "../../types/lookup";
+import { Club, Country } from "../../types/lookup.js";
 
-import { Customer } from "../../types/member";
+import { Customer } from "../../types/member.js";
 
 export interface Driver extends Customer {
 	profileDisabled: boolean;

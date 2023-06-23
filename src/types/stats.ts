@@ -1,4 +1,4 @@
-import type { Track } from "./track";
+import type { Track } from "./track.js";
 
 export type CarsDriven = Array<{ carId: number; carName: string }>;
 

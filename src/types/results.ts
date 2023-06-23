@@ -1,8 +1,8 @@
-import { Helmet, Suit } from "./member";
-import { Track, TrackState } from "./track";
+import { Helmet, Suit } from "./member.js";
+import { Track, TrackState } from "./track.js";
 
-import { Livery } from "./car";
-import { Weather } from "../types";
+import { Livery } from "./car.js";
+import { Weather } from "../types.js";
 
 export interface AllowedLicense {
 	groupName: string;

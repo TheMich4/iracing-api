@@ -1,4 +1,4 @@
-import { Category, Division, EventType } from "../../types/constants";
+import { Category, Division, EventType } from "../../types/constants.js";
 
 // Response
 

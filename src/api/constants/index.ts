@@ -2,7 +2,7 @@ import {
 	GetCategoriesResponse,
 	GetDivisionsResponse,
 	GetEventTypesResponse,
-} from "./types";
+} from "./types.js";
 
 import { AxiosInstance } from "axios";
 

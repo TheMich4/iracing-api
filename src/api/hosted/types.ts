@@ -1,6 +1,6 @@
 // Params
 
-import { Session } from "../../types/session";
+import { Session } from "../../types/session.js";
 
 export interface GetHostedCombinedSessionsParams {
 	packageId?: number;
