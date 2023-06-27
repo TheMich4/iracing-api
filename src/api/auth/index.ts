@@ -9,7 +9,7 @@ export const login = async (
 ) => {
 	const hashPassword = encryptPassword(email, password);
 
-	return await fetchCookie(`${API_URL}auth`, {
+	const response = await fetchCookie(`${API_URL}auth`, {
 		body: JSON.stringify({ email, password: hashPassword }),
 		cache: "no-cache",
 		credentials: "include",
@@ -18,4 +18,6 @@ export const login = async (
 		},
 		method: "POST",
 	});
+
+	return await response.json();
 };
