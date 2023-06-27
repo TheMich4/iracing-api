@@ -1,3 +1,7 @@
+export interface FetchCookie {
+	(input: RequestInfo | URL, init?: RequestInit | undefined): Promise<Response>;
+}
+
 export interface Weather {
 	allowFog: boolean;
 	fog: number;

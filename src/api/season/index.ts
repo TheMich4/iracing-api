@@ -1,24 +1,22 @@
 import { GetSeasonListParams, GetSeasonRaceGuideParams } from "./types.js";
 
-import { AxiosInstance } from "axios";
+import { FetchCookie } from "../../types.js";
 import { getData } from "../../helpers.js";
 
-const getSeasonList = async (
-	axiosInstance: AxiosInstance,
+export const getSeasonList = async (
+	fetchCookie: FetchCookie,
 	params: GetSeasonListParams,
 ) =>
-	await getData(axiosInstance, "data/season/list", {
+	await getData(fetchCookie, "data/season/list", {
 		season_year: params.seasonYear,
 		season_quarter: params.seasonQuarter,
 	});
 
-const getSeasonRaceGuide = async (
-	axiosInstance: AxiosInstance,
+export const getSeasonRaceGuide = async (
+	fetchCookie: FetchCookie,
 	params: GetSeasonRaceGuideParams,
 ) =>
-	await getData(axiosInstance, "data/season/race_guide", {
+	await getData(fetchCookie, "data/season/race_guide", {
 		from: params.from,
 		include_end_after_from: params.includeEndAfterFrom,
 	});
-
-export { getSeasonList, getSeasonRaceGuide };

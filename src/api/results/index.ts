@@ -10,24 +10,25 @@ import {
 } from "./types.js";
 import { getData, getLinkData } from "../../helpers.js";
 
-import { AxiosInstance } from "axios";
+import { API_URL } from "../../consts.js";
+import { FetchCookie } from "../../types.js";
 import { Result } from "../../types/results.js";
 
 export const getResult = async (
-	axiosInstance: AxiosInstance,
+	fetchCookie: FetchCookie,
 	params: GetResultParams,
 ): Promise<Result | undefined> =>
-	await getData<GetResultResponse>(axiosInstance, "data/results/get", {
+	await getData<GetResultResponse>(fetchCookie, "data/results/get", {
 		subsession_id: params.subsessionId,
 		include_licenses: params.includeLicenses,
 	});
 
 export const getResultsEventLog = async (
-	axiosInstance: AxiosInstance,
+	fetchCookie: FetchCookie,
 	params: GetResultsEventLogParams,
 ) =>
 	await getData<GetResultsEventLogResponse>(
-		axiosInstance,
+		fetchCookie,
 		"data/results/event_log",
 		{
 			subsession_id: params.subsessionId,
@@ -36,19 +37,19 @@ export const getResultsEventLog = async (
 	);
 
 export const getResultsLapChartData = async (
-	axiosInstance: AxiosInstance,
+	fetchCookie: FetchCookie,
 	params: GetResultsLapChartDataParams,
 ) =>
-	await getData(axiosInstance, "data/results/lap_chart_data", {
+	await getData(fetchCookie, "data/results/lap_chart_data", {
 		subsession_id: params.subsessionId,
 		simsession_number: params.simsessionNumber,
 	});
 
 export const getResultsLapData = async (
-	axiosInstance: AxiosInstance,
+	fetchCookie: FetchCookie,
 	params: GetResultsLapDataParams,
 ) =>
-	await getData(axiosInstance, "data/results/lap_data", {
+	await getData(fetchCookie, "data/results/lap_data", {
 		subsession_id: params.subsessionId,
 		simsession_number: params.simsessionNumber,
 		customer_id: params.customerId,
@@ -56,15 +57,15 @@ export const getResultsLapData = async (
 	});
 
 // TODO: Add params
-export const searchHosted = async (axiosInstance: AxiosInstance) =>
-	await getData(axiosInstance, "data/results/search_hosted");
+export const searchHosted = async (fetchCookie: FetchCookie) =>
+	await getData(fetchCookie, "data/results/search_hosted");
 
 export const searchSeries = async (
-	axiosInstance: AxiosInstance,
+	fetchCookie: FetchCookie,
 	params: SearchSeriesParams,
 ) => {
-	const response = await axiosInstance.get("data/results/search_series", {
-		params: {
+	const response = await fetchCookie(`${API_URL}data/results/search_series`, {
+		body: JSON.stringify({
 			season_year: params?.seasonYear,
 			season_quarter: params?.seasonQuarter,
 			start_range_begin: params?.startRangeBegin,
@@ -77,16 +78,17 @@ export const searchSeries = async (
 			official_only: params?.officialOnly,
 			event_types: params?.eventTypes,
 			category_ids: params?.categoryIds,
-		},
+		}),
 	});
+	const responseData = await response.json();
 
-	if (!response.data?.data?.success || !response.data?.data?.chunk_info) {
+	if (!responseData?.data?.success || !responseData?.data?.chunk_info) {
 		return undefined;
 	}
 
 	const {
-		data: { data: { chunk_info: { base_download_url, chunk_file_names } } },
-	} = response;
+		data: { chunk_info: { base_download_url, chunk_file_names } },
+	} = responseData;
 
 	const chunksData = await Promise.all(
 		chunk_file_names.map(async (chunkFileName: string) => {
@@ -98,10 +100,10 @@ export const searchSeries = async (
 };
 
 export const getSeasonResults = async (
-	axiosInstance: AxiosInstance,
+	fetchCookie: FetchCookie,
 	params: GetSeasonResultsParams,
 ) =>
-	await getData(axiosInstance, "data/results/season_results", {
+	await getData(fetchCookie, "data/results/season_results", {
 		season_id: params.seasonId,
 		event_type: params.eventType,
 		race_week_num: params.raceWeekNumber,

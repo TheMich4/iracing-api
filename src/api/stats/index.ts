@@ -19,15 +19,15 @@ import type {
 	GetWorldRecordsParams,
 } from "./types.js";
 
-import { AxiosInstance } from "axios";
+import { FetchCookie } from "../../types.js";
 import { getData } from "../../helpers.js";
 
 export const getMemberBests = async (
-	axiosInstance: AxiosInstance,
+	fetchCookie: FetchCookie,
 	params?: GetMemberBestsParams,
 ) =>
 	await getData<GetMemberBestsResponse>(
-		axiosInstance,
+		fetchCookie,
 		"data/stats/member_bests",
 		{
 			cust_id: params?.customerId,
@@ -36,11 +36,11 @@ export const getMemberBests = async (
 	);
 
 export const getMemberCareer = async (
-	axiosInstance: AxiosInstance,
+	fetchCookie: FetchCookie,
 	params?: GetMemberCareerParams,
 ) =>
 	await getData<GetMemberCareerResponse>(
-		axiosInstance,
+		fetchCookie,
 		"data/stats/member_career",
 		{
 			cust_id: params?.customerId,
@@ -48,11 +48,11 @@ export const getMemberCareer = async (
 	);
 
 export const getMemberDivision = async (
-	axiosInstance: AxiosInstance,
+	fetchCookie: FetchCookie,
 	params: GetMemberDivisionParams,
 ) =>
 	await getData<GetMemberDivisionResponse>(
-		axiosInstance,
+		fetchCookie,
 		"data/stats/member_division",
 		{
 			season_id: params.seasonId,
@@ -61,29 +61,29 @@ export const getMemberDivision = async (
 	);
 
 export const getMemberRecentRaces = async (
-	axiosInstance: AxiosInstance,
+	fetchCookie: FetchCookie,
 	params?: GetMemberRecentRacesParams,
 ) =>
-	await getData(axiosInstance, "stats/member_recent_races", {
+	await getData(fetchCookie, "stats/member_recent_races", {
 		cust_id: params?.customerId,
 	});
 
 export const getMemberRecap = async (
-	axiosInstance: AxiosInstance,
+	fetchCookie: FetchCookie,
 	params?: GetMemberRecapParams,
 ) =>
-	await getData(axiosInstance, "data/stats/member_recap", {
+	await getData(fetchCookie, "data/stats/member_recap", {
 		cust_id: params?.customerId,
 		year: params?.year,
 		season: params?.season,
 	});
 
 export const getMemberSummary = async (
-	axiosInstance: AxiosInstance,
+	fetchCookie: FetchCookie,
 	params?: GetMemberSummaryParams,
 ) =>
 	await getData<GetMemberSummaryResponse>(
-		axiosInstance,
+		fetchCookie,
 		"data/stats/member_summary",
 		{
 			cust_id: params?.customerId,
@@ -91,18 +91,18 @@ export const getMemberSummary = async (
 	);
 
 export const getMemberYearlyStats = async (
-	axiosInstance: AxiosInstance,
+	fetchCookie: FetchCookie,
 	params?: GetMemberYearlyParams,
 ) =>
-	await getData(axiosInstance, "data/stats/member_yearly", {
+	await getData(fetchCookie, "data/stats/member_yearly", {
 		cust_id: params?.customerId,
 	});
 
 export const getDriverSeasonStandings = async (
-	axiosInstance: AxiosInstance,
+	fetchCookie: FetchCookie,
 	params: GetDriverSeasonStandings,
 ) =>
-	await getData(axiosInstance, "data/stats/season_driver_standings", {
+	await getData(fetchCookie, "data/stats/season_driver_standings", {
 		season_id: params.seasonId,
 		car_class_id: params.carClassId,
 		club_id: params.clubId,
@@ -111,10 +111,10 @@ export const getDriverSeasonStandings = async (
 	});
 
 export const getSupersessionSeasonStandings = async (
-	axiosInstance: AxiosInstance,
+	fetchCookie: FetchCookie,
 	params: GetSeasonSupersessionSeasonStandingsParams,
 ) =>
-	await getData(axiosInstance, "data/stats/season_supersession_standings", {
+	await getData(fetchCookie, "data/stats/season_supersession_standings", {
 		season_id: params.seasonId,
 		car_class_id: params.carClassId,
 		club_id: params.clubId,
@@ -123,20 +123,20 @@ export const getSupersessionSeasonStandings = async (
 	});
 
 export const getTeamSeasonStandings = async (
-	axiosInstance: AxiosInstance,
+	fetchCookie: FetchCookie,
 	params: GetTeamSeasonStandingsParams,
 ) =>
-	await getData(axiosInstance, "data/stats/season_team_standings", {
+	await getData(fetchCookie, "data/stats/season_team_standings", {
 		season_id: params.seasonId,
 		car_class_id: params.carClassId,
 		race_week_num: params.raceWeekNumber,
 	});
 
 export const getTimeTrialSeasonStandings = async (
-	axiosInstance: AxiosInstance,
+	fetchCookie: FetchCookie,
 	params: GetTimeTrialSeasonStandingsParams,
 ) =>
-	await getData(axiosInstance, "data/stats/season_tt_standings", {
+	await getData(fetchCookie, "data/stats/season_tt_standings", {
 		season_id: params.seasonId,
 		car_class_id: params.carClassId,
 		club_id: params.clubId,
@@ -145,10 +145,10 @@ export const getTimeTrialSeasonStandings = async (
 	});
 
 export const getTimeTrialSeasonResults = async (
-	axiosInstance: AxiosInstance,
+	fetchCookie: FetchCookie,
 	params: GetTimeTrialSeasonResultsParams,
 ) =>
-	await getData(axiosInstance, "data/stats/season_tt_results", {
+	await getData(fetchCookie, "data/stats/season_tt_results", {
 		season_id: params.seasonId,
 		car_class_id: params.carClassId,
 		race_week_num: params.raceWeekNumber,
@@ -157,10 +157,10 @@ export const getTimeTrialSeasonResults = async (
 	});
 
 export const getQualifySeasonResults = async (
-	axiosInstance: AxiosInstance,
+	fetchCookie: FetchCookie,
 	params: GetQualifySeasonResultsParams,
 ) =>
-	await getData(axiosInstance, "data/stats/season_qualify_results", {
+	await getData(fetchCookie, "data/stats/season_qualify_results", {
 		season_id: params.seasonId,
 		car_class_id: params.carClassId,
 		race_week_num: params.raceWeekNumber,
@@ -169,10 +169,10 @@ export const getQualifySeasonResults = async (
 	});
 
 export const getWorldRecords = async (
-	axiosInstance: AxiosInstance,
+	fetchCookie: FetchCookie,
 	params: GetWorldRecordsParams,
 ) =>
-	await getData(axiosInstance, "data/stats/world_records", {
+	await getData(fetchCookie, "data/stats/world_records", {
 		car_id: params.carId,
 		track_id: params.trackId,
 		season_year: params.seasonYear,

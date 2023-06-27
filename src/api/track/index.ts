@@ -1,10 +1,10 @@
 import type { GetTrackAssetsResponse, GetTracksResponse } from "./types.js";
 
-import { AxiosInstance } from "axios";
+import { FetchCookie } from "../../types.js";
 import { getData } from "../../helpers.js";
 
-export const getTrackAssets = async (axiosInstance: AxiosInstance) =>
-	await getData<GetTrackAssetsResponse>(axiosInstance, "data/track/assets");
+export const getTrackAssets = async (fetchCookie: FetchCookie) =>
+	await getData<GetTrackAssetsResponse>(fetchCookie, "data/track/assets");
 
-export const getTracks = async (axiosInstance: AxiosInstance) =>
-	await getData<GetTracksResponse>(axiosInstance, "data/track/get");
+export const getTracks = async (fetchCookie: FetchCookie) =>
+	await getData<GetTracksResponse>(fetchCookie, "data/track/get");

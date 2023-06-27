@@ -4,28 +4,20 @@ import {
 	GetEventTypesResponse,
 } from "./types.js";
 
-import { AxiosInstance } from "axios";
+import { FetchCookie } from "../../types.js";
+import { getData } from "../../helpers.js";
 
 export const getCategories = async (
-	axiosInstance: AxiosInstance,
-): Promise<GetCategoriesResponse> => {
-	const response = await axiosInstance.get("data/constants/categories");
-
-	return response?.data;
-};
+	fetchCookie: FetchCookie,
+): Promise<GetCategoriesResponse> =>
+	await getData(fetchCookie, "data/constants/categories");
 
 export const getDivisions = async (
-	axiosInstance: AxiosInstance,
-): Promise<GetDivisionsResponse> => {
-	const response = await axiosInstance.get("data/constants/divisions");
-
-	return response?.data;
-};
+	fetchCookie: FetchCookie,
+): Promise<GetDivisionsResponse> =>
+	await getData(fetchCookie, "data/constants/divisions");
 
 export const getEventTypes = async (
-	axiosInstance: AxiosInstance,
-): Promise<GetEventTypesResponse> => {
-	const response = await axiosInstance.get("data/constants/event_types");
-
-	return response?.data;
-};
+	fetchCookie: FetchCookie,
+): Promise<GetEventTypesResponse> =>
+	await getData(fetchCookie, "data/constants/event_types");

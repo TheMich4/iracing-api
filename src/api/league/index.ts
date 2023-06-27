@@ -12,16 +12,16 @@ import {
 	GetLeagueSeasonsParams,
 } from "./types.js";
 
-import { AxiosInstance } from "axios";
+import { FetchCookie } from "../../types.js";
 import { getData } from "../../helpers.js";
 
 export const getCustLeagueSessions = async (
-	axiosInstance: AxiosInstance,
+	fetchCookie: FetchCookie,
 	params?: GetCustLeagueSessionsParams,
 ) =>
 	(
 		await getData<GetCustLeagueSessionsResponse>(
-			axiosInstance,
+			fetchCookie,
 			"data/league/cust_league_sessions",
 			{
 				mine: params?.mine,
@@ -31,12 +31,12 @@ export const getCustLeagueSessions = async (
 	)?.sessions;
 
 export const getLeagueDirectory = async (
-	axiosInstance: AxiosInstance,
+	fetchCookie: FetchCookie,
 	params?: GetLeagueDirectoryParams,
 ) =>
 	(
 		await getData<GetLeagueDirectoryResponse>(
-			axiosInstance,
+			fetchCookie,
 			"data/league/directory",
 			{
 				search: params?.search,
@@ -56,29 +56,29 @@ export const getLeagueDirectory = async (
 	)?.resultsPage;
 
 export const getLeagueData = async (
-	axiosInstance: AxiosInstance,
+	fetchCookie: FetchCookie,
 	params: GetLeagueDataParams,
 ) =>
-	await getData(axiosInstance, "data/league/get", {
+	await getData(fetchCookie, "data/league/get", {
 		league_id: params.leagueId,
 		include_licenses: params.includeLicenses,
 	});
 
 export const getLeaguePointSystem = async (
-	axiosInstance: AxiosInstance,
+	fetchCookie: FetchCookie,
 	params: GetLeaguePointSystemsParams,
 ) =>
-	await getData(axiosInstance, "data/league/get_points_systems", {
+	await getData(fetchCookie, "data/league/get_points_systems", {
 		league_id: params.leagueId,
 		season_id: params.seasonId,
 	});
 
 export const getLeagueMembership = async (
-	axiosInstance: AxiosInstance,
+	fetchCookie: FetchCookie,
 	params?: GetLeagueMembershipParams,
 ) =>
 	await getData<GetLeagueMembershipResponse>(
-		axiosInstance,
+		fetchCookie,
 		"data/league/membership",
 		{
 			include_league: params?.includeLeague,
@@ -86,28 +86,28 @@ export const getLeagueMembership = async (
 	);
 
 export const getLeagueSeasons = async (
-	axiosInstance: AxiosInstance,
+	fetchCookie: FetchCookie,
 	params: GetLeagueSeasonsParams,
 ) =>
-	await getData(axiosInstance, "data/league/seasons", {
+	await getData(fetchCookie, "data/league/seasons", {
 		league_id: params.leagueId,
 		retired: params.retired,
 	});
 
 export const getLeagueSeasonStandings = async (
-	axiosInstance: AxiosInstance,
+	fetchCookie: FetchCookie,
 	params: GetLeagueSeasonStandingsParams,
 ) =>
-	await getData(axiosInstance, "data/league/season_standings", {
+	await getData(fetchCookie, "data/league/season_standings", {
 		league_id: params.leagueId,
 		season_id: params.seasonId,
 	});
 
 export const getLeagueSeasonSessions = async (
-	axiosInstance: AxiosInstance,
+	fetchCookie: FetchCookie,
 	params: GetLeagueSeasonSessionsParams,
 ) =>
-	await getData(axiosInstance, "data/league/season_sessions", {
+	await getData(fetchCookie, "data/league/season_sessions", {
 		league_id: params.leagueId,
 		season_id: params.seasonId,
 		car_class_id: params.carClassId,
