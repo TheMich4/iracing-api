@@ -1,6 +1,6 @@
-import axios, { AxiosInstance } from "axios";
-
+import { API_URL } from "./consts";
 import CryptoJS from "crypto-js";
+import { FetchCookie } from "./types";
 import humps from "humps";
 
 const { camelizeKeys } = humps;
@@ -10,24 +10,34 @@ export const getLinkData = async <Data>(
 ): Promise<Data | undefined> => {
 	if (!link) return undefined;
 
-	const response = await axios.get(link);
+	const response = await fetch(link);
+	const data = await response.json();
 
-	if (!response.data) return undefined;
+	if (!data) return undefined;
 
-	return camelizeKeys(response.data) as Data;
+	return camelizeKeys(data) as Data;
 };
 
 export const getData = async <
 	Data = Record<string, unknown>,
 	Parameters = void,
 >(
-	axiosInstance: AxiosInstance,
+	fetchCookie: FetchCookie,
 	endpoint: string,
 	params?: Parameters | Record<string, unknown>,
 ): Promise<Data | undefined> => {
-	const { data } = await axiosInstance.get(endpoint, { params });
+	const response = await fetchCookie(`${API_URL}${endpoint}`, {
+		body: JSON.stringify(params),
+		cache: "no-cache",
+		credentials: "include",
+	});
+	const data = await response.json();
 
-	return await getLinkData<Data>(data?.link);
+	if (data?.link) {
+		return await getLinkData<Data>(data?.link);
+	}
+
+	return data;
 };
 
 export const encryptPassword = (email: string, password: string) =>

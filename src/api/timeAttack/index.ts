@@ -1,11 +1,11 @@
-import { AxiosInstance } from "axios";
+import { FetchCookie } from "../../types.js";
 import { GetTimeAttackSeasonResultsParams } from "./types.js";
 import { getData } from "../../helpers.js";
 
 export const getTimeAttackSeasonResults = (
-	axiosInstance: AxiosInstance,
+	fetchCookie: FetchCookie,
 	params: GetTimeAttackSeasonResultsParams,
 ) =>
-	getData(axiosInstance, "data/time_attack/member_season_results", {
+	getData(fetchCookie, "data/time_attack/member_season_results", {
 		ta_comp_season_id: params.seasonId,
 	});

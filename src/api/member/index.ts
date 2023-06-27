@@ -8,50 +8,47 @@ import {
 	ParticipationInformation,
 } from "./types.js";
 
-import { AxiosInstance } from "axios";
+import { FetchCookie } from "../../types.js";
 import { MemberInfo } from "../../types/member.js";
 import { getData } from "../../helpers.js";
 
 export const getMemberAwards = (
-	axiosInstance: AxiosInstance,
+	fetchCookie: FetchCookie,
 	params: GetMemberAwardsParams,
-) =>
-	getData(axiosInstance, "data/member/awards", { cust_id: params.customerId });
+) => getData(fetchCookie, "data/member/awards", { cust_id: params.customerId });
 
 export const getMemberChartData = (
-	axiosInstance: AxiosInstance,
+	fetchCookie: FetchCookie,
 	params: GetMemberChartDataParams,
 ) =>
-	getData<ChartDataResponse>(axiosInstance, "data/member/chart_data", {
+	getData<ChartDataResponse>(fetchCookie, "data/member/chart_data", {
 		cust_id: params.customerId,
 		category_id: params.categoryId,
 		chart_type: params.chartType,
 	});
 
 export const getMemberData = async (
-	axiosInstance: AxiosInstance,
+	fetchCookie: FetchCookie,
 	params: GetMemberDataParams,
 ) =>
-	await getData<MemberDataResponse>(axiosInstance, "data/member/get", {
+	await getData<MemberDataResponse>(fetchCookie, "data/member/get", {
 		cust_ids: params.customerIds,
 		include_licenses: params.includeLicenses,
 	});
 
-export const getMemberInfo = async (axiosInstance: AxiosInstance) =>
-	await getData<MemberInfo>(axiosInstance, "data/member/info");
+export const getMemberInfo = async (fetchCookie: FetchCookie) =>
+	await getData<MemberInfo>(fetchCookie, "data/member/info");
 
-export const getMemberParticipationCredits = async (
-	axiosInstance: AxiosInstance,
-) =>
+export const getMemberParticipationCredits = async (fetchCookie: FetchCookie) =>
 	await getData<Array<ParticipationInformation>>(
-		axiosInstance,
+		fetchCookie,
 		"data/member/participation_credits",
 	);
 
 export const getMemberProfile = async (
-	axiosInstance: AxiosInstance,
+	fetchCookie: FetchCookie,
 	params: GetMemberProfileParams,
 ) =>
-	await getData(axiosInstance, "data/member/profile", {
+	await getData(fetchCookie, "data/member/profile", {
 		cust_id: params.customerId,
 	});

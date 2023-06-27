@@ -2,6 +2,7 @@
     "editor.defaultFormatter": "rome.rome",
     "cSpell.words": [
         "carclass",
+        "consts",
         "cooldown",
         "cust",
         "Dirpath",

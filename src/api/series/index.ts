@@ -7,37 +7,33 @@ import {
 	GetSeriesStatsResponse,
 } from "./types.js";
 
-import { AxiosInstance } from "axios";
+import { FetchCookie } from "../../types.js";
 import { getData } from "../../helpers.js";
 
-export const getSeriesAssets = async (axiosInstance: AxiosInstance) =>
-	await getData<GetSeriesAssetsResponse>(axiosInstance, "data/series/assets");
+export const getSeriesAssets = async (fetchCookie: FetchCookie) =>
+	await getData<GetSeriesAssetsResponse>(fetchCookie, "data/series/assets");
 
-export const getSeriesData = async (axiosInstance: AxiosInstance) =>
-	await getData<GetSeriesDataResponse>(axiosInstance, "data/series/get");
+export const getSeriesData = async (fetchCookie: FetchCookie) =>
+	await getData<GetSeriesDataResponse>(fetchCookie, "data/series/get");
 
 export const getSeriesPastSeasons = async (
-	axiosInstance: AxiosInstance,
+	fetchCookie: FetchCookie,
 	params: GetSeriesPastSeasonsParams,
 ) =>
-	await getData(axiosInstance, "data/series/past_seasons", {
+	await getData(fetchCookie, "data/series/past_seasons", {
 		series_id: params.seriesId,
 	});
 
 export const getSeriesSeasons = async (
-	axiosInstance: AxiosInstance,
+	fetchCookie: FetchCookie,
 	params?: GetSeriesSeasonsParams,
 ) =>
-	await getData<GetSeriesSeasonsResponse>(
-		axiosInstance,
-		"data/series/seasons",
-		{
-			include_series: params?.includeSeries,
-		},
-	);
+	await getData<GetSeriesSeasonsResponse>(fetchCookie, "data/series/seasons", {
+		include_series: params?.includeSeries,
+	});
 
-export const getSeriesStats = async (axiosInstance: AxiosInstance) =>
+export const getSeriesStats = async (fetchCookie: FetchCookie) =>
 	await getData<GetSeriesStatsResponse>(
-		axiosInstance,
+		fetchCookie,
 		"data/series/stats_series",
 	);

@@ -1,13 +1,13 @@
 import type { GetCarAssetsResponse, GetCarsResponse } from "./types.js";
 
-import { AxiosInstance } from "axios";
 import { CarData } from "../../types/car.js";
+import { FetchCookie } from "../../types.js";
 import { getData } from "../../helpers.js";
 
-export const getCarAssets = async (axiosInstance: AxiosInstance) =>
-	await getData<GetCarAssetsResponse>(axiosInstance, "data/car/assets/get");
+export const getCarAssets = async (fetchCookie: FetchCookie) =>
+	await getData<GetCarAssetsResponse>(fetchCookie, "data/car/assets/get");
 
 export const getCars = async (
-	axiosInstance: AxiosInstance,
+	fetchCookie: FetchCookie,
 ): Promise<Array<CarData> | undefined> =>
-	await getData<GetCarsResponse>(axiosInstance, "data/car/get");
+	await getData<GetCarsResponse>(fetchCookie, "data/car/get");

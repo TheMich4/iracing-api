@@ -1,12 +1,12 @@
-import { AxiosInstance } from "axios";
+import { FetchCookie } from "../../types.js";
 import { GetTeamDataParams } from "./types.js";
 import { getData } from "../../helpers.js";
 
 export const getTeamData = async (
-	axiosInstance: AxiosInstance,
+	fetchCookie: FetchCookie,
 	params: GetTeamDataParams,
 ) =>
-	await getData(axiosInstance, "data/team/get", {
+	await getData(fetchCookie, "data/team/get", {
 		team_id: params.teamId,
 		include_licenses: params.includeLicenses,
 	});

@@ -7,15 +7,15 @@ import {
 	GetLicensesResponse,
 } from "./types.js";
 
-import { AxiosInstance } from "axios";
+import { FetchCookie } from "../../types.js";
 import { getData } from "../../helpers.js";
 
 export const getClubHistory = async (
-	axiosInstance: AxiosInstance,
+	fetchCookie: FetchCookie,
 	params: GetClubHistoryParams,
 ) =>
 	await getData<GetClubHistoryResponse>(
-		axiosInstance,
+		fetchCookie,
 		"data/lookup/club_history",
 		{
 			season_year: params.seasonYear,
@@ -23,17 +23,17 @@ export const getClubHistory = async (
 		},
 	);
 
-export const getCountries = async (axiosInstance: AxiosInstance) =>
-	await getData<GetCountriesResponse>(axiosInstance, "data/lookup/countries");
+export const getCountries = async (fetchCookie: FetchCookie) =>
+	await getData<GetCountriesResponse>(fetchCookie, "data/lookup/countries");
 
 export const getDrivers = async (
-	axiosInstance: AxiosInstance,
+	fetchCookie: FetchCookie,
 	params: GetDriversParams,
 ) =>
-	await getData<GetDriversResponse>(axiosInstance, "data/lookup/drivers", {
+	await getData<GetDriversResponse>(fetchCookie, "data/lookup/drivers", {
 		search_term: params.searchTerm,
 		league_id: params.leagueId,
 	});
 
-export const getLicenses = async (axiosInstance: AxiosInstance) =>
-	await getData<GetLicensesResponse>(axiosInstance, "data/lookup/licenses");
+export const getLicenses = async (fetchCookie: FetchCookie) =>
+	await getData<GetLicensesResponse>(fetchCookie, "data/lookup/licenses");
