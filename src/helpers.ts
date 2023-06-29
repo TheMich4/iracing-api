@@ -1,6 +1,6 @@
-import { API_URL } from "./consts";
+import { API_URL } from "./consts.js";
 import CryptoJS from "crypto-js";
-import { FetchCookie } from "./types";
+import { FetchCookie } from "./types.js";
 import humps from "humps";
 
 const { camelizeKeys } = humps;
