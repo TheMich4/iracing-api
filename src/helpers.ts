@@ -5,6 +5,18 @@ import humps from "humps";
 
 const { camelizeKeys } = humps;
 
+const getUrl = <Parameters = Record<string, unknown>>(
+	endpoint: string,
+	params: Parameters,
+) => {
+	// Filter out empty values
+	const searchParams = new URLSearchParams(
+		JSON.parse(JSON.stringify(params)),
+	).toString();
+
+	return `${API_URL}${endpoint}${searchParams ? `?${searchParams}` : ""}`;
+};
+
 export const getLinkData = async <Data>(
 	link: string | undefined,
 ): Promise<Data | undefined> => {
@@ -26,8 +38,7 @@ export const getData = async <
 	endpoint: string,
 	params?: Parameters | Record<string, unknown>,
 ): Promise<Data | undefined> => {
-	const response = await fetchCookie(`${API_URL}${endpoint}`, {
-		body: JSON.stringify(params),
+	const response = await fetchCookie(getUrl(endpoint, params), {
 		cache: "no-cache",
 		credentials: "include",
 	});
