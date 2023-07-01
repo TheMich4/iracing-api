@@ -19,41 +19,37 @@ export const getCustLeagueSessions = async (
 	fetchCookie: FetchCookie,
 	params?: GetCustLeagueSessionsParams,
 ) =>
-	(
-		await getData<GetCustLeagueSessionsResponse>(
-			fetchCookie,
-			"data/league/cust_league_sessions",
-			{
-				mine: params?.mine,
-				package_id: params?.packageId,
-			},
-		)
-	)?.sessions;
+	await getData<GetCustLeagueSessionsResponse>(
+		fetchCookie,
+		"data/league/cust_league_sessions",
+		{
+			mine: params?.mine,
+			package_id: params?.packageId,
+		},
+	);
 
 export const getLeagueDirectory = async (
 	fetchCookie: FetchCookie,
 	params?: GetLeagueDirectoryParams,
 ) =>
-	(
-		await getData<GetLeagueDirectoryResponse>(
-			fetchCookie,
-			"data/league/directory",
-			{
-				search: params?.search,
-				tag: params?.tag,
-				restrict_to_member: params?.restrictToMember,
-				restrict_to_recruiting: params?.restrictToRecruiting,
-				restrict_to_friends: params?.restrictToFriends,
-				restrict_to_watched: params?.restrictToWatched,
-				minimum_roster_count: params?.minimumRosterCount,
-				maximum_roster_count: params?.maximumRosterCount,
-				lowerbound: params?.lowerbound,
-				upperbound: params?.upperbound,
-				sort: params?.sort,
-				order: params?.order,
-			},
-		)
-	)?.resultsPage;
+	await getData<GetLeagueDirectoryResponse>(
+		fetchCookie,
+		"data/league/directory",
+		{
+			search: params?.search,
+			tag: params?.tag,
+			restrict_to_member: params?.restrictToMember,
+			restrict_to_recruiting: params?.restrictToRecruiting,
+			restrict_to_friends: params?.restrictToFriends,
+			restrict_to_watched: params?.restrictToWatched,
+			minimum_roster_count: params?.minimumRosterCount,
+			maximum_roster_count: params?.maximumRosterCount,
+			lowerbound: params?.lowerbound,
+			upperbound: params?.upperbound,
+			sort: params?.sort,
+			order: params?.order,
+		},
+	);
 
 export const getLeagueData = async (
 	fetchCookie: FetchCookie,
