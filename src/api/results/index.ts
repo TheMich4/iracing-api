@@ -64,8 +64,11 @@ export const searchSeries = async (
 	fetchCookie: FetchCookie,
 	params: SearchSeriesParams,
 ) => {
-	const response = await fetchCookie(`${API_URL}data/results/search_series`, {
-		body: JSON.stringify({
+	// TODO: Add type
+	const responseData: any = await getData(
+		fetchCookie,
+		"data/results/search_series",
+		{
 			season_year: params?.seasonYear,
 			season_quarter: params?.seasonQuarter,
 			start_range_begin: params?.startRangeBegin,
@@ -78,9 +81,8 @@ export const searchSeries = async (
 			official_only: params?.officialOnly,
 			event_types: params?.eventTypes,
 			category_ids: params?.categoryIds,
-		}),
-	});
-	const responseData = await response.json();
+		},
+	);
 
 	if (!responseData?.data?.success || !responseData?.data?.chunk_info) {
 		return undefined;
