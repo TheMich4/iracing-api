@@ -19,5 +19,9 @@ export const login = async (
 		method: "POST",
 	});
 
+	if (response.status !== 200) {
+        return { error: response.statusText ?? "Failed to login to iracing-api" };
+    }
+
 	return await response.json();
 };
