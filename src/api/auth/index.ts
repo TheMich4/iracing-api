@@ -20,8 +20,8 @@ export const login = async (
 	});
 
 	if (response.status !== 200) {
-        return { error: response.statusText ?? "Failed to login to iracing-api" };
-    }
+		return { error: response.statusText ?? "Failed to login to iracing-api" };
+	}
 
 	return await response.json();
 };
