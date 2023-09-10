@@ -7,14 +7,16 @@
 	"type": "module",
 	"scripts": {
 		"build": "tsc",
-		"format": "npx rome format src/ --write",
-		"prepare": "npm run build",
-		"prepublishOnly": "npm run format",
-		"version": "npm run format && git add -A src",
+		"format": "eslint --ext .js,.ts src/ --fix",
+		"prepare": "build",
+		"prepublishOnly": "format",
+		"version": "format && git add -A src",
 		"postversion": "git push && git push --tags",
-		"patch": "npm version patch"
+		"patch": "version patch"
 	},
-	"files": ["lib/**/*"],
+	"files": [
+		"lib/**/*"
+	],
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/TheMich4/iracing-api.git"
@@ -35,8 +37,15 @@
 		"@types/humps": "^2.0.2",
 		"@types/node": "^18.13.0",
 		"@types/tough-cookie": "^4.0.2",
-		"rome": "^11.0.0",
+		"@typescript-eslint/eslint-plugin": "^6.6.0",
+		"@typescript-eslint/parser": "^6.6.0",
+		"eslint": "^8.49.0",
 		"typescript": "^4.9.5"
 	},
-	"keywords": ["iracing", "api", "client", "javascript"]
+	"keywords": [
+		"iracing",
+		"api",
+		"client",
+		"javascript"
+	]
 }

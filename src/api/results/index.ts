@@ -10,7 +10,6 @@ import {
 } from "./types.js";
 import { getData, getLinkData } from "../../helpers.js";
 
-import { API_URL } from "../../consts.js";
 import { FetchCookie } from "../../types.js";
 import { Result } from "../../types/results.js";
 
@@ -65,6 +64,7 @@ export const searchSeries = async (
 	params: SearchSeriesParams,
 ) => {
 	// TODO: Add type
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const responseData: any = await getData(
 		fetchCookie,
 		"data/results/search_series",
