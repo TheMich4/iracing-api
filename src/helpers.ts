@@ -7,10 +7,10 @@ const { camelizeKeys } = humps;
 
 const getUrl = <Parameters = Record<string, unknown>>(
 	endpoint: string,
-	params: Parameters,
+	params?: Parameters,
 ) => {
 	// Filter out empty values
-	const searchParams = new URLSearchParams(
+	const searchParams = params && new URLSearchParams(
 		JSON.parse(JSON.stringify(params)),
 	).toString();
 
