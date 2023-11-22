@@ -1,3 +1,4 @@
+import { Car } from "../types/car.js";
 import { FetchCookie } from "../types.js";
 import { getData } from "../helpers.js";
 
@@ -6,5 +7,4 @@ export const getCarAssets = async (fetchCookie: FetchCookie) =>
 
 export const getCars = async (
 	fetchCookie: FetchCookie,
-)=>
-	await getData(fetchCookie, "data/car/get");
+) => await getData<Car[]>(fetchCookie, "data/car/get");
