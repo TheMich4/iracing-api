@@ -1,11 +1,13 @@
+import { SeriesAssets, SeriesData, SeriesStat } from "../types/series.js";
+
 import { FetchCookie } from "../types.js";
 import { getData } from "../helpers.js";
 
 export const getSeriesAssets = async (fetchCookie: FetchCookie) =>
-	await getData(fetchCookie, "data/series/assets");
+	await getData<SeriesAssets>(fetchCookie, "data/series/assets");
 
 export const getSeriesData = async (fetchCookie: FetchCookie) =>
-	await getData(fetchCookie, "data/series/get");
+	await getData<SeriesData[]>(fetchCookie, "data/series/get");
 
 export const getSeriesPastSeasons = async (
 	fetchCookie: FetchCookie,
@@ -24,7 +26,7 @@ export const getSeriesSeasons = async (
 	});
 
 export const getSeriesStats = async (fetchCookie: FetchCookie) =>
-	await getData(
+	await getData<SeriesStat[]>(
 		fetchCookie,
 		"data/series/stats_series",
 	);
