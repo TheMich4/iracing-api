@@ -30,7 +30,8 @@
 	"dependencies": {
 		"crypto-js": "^4.1.1",
 		"fetch-cookie": "^2.1.0",
-		"humps": "^2.0.1"
+		"humps": "^2.0.1",
+		"zod": "^3.22.4"
 	},
 	"devDependencies": {
 		"@types/crypto-js": "^4.1.1",

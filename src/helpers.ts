@@ -48,7 +48,7 @@ export const getData = async <
 		return await getLinkData<Data>(data?.link);
 	}
 
-	return data;
+	return data as Data | undefined;
 };
 
 export const encryptPassword = (email: string, password: string) =>
