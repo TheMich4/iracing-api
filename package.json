@@ -1,53 +1,52 @@
 {
-  "name": "iracing-api",
-  "version": "0.2.4",
-  "description": "Javascript client for iracing API",
-  "exports": "./lib/index.js",
-  "types": "./lib/index.d.ts",
-  "type": "module",
-  "scripts": {
-    "build": "tsc",
-    "format": "eslint --ext .js,.ts src/ --fix; prettier . --write",
-    "prepare": "build",
-    "prepublishOnly": "format",
-    "version": "format && git add -A src",
-    "postversion": "git push && git push --tags",
-    "patch": "version patch"
-  },
-  "files": [
-    "lib/**/*"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/TheMich4/iracing-api.git"
-  },
-  "author": "Michal Dyczkowski",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/TheMich4/iracing-api/issues"
-  },
-  "homepage": "https://github.com/TheMich4/iracing-api#readme",
-  "dependencies": {
-    "crypto-js": "^4.1.1",
-    "fetch-cookie": "^2.1.0",
-    "humps": "^2.0.1",
-    "zod": "^3.22.4"
-  },
-  "devDependencies": {
-    "@types/crypto-js": "^4.1.1",
-    "@types/humps": "^2.0.2",
-    "@types/node": "^18.13.0",
-    "@types/tough-cookie": "^4.0.2",
-    "@typescript-eslint/eslint-plugin": "^6.6.0",
-    "@typescript-eslint/parser": "^6.6.0",
-    "eslint": "^8.49.0",
-    "prettier": "3.1.0",
-    "typescript": "^4.9.5"
-  },
-  "keywords": [
-    "iracing",
-    "api",
-    "client",
-    "javascript"
-  ]
+	"name": "iracing-api",
+	"version": "0.2.4",
+	"description": "Javascript client for iracing API",
+	"exports": "./lib/index.js",
+	"types": "./lib/index.d.ts",
+	"type": "module",
+	"scripts": {
+		"build": "tsc",
+		"format": "eslint --ext .js,.ts src/ --fix",
+		"prepare": "build",
+		"prepublishOnly": "format",
+		"version": "format && git add -A src",
+		"postversion": "git push && git push --tags",
+		"patch": "version patch"
+	},
+	"files": [
+		"lib/**/*"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/TheMich4/iracing-api.git"
+	},
+	"author": "Michal Dyczkowski",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/TheMich4/iracing-api/issues"
+	},
+	"homepage": "https://github.com/TheMich4/iracing-api#readme",
+	"dependencies": {
+		"crypto-js": "^4.1.1",
+		"fetch-cookie": "^2.1.0",
+		"humps": "^2.0.1",
+		"zod": "^3.22.4"
+	},
+	"devDependencies": {
+		"@types/crypto-js": "^4.1.1",
+		"@types/humps": "^2.0.2",
+		"@types/node": "^18.13.0",
+		"@types/tough-cookie": "^4.0.2",
+		"@typescript-eslint/eslint-plugin": "^6.6.0",
+		"@typescript-eslint/parser": "^6.6.0",
+		"eslint": "^8.49.0",
+		"typescript": "^4.9.5"
+	},
+	"keywords": [
+		"iracing",
+		"api",
+		"client",
+		"javascript"
+	]
 }
