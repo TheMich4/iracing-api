@@ -1,25 +1,25 @@
 {
-    "editor.defaultFormatter": "rome.rome",
-    "cSpell.words": [
-        "carclass",
-        "consts",
-        "cooldown",
-        "cust",
-        "Dirpath",
-        "iracing",
-        "irating",
-        "lowerbound",
-        "multiclass",
-        "Nlaps",
-        "Pitlane",
-        "pitroad",
-        "Pitstalls",
-        "precip",
-        "sess",
-        "simsession",
-        "subsession",
-        "Techspecs",
-        "unsport",
-        "upperbound"
-    ]
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "cSpell.words": [
+    "carclass",
+    "consts",
+    "cooldown",
+    "cust",
+    "Dirpath",
+    "iracing",
+    "irating",
+    "lowerbound",
+    "multiclass",
+    "Nlaps",
+    "Pitlane",
+    "pitroad",
+    "Pitstalls",
+    "precip",
+    "sess",
+    "simsession",
+    "subsession",
+    "Techspecs",
+    "unsport",
+    "upperbound"
+  ]
 }
