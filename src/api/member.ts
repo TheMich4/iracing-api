@@ -1,5 +1,3 @@
-import { MemberInfo, MemberParticipationCredit } from "../types/member.js";
-
 import { FetchCookie } from "../types.js";
 import { getData } from "../helpers.js";
 
@@ -28,10 +26,10 @@ export const getMemberData = async (
 	});
 
 export const getMemberInfo = async (fetchCookie: FetchCookie) =>
-	await getData<MemberInfo>(fetchCookie, "data/member/info");
+	await getData(fetchCookie, "data/member/info");
 
 export const getMemberParticipationCredits = async (fetchCookie: FetchCookie) =>
-	await getData<MemberParticipationCredit[]>(
+	await getData(
 		fetchCookie,
 		"data/member/participation_credits",
 	);
