@@ -1,3 +1,4 @@
+import { CustLeagueSessions } from "../types/league.js";
 import { FetchCookie } from "../types.js";
 import { getData } from "../helpers.js";
 
@@ -11,4 +12,4 @@ export const getHostedCombinedSessions = async (
 };
 
 export const getHostedSessions = async (fetchCookie: FetchCookie) =>
-	await getData(fetchCookie, "data/hosted/sessions");
+	await getData<CustLeagueSessions>(fetchCookie, "data/hosted/sessions");

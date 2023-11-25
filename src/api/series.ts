@@ -1,4 +1,4 @@
-import { SeriesAssets, SeriesData, SeriesStat } from "../types/series.js";
+import { SeriesAssets, SeriesData, SeriesSeason, SeriesStat } from "../types/series.js";
 
 import { FetchCookie } from "../types.js";
 import { getData } from "../helpers.js";
@@ -21,7 +21,7 @@ export const getSeriesSeasons = async (
 	fetchCookie: FetchCookie,
 	params?: any,
 ) =>
-	await getData(fetchCookie, "data/series/seasons", {
+	await getData<SeriesSeason[]>(fetchCookie, "data/series/seasons", {
 		include_series: params?.includeSeries,
 	});
 

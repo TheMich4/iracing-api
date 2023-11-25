@@ -1,3 +1,5 @@
+import { MemberBests, MemberCareer } from "../types/stats.js";
+
 import { FetchCookie } from "../types.js";
 import { getData } from "../helpers.js";
 
@@ -5,7 +7,7 @@ export const getMemberBests = async (
 	fetchCookie: FetchCookie,
 	params?: any,
 ) =>
-	await getData(
+	await getData<MemberBests>(
 		fetchCookie,
 		"data/stats/member_bests",
 		{
@@ -18,7 +20,7 @@ export const getMemberCareer = async (
 	fetchCookie: FetchCookie,
 	params?: any,
 ) =>
-	await getData(
+	await getData<MemberCareer>(
 		fetchCookie,
 		"data/stats/member_career",
 		{

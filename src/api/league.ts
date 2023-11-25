@@ -1,3 +1,5 @@
+import { CustLeagueSessions, LeagueDirectory } from "../types/league.js";
+
 import { FetchCookie } from "../types.js";
 import { getData } from "../helpers.js";
 
@@ -5,7 +7,7 @@ export const getCustLeagueSessions = async (
 	fetchCookie: FetchCookie,
 	params?:any
 ) =>
-	await getData(
+	await getData<CustLeagueSessions>(
 		fetchCookie,
 		"data/league/cust_league_sessions",
 		{
@@ -18,7 +20,7 @@ export const getLeagueDirectory = async (
 	fetchCookie: FetchCookie,
 	params?: any,
 ) =>
-	await getData(
+	await getData<LeagueDirectory>(
 		fetchCookie,
 		"data/league/directory",
 		{
