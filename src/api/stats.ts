@@ -1,4 +1,4 @@
-import { MemberBests, MemberCareer } from "../types/stats.js";
+import { MemberBests, MemberCareer, MemberRecap, MemberSummary, MemberYearlyStats } from "../types/stats.js";
 
 import { FetchCookie } from "../types.js";
 import { getData } from "../helpers.js";
@@ -53,7 +53,7 @@ export const getMemberRecap = async (
 	fetchCookie: FetchCookie,
 	params?: any,
 ) =>
-	await getData(fetchCookie, "data/stats/member_recap", {
+	await getData<MemberRecap>(fetchCookie, "data/stats/member_recap", {
 		cust_id: params?.customerId,
 		year: params?.year,
 		season: params?.season,
@@ -63,7 +63,7 @@ export const getMemberSummary = async (
 	fetchCookie: FetchCookie,
 	params?: any,
 ) =>
-	await getData(
+	await getData<MemberSummary>(
 		fetchCookie,
 		"data/stats/member_summary",
 		{
@@ -75,7 +75,7 @@ export const getMemberYearlyStats = async (
 	fetchCookie: FetchCookie,
 	params?: any,
 ) =>
-	await getData(fetchCookie, "data/stats/member_yearly", {
+	await getData<MemberYearlyStats>(fetchCookie, "data/stats/member_yearly", {
 		cust_id: params?.customerId,
 	});
 

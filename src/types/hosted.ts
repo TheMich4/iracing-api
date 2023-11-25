@@ -232,3 +232,63 @@ export const HostedSessionsSchema = z.object({
     "success": z.boolean(),
 });
 export type HostedSessions = z.infer<typeof HostedSessionsSchema>;
+
+export const HeatSesInfoSchema = z.object({
+    "heatInfoId": z.number(),
+    "custId": z.number(),
+    "hidden": z.boolean(),
+    "created": z.coerce.date(),
+    "heatInfoName": z.string(),
+    "maxEntrants": z.number(),
+    "raceStyle": z.number(),
+    "openPractice": z.boolean(),
+    "preQualPracticeLengthMinutes": z.number(),
+    "preQualNumToMain": z.number(),
+    "qualStyle": z.number(),
+    "qualLengthMinutes": z.number(),
+    "qualLaps": z.number(),
+    "qualNumToMain": z.number(),
+    "qualScoring": z.number(),
+    "qualCautionType": z.number(),
+    "qualOpenDelaySeconds": z.number(),
+    "qualScoresChampPoints": z.boolean(),
+    "heatLengthMinutes": z.number(),
+    "heatLaps": z.number(),
+    "heatMaxFieldSize": z.number(),
+    "heatNumPositionToInvert": z.number(),
+    "heatCautionType": z.number(),
+    "heatNumFromEachToMain": z.number(),
+    "heatScoresChampPoints": z.boolean(),
+    "consolationNumToConsolation": z.number(),
+    "consolationNumToMain": z.number(),
+    "consolationFirstMaxFieldSize": z.number(),
+    "consolationFirstSessionLengthMinutes": z.number(),
+    "consolationFirstSessionLaps": z.number(),
+    "consolationDeltaMaxFieldSize": z.number(),
+    "consolationDeltaSessionLengthMinutes": z.number(),
+    "consolationDeltaSessionLaps": z.number(),
+    "consolationNumPositionToInvert": z.number(),
+    "consolationScoresChampPoints": z.boolean(),
+    "consolationRunAlways": z.boolean(),
+    "preMainPracticeLengthMinutes": z.number(),
+    "mainLengthMinutes": z.number(),
+    "mainLaps": z.number(),
+    "mainMaxFieldSize": z.number(),
+    "mainNumPositionToInvert": z.number(),
+    "heatSessionMinutesEstimate": z.number(),
+});
+export type HeatSesInfo = z.infer<typeof HeatSesInfoSchema>;
+
+export const FriendSchema = z.object({
+    "custId": z.number(),
+    "displayName": z.string(),
+});
+export type Friend = z.infer<typeof FriendSchema>;
+
+export const HostedCombinedSessionsSchema = z.object({
+    "subscribed": z.boolean(),
+    "sequence": z.number(),
+    "sessions": z.array(SessionSchema),
+    "success": z.boolean(),
+});
+export type HostedCombinedSessions = z.infer<typeof HostedCombinedSessionsSchema>;
