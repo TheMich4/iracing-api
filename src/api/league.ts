@@ -78,17 +78,17 @@ export const getLeagueData = async (
     include_licenses: params.includeLicenses,
   });
 
-export const GetLeagueSeasonDataParamsSchema = z.object({
+export const GetLeaguePointSystemParamsSchema = z.object({
   leagueId: z.number(),
   seasonId: z.number().optional(),
 });
-export type GetLeagueSeasonDataParams = z.infer<
-  typeof GetLeagueSeasonDataParamsSchema
+export type GetLeaguePointSystemParams = z.infer<
+  typeof GetLeaguePointSystemParamsSchema
 >;
 
 export const getLeaguePointSystem = async (
   fetchCookie: FetchCookie,
-  params: GetLeagueSeasonDataParams
+  params: GetLeaguePointSystemParams
 ) =>
   await getData(fetchCookie, "data/league/get_points_systems", {
     league_id: params.leagueId,
