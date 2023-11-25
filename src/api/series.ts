@@ -25,7 +25,7 @@ export type GetSeriesPastSeasonsParams = z.infer<
 
 export const getSeriesPastSeasons = async (
   fetchCookie: FetchCookie,
-  params: GetSeriesPastSeasonsParams
+  params: GetSeriesPastSeasonsParams,
 ) =>
   await getData(fetchCookie, "data/series/past_seasons", {
     series_id: params.seriesId,
@@ -40,7 +40,7 @@ export type GetSeriesSeasonsParams = z.infer<
 
 export const getSeriesSeasons = async (
   fetchCookie: FetchCookie,
-  params?: GetSeriesSeasonsParams
+  params?: GetSeriesSeasonsParams,
 ) =>
   await getData<SeriesSeason[]>(fetchCookie, "data/series/seasons", {
     include_series: params?.includeSeries,

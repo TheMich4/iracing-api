@@ -11,7 +11,7 @@ export type GetSeasonListParams = z.infer<typeof GetSeasonListParamsSchema>;
 
 export const getSeasonList = async (
   fetchCookie: FetchCookie,
-  params: GetSeasonListParams
+  params: GetSeasonListParams,
 ) =>
   await getData(fetchCookie, "data/season/list", {
     season_year: params.seasonYear,
@@ -28,7 +28,7 @@ export type GetSeasonRaceGuideParams = z.infer<
 
 export const getSeasonRaceGuide = async (
   fetchCookie: FetchCookie,
-  params?: GetSeasonRaceGuideParams
+  params?: GetSeasonRaceGuideParams,
 ) =>
   await getData(fetchCookie, "data/season/race_guide", {
     from: params?.from,
@@ -44,7 +44,7 @@ export type GetSpectatorSubsessionIdsParams = z.infer<
 
 export const getSpectatorSubsessionIds = async (
   fetchCookie: FetchCookie,
-  params?: GetSpectatorSubsessionIdsParams
+  params?: GetSpectatorSubsessionIdsParams,
 ) =>
   await getData(fetchCookie, "data/season/spectator_subsession_ids", {
     event_types: params?.eventTypes,

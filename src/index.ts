@@ -32,7 +32,7 @@ export default class IracingAPI {
 
   // Hosted API
   getHostedCombinedSessions = async (
-    params?: api.GetHostedCombinedSessionsParams
+    params?: api.GetHostedCombinedSessionsParams,
   ) => await api.getHostedCombinedSessions(this.fetchCookie, params);
   getHostedSessions = async () => await api.getHostedSessions(this.fetchCookie);
 
@@ -50,7 +50,7 @@ export default class IracingAPI {
   getLeagueSeasons = async (params: api.GetLeagueSeasonsParams) =>
     await api.getLeagueSeasons(this.fetchCookie, params);
   getLeagueSeasonStandings = async (
-    params: api.GetLeagueSeasonStandingsParams
+    params: api.GetLeagueSeasonStandingsParams,
   ) => await api.getLeagueSeasonStandings(this.fetchCookie, params);
   getLeagueSeasonSessions = async (params: api.GetLeagueSeasonSessionsParams) =>
     await api.getLeagueSeasonSessions(this.fetchCookie, params);
@@ -122,18 +122,18 @@ export default class IracingAPI {
   getMemberYearlyStats = async (params?: api.GetMemberYearlyStatsParams) =>
     await api.getMemberYearlyStats(this.fetchCookie, params);
   getDriverSeasonStandings = async (
-    params: api.GetDriverSeasonStandingsParams
+    params: api.GetDriverSeasonStandingsParams,
   ) => await api.getDriverSeasonStandings(this.fetchCookie, params);
   getSupersessionSeasonStandings = async (
-    params: api.GetSupersessionSeasonStandingsParams
+    params: api.GetSupersessionSeasonStandingsParams,
   ) => await api.getSupersessionSeasonStandings(this.fetchCookie, params);
   getTeamSeasonStandings = async (params: api.GetTeamSeasonStandingsParams) =>
     await api.getTeamSeasonStandings(this.fetchCookie, params);
   getTimeTrialSeasonStandings = async (
-    params: api.GetTimeTrialSeasonStandingsParams
+    params: api.GetTimeTrialSeasonStandingsParams,
   ) => await api.getTimeTrialSeasonStandings(this.fetchCookie, params);
   getQualifySeasonStandings = async (
-    params: api.GetQualifySeasonResultsParams
+    params: api.GetQualifySeasonResultsParams,
   ) => await api.getQualifySeasonResults(this.fetchCookie, params);
   getWorldRecords = async (params: api.GetWorldRecordsParams) =>
     await api.getWorldRecords(this.fetchCookie, params);

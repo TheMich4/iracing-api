@@ -11,7 +11,7 @@ export type GetTeamDataParams = z.infer<typeof GetTeamDataParamsSchema>;
 
 export const getTeamData = async (
   fetchCookie: FetchCookie,
-  params: GetTeamDataParams
+  params: GetTeamDataParams,
 ) =>
   await getData(fetchCookie, "data/team/get", {
     team_id: params.teamId,

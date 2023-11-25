@@ -13,7 +13,7 @@ export type GetClubHistoryParams = z.infer<typeof GetClubHistoryParamsSchema>;
 
 export const getClubHistory = async (
   fetchCookie: FetchCookie,
-  params: GetClubHistoryParams
+  params: GetClubHistoryParams,
 ) =>
   await getData(fetchCookie, "data/lookup/club_history", {
     season_year: params.seasonYear,
@@ -31,7 +31,7 @@ export type GetDriversParams = z.infer<typeof GetDriversParamsSchema>;
 
 export const getDrivers = async (
   fetchCookie: FetchCookie,
-  params: GetDriversParams
+  params: GetDriversParams,
 ) =>
   await getData(fetchCookie, "data/lookup/drivers", {
     search_term: params.searchTerm,

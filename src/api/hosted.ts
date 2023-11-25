@@ -14,14 +14,14 @@ export type GetHostedCombinedSessionsParams = z.infer<
 
 export const getHostedCombinedSessions = async (
   fetchCookie: FetchCookie,
-  params?: GetHostedCombinedSessionsParams
+  params?: GetHostedCombinedSessionsParams,
 ) => {
   return await getData<HostedCombinedSessions>(
     fetchCookie,
     "data/hosted/combined_sessions",
     {
       package_id: params?.packageId,
-    }
+    },
   );
 };
 
