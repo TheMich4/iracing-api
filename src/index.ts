@@ -31,59 +31,57 @@ export default class IracingAPI {
   getEventTypes = async () => await api.getEventTypes(this.fetchCookie);
 
   // Hosted API
-  getHostedCombinedSessions = async (
-    params?: api.GetHostedCombinedSessionsParams
-  ) => await api.getHostedCombinedSessions(this.fetchCookie, params);
+  getHostedCombinedSessions = async (params?: any) =>
+    await api.getHostedCombinedSessions(this.fetchCookie, params);
   getHostedSessions = async () => await api.getHostedSessions(this.fetchCookie);
 
   // League API
-  getCustLeagueSessions = async (params?: api.GetCustLeagueSessionsParams) =>
+  getCustLeagueSessions = async (params?: any) =>
     await api.getCustLeagueSessions(this.fetchCookie, params);
-  getLeagueDirectory = async (params?: api.GetLeagueDirectoryParams) =>
+  getLeagueDirectory = async (params?: any) =>
     await api.getLeagueDirectory(this.fetchCookie, params);
-  getLeagueData = async (params: api.GetLeagueDataParams) =>
+  getLeagueData = async (params: any) =>
     await api.getLeagueData(this.fetchCookie, params);
-  getLeaguePointSystem = async (params: api.GetLeaguePointSystemParams) =>
+  getLeaguePointSystem = async (params: any) =>
     await api.getLeaguePointSystem(this.fetchCookie, params);
-  getLeagueMembership = async (params?: api.GetLeagueMembershipParams) =>
+  getLeagueMembership = async (params?: any) =>
     await api.getLeagueMembership(this.fetchCookie, params);
-  getLeagueSeasons = async (params: api.GetLeagueSeasonsParams) =>
+  getLeagueSeasons = async (params: any) =>
     await api.getLeagueSeasons(this.fetchCookie, params);
-  getLeagueSeasonStandings = async (
-    params: api.GetLeagueSeasonStandingsParams
-  ) => await api.getLeagueSeasonStandings(this.fetchCookie, params);
-  getLeagueSeasonSessions = async (params: api.GetLeagueSeasonSessionsParams) =>
+  getLeagueSeasonStandings = async (params: any) =>
+    await api.getLeagueSeasonStandings(this.fetchCookie, params);
+  getLeagueSeasonSessions = async (params: any) =>
     await api.getLeagueSeasonSessions(this.fetchCookie, params);
 
   // Lookup API
-  getClubHistory = async (params: api.GetClubHistoryParams) =>
+  getClubHistory = async (params: any) =>
     await api.getClubHistory(this.fetchCookie, params);
   getCountries = async () => await api.getCountries(this.fetchCookie);
-  getDrivers = async (params: api.GetDriversParams) =>
+  getDrivers = async (params: any) =>
     await api.getDrivers(this.fetchCookie, params);
   getLicenses = async () => await api.getLicenses(this.fetchCookie);
 
   // Member API
-  getMemberAwards = async (params: api.GetMemberAwardsParams) =>
+  getMemberAwards = async (params: any) =>
     await api.getMemberAwards(this.fetchCookie, params);
-  getMemberChartData = async (params: api.GetMemberChartDataParams) =>
+  getMemberChartData = async (params: any) =>
     await api.getMemberChartData(this.fetchCookie, params);
-  getMemberData = async (params: api.GetMemberDataParams) =>
+  getMemberData = async (params: any) =>
     await api.getMemberData(this.fetchCookie, params);
   getMemberInfo = async () => await api.getMemberInfo(this.fetchCookie);
   getMemberParticipationCredits = async () =>
     await api.getMemberParticipationCredits(this.fetchCookie);
-  getMemberProfile = async (params: api.GetMemberProfileParams) =>
+  getMemberProfile = async (params: any) =>
     await api.getMemberProfile(this.fetchCookie, params);
 
   // Results API
-  getResult = async (params: api.GetResultParams) =>
+  getResult = async (params: any) =>
     await api.getResult(this.fetchCookie, params);
-  getResultsEventLog = async (params: api.GetResultsEventLogParams) =>
+  getResultsEventLog = async (params: any) =>
     await api.getResultsEventLog(this.fetchCookie, params);
-  getResultsLapChartData = async (params: api.GetResultsLapChartDataParams) =>
+  getResultsLapChartData = async (params: any) =>
     await api.getResultsLapChartData(this.fetchCookie, params);
-  getResultsLapData = async (params: api.GetResultsLapDataParams) =>
+  getResultsLapData = async (params: any) =>
     await api.getResultsLapData(this.fetchCookie, params);
   searchHosted = async () => await api.searchHosted(this.fetchCookie);
   searchSeries = async (params: any) =>
@@ -92,58 +90,54 @@ export default class IracingAPI {
     await api.getSeasonResults(this.fetchCookie, params);
 
   // Season API
-  getSeasonList = async (params: api.GetSeasonListParams) =>
+  getSeasonList = async (params: any) =>
     await api.getSeasonList(this.fetchCookie, params);
-  getSeasonRaceGuide = async (params: api.GetSeasonRaceGuideParams) =>
+  getSeasonRaceGuide = async (params: any) =>
     await api.getSeasonRaceGuide(this.fetchCookie, params);
 
   // Series API
   getSeriesAssets = async () => await api.getSeriesAssets(this.fetchCookie);
   getSeriesData = async () => await api.getSeriesData(this.fetchCookie);
-  getSeriesPastSeasons = async (params: api.GetSeriesPastSeasonsParams) =>
+  getSeriesPastSeasons = async (params: any) =>
     await api.getSeriesPastSeasons(this.fetchCookie, params);
-  getSeriesSeasons = async (params?: api.GetSeriesSeasonsParams) =>
+  getSeriesSeasons = async (params?: any) =>
     await api.getSeriesSeasons(this.fetchCookie, params);
   getSeriesStats = async () => await api.getSeriesStats(this.fetchCookie);
 
   // Stats API
-  getMemberBests = async (params?: api.GetMemberBestsParams) =>
+  getMemberBests = async (params?: any) =>
     await api.getMemberBests(this.fetchCookie, params);
-  getMemberCareer = async (params?: api.GetMemberCareerParams) =>
+  getMemberCareer = async (params?: any) =>
     await api.getMemberCareer(this.fetchCookie, params);
-  getMemberDivision = async (params: api.GetMemberDivisionParams) =>
+  getMemberDivision = async (params: any) =>
     await api.getMemberDivision(this.fetchCookie, params);
-  getMemberRecentRaces = async (params?: api.GetMemberRecentRacesParams) =>
+  getMemberRecentRaces = async (params?: any) =>
     await api.getMemberRecentRaces(this.fetchCookie, params);
-  getMemberRecap = async (params?: api.GetMemberRecapParams) =>
+  getMemberRecap = async (params?: any) =>
     await api.getMemberRecap(this.fetchCookie, params);
-  getMemberSummary = async (params?: api.GetMemberSummaryParams) =>
+  getMemberSummary = async (params?: any) =>
     await api.getMemberSummary(this.fetchCookie, params);
-  getMemberYearlyStats = async (params?: api.GetMemberYearlyStatsParams) =>
+  getMemberYearlyStats = async (params?: any) =>
     await api.getMemberYearlyStats(this.fetchCookie, params);
-  getDriverSeasonStandings = async (
-    params: api.GetDriverSeasonStandingsParams
-  ) => await api.getDriverSeasonStandings(this.fetchCookie, params);
-  getSupersessionSeasonStandings = async (
-    params: api.GetSupersessionSeasonStandingsParams
-  ) => await api.getSupersessionSeasonStandings(this.fetchCookie, params);
-  getTeamSeasonStandings = async (params: api.GetTeamSeasonStandingsParams) =>
+  getDriverSeasonStandings = async (params: any) =>
+    await api.getDriverSeasonStandings(this.fetchCookie, params);
+  getSupersessionSeasonStandings = async (params: any) =>
+    await api.getSupersessionSeasonStandings(this.fetchCookie, params);
+  getTeamSeasonStandings = async (params: any) =>
     await api.getTeamSeasonStandings(this.fetchCookie, params);
-  getTimeTrialSeasonStandings = async (
-    params: api.GetTimeTrialSeasonStandingsParams
-  ) => await api.getTimeTrialSeasonStandings(this.fetchCookie, params);
-  getQualifySeasonStandings = async (
-    params: api.GetQualifySeasonResultsParams
-  ) => await api.getQualifySeasonResults(this.fetchCookie, params);
-  getWorldRecords = async (params: api.GetWorldRecordsParams) =>
+  getTimeTrialSeasonStandings = async (params: any) =>
+    await api.getTimeTrialSeasonStandings(this.fetchCookie, params);
+  getQualifySeasonStandings = async (params: any) =>
+    await api.getQualifySeasonResults(this.fetchCookie, params);
+  getWorldRecords = async (params: any) =>
     await api.getWorldRecords(this.fetchCookie, params);
 
   // Team API
-  getTeamData = async (params: api.GetTeamDataParams) =>
+  getTeamData = async (params: any) =>
     await api.getTeamData(this.fetchCookie, params);
 
   // Time Attack API
-  getTimeAttackSeasonResults = async (params: api.GetTimeAttackSeasonParams) =>
+  getTimeAttackSeasonResults = async (params: any) =>
     await api.getTimeAttackSeasonResults(this.fetchCookie, params);
 
   // Track API

@@ -58,16 +58,14 @@ export const getMemberParticipationCredits = async (fetchCookie: FetchCookie) =>
     "data/member/participation_credits"
   );
 
-export const GetMemberProfileParamsSchema = z.object({
+export const GetMemberPointsParamsSchema = z.object({
   customerId: z.number().optional(),
 });
-export type GetMemberProfileParams = z.infer<
-  typeof GetMemberProfileParamsSchema
->;
+export type GetMemberPointsParams = z.infer<typeof GetMemberPointsParamsSchema>;
 
 export const getMemberProfile = async (
   fetchCookie: FetchCookie,
-  params?: GetMemberProfileParams
+  params?: GetMemberPointsParams
 ) =>
   await getData(fetchCookie, "data/member/profile", {
     cust_id: params?.customerId,
