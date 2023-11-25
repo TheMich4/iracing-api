@@ -1,3 +1,5 @@
+import { Country, License } from "../types/lookup.js";
+
 import { FetchCookie } from "../types.js";
 import { getData } from "../helpers.js";
 
@@ -15,7 +17,7 @@ export const getClubHistory = async (
 	);
 
 export const getCountries = async (fetchCookie: FetchCookie) =>
-	await getData(fetchCookie, "data/lookup/countries");
+	await getData<Country[]>(fetchCookie, "data/lookup/countries");
 
 export const getDrivers = async (
 	fetchCookie: FetchCookie,
@@ -27,4 +29,4 @@ export const getDrivers = async (
 	});
 
 export const getLicenses = async (fetchCookie: FetchCookie) =>
-	await getData(fetchCookie, "data/lookup/licenses");
+	await getData<License[]>(fetchCookie, "data/lookup/licenses");
