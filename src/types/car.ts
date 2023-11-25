@@ -1,33 +1,39 @@
 import * as z from "zod";
 
+import { ColorSchema } from "./general";
+
 export const CarCategorySchema = z.enum([
     "oval",
     "road",
 ]);
 export type CarCategory = z.infer<typeof CarCategorySchema>;
 
+export const RimTypeSchema = z.string();
+export type RimType = z.infer<typeof RimTypeSchema>;
+
+
 export const PriceDisplaySchema = z.string();
 export type PriceDisplay = z.infer<typeof PriceDisplaySchema>;
 
 export const PaintRuleSchema = z.object({
     "paintCarAvailable": z.boolean(),
-    "color1": z.string(),
-    "color2": z.string(),
-    "color3": z.string(),
+    "color1": ColorSchema,
+    "color2": ColorSchema,
+    "color3": ColorSchema,
     "sponsor1Available": z.boolean(),
     "sponsor2Available": z.boolean(),
     "sponsor1": z.string(),
     "sponsor2": z.string(),
     "paintWheelAvailable": z.union([z.boolean(), z.null()]).optional(),
-    "wheelColor": z.union([z.string(), z.null()]).optional(),
+    "wheelColor": z.union([ColorSchema, z.null()]).optional(),
     "rimTypeAvailable": z.union([z.boolean(), z.null()]).optional(),
-    "rimType": z.union([z.string(), z.null()]).optional(),
+    "rimType": z.union([RimTypeSchema, z.null()]).optional(),
     "allowNumberFontChanges": z.union([z.boolean(), z.null()]).optional(),
     "numberFont": z.union([z.null(), z.string()]).optional(),
     "allowNumberColorChanges": z.union([z.boolean(), z.null()]).optional(),
-    "numberColor1": z.union([z.string(), z.null()]).optional(),
-    "numberColor2": z.union([z.string(), z.null()]).optional(),
-    "numberColor3": z.union([z.string(), z.null()]).optional(),
+    "numberColor1": z.union([ColorSchema, z.null()]).optional(),
+    "numberColor2": z.union([ColorSchema, z.null()]).optional(),
+    "numberColor3": z.union([ColorSchema, z.null()]).optional(),
     "rulesExplanation": z.string(),
 })
 export type PaintRule = z.infer<typeof PaintRuleSchema>;
