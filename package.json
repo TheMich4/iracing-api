@@ -8,9 +8,9 @@
   "scripts": {
     "build": "tsc",
     "format": "eslint --ext .js,.ts src/ --fix; prettier . --write",
-    "prepare": "build",
-    "prepublishOnly": "format",
-    "version": "format && git add -A src",
+    "prepare": "pnpm run build",
+    "prepublishOnly": "pnpm run format",
+    "version": "pnpm run format && git add -A src",
     "postversion": "git push && git push --tags",
     "patch": "version patch"
   },
