@@ -38,9 +38,7 @@ export const getData = async <
 	endpoint: string,
 	params?: Parameters | Record<string, unknown>,
 ): Promise<Data | undefined> => {
-	const url= getUrl(endpoint, params)
-	try{
-	const response = await fetchCookie(url, {
+	const response = await fetchCookie(getUrl(endpoint, params), {
 		cache: "no-cache",
 		credentials: "include",
 	});
@@ -51,11 +49,6 @@ export const getData = async <
 	}
 
 	return data as Data | undefined;
-}
-	catch(error){
-		console.error(`Error getting data for ${url}`,error)
-		return undefined
-	}
 };
 
 export const encryptPassword = (email: string, password: string) =>
