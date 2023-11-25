@@ -1,34 +1,73 @@
+import * as z from "zod";
+
 import { getData, getLinkData } from "../helpers.js";
 
 import { FetchCookie } from "../types.js";
 
-export const getResult = async (fetchCookie: FetchCookie, params: any) =>
+export const GetResultParamsSchema = z.object({
+  subsessionId: z.number(),
+  includeLicenses: z.boolean().optional(),
+});
+export type GetResultParams = z.infer<typeof GetResultParamsSchema>;
+
+export const getResult = async (
+  fetchCookie: FetchCookie,
+  params: GetResultParams
+) =>
   await getData(fetchCookie, "data/results/get", {
     subsession_id: params.subsessionId,
     include_licenses: params.includeLicenses,
   });
 
+export const getResultsEventLogParamsSchema = z.object({
+  subsessionId: z.number(),
+  simsessionNumber: z.number(),
+});
+export type GetResultsEventLogParams = z.infer<
+  typeof getResultsEventLogParamsSchema
+>;
+
 export const getResultsEventLog = async (
   fetchCookie: FetchCookie,
-  params: any,
+  params: GetResultsEventLogParams
 ) =>
   await getData(fetchCookie, "data/results/event_log", {
     subsession_id: params.subsessionId,
     simsession_number: params.simsessionNumber,
   });
 
+export const GetResultsLapChartDataParamsSchema = z.object({
+  subsessionId: z.number(),
+  simsessionNumber: z.number(),
+});
+export type GetResultsLapChartDataParams = z.infer<
+  typeof GetResultsLapChartDataParamsSchema
+>;
+
 export const getResultsLapChartData = async (
   fetchCookie: FetchCookie,
-  params: any,
+  params: GetResultsLapChartDataParams
 ) =>
   await getData(fetchCookie, "data/results/lap_chart_data", {
     subsession_id: params.subsessionId,
     simsession_number: params.simsessionNumber,
   });
 
+export const GetResultsLapDataParamsSchema = z
+  .object({
+    subsessionId: z.number(),
+    simsessionNumber: z.number(),
+    customerId: z.number().optional(),
+    teamId: z.number().optional(),
+  })
+  .refine((data) => Boolean(data.customerId) || Boolean(data.teamId));
+export type GetResultsLapDataParams = z.infer<
+  typeof GetResultsLapDataParamsSchema
+>;
+
 export const getResultsLapData = async (
   fetchCookie: FetchCookie,
-  params: any,
+  params: GetResultsLapDataParams
 ) =>
   await getData(fetchCookie, "data/results/lap_data", {
     subsession_id: params.subsessionId,
@@ -60,7 +99,7 @@ export const searchSeries = async (fetchCookie: FetchCookie, params: any) => {
       official_only: params?.officialOnly,
       event_types: params?.eventTypes,
       category_ids: params?.categoryIds,
-    },
+    }
   );
 
   if (!responseData?.data?.success || !responseData?.data?.chunk_info) {
@@ -76,7 +115,7 @@ export const searchSeries = async (fetchCookie: FetchCookie, params: any) => {
   const chunksData = await Promise.all(
     chunk_file_names.map(async (chunkFileName: string) => {
       return await getLinkData(`${base_download_url}${chunkFileName}`);
-    }),
+    })
   );
 
   return chunksData.flatMap((chunk) => chunk);
