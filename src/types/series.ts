@@ -1,5 +1,14 @@
 import * as z from "zod";
 
+import {
+  CarTypeSchema,
+  HeatSesInfoSchema,
+  LicenseGroupTypeSchema,
+  TrackTypeEnumSchema,
+  TrackTypeSchema,
+  WeatherSchema,
+} from "./common";
+
 export const SeriesAssetSchema = z.object({
   largeImage: z.null(),
   logo: z.string(),
@@ -56,32 +65,27 @@ export const SeriesDataSchema = z.object({
 });
 export type SeriesData = z.infer<typeof SeriesDataSchema>;
 
-export const TrackSchema = z.object({
+export const SeriesTrackSchema = z.object({
   trackId: z.number(),
   trackName: z.string(),
   configName: z.union([z.null(), z.string()]).optional(),
 });
-export type Track = z.infer<typeof TrackSchema>;
+export type SeriesTrack = z.infer<typeof SeriesTrackSchema>;
 
 export const RaceWeekSchema = z.object({
   seasonId: z.number(),
   raceWeekNum: z.number(),
-  track: TrackSchema,
+  track: SeriesTrackSchema,
 });
 export type RaceWeek = z.infer<typeof RaceWeekSchema>;
 
-export const CarClassSchema = z.object({
+export const SeriesCarClassSchema = z.object({
   carClassId: z.number(),
   shortName: z.string(),
   name: z.string(),
   relativeSpeed: z.number(),
 });
-export type CarClass = z.infer<typeof CarClassSchema>;
-
-export const LicenseGroupTypeSchema = z.object({
-  licenseGroupType: z.number(),
-});
-export type LicenseGroupType = z.infer<typeof LicenseGroupTypeSchema>;
+export type SeriesCarClass = z.infer<typeof SeriesCarClassSchema>;
 
 export const SeasonSchema = z.object({
   seasonId: z.number(),
@@ -96,7 +100,7 @@ export const SeasonSchema = z.object({
   fixedSetup: z.boolean(),
   licenseGroup: z.number(),
   licenseGroupTypes: z.array(LicenseGroupTypeSchema),
-  carClasses: z.array(CarClassSchema),
+  carClasses: z.array(SeriesCarClassSchema),
   raceWeeks: z.array(RaceWeekSchema),
 });
 export type Season = z.infer<typeof SeasonSchema>;
@@ -119,45 +123,11 @@ export const SeriesStatSchema = z.object({
 });
 export type SeriesStat = z.infer<typeof SeriesStatSchema>;
 
-export const TrackTypeEnumSchema = z.enum([
-  "dirt_oval",
-  "dirt_road",
-  "oval",
-  "road",
-]);
-export type TrackTypeEnum = z.infer<typeof TrackTypeEnumSchema>;
-
-export const TrackTypeSchema = z.object({
-  trackType: TrackTypeEnumSchema,
-});
-export type TrackType = z.infer<typeof TrackTypeSchema>;
-
-export const WeatherSchema = z.object({
-  version: z.number(),
-  type: z.number(),
-  tempUnits: z.number(),
-  tempValue: z.number(),
-  relHumidity: z.number(),
-  fog: z.number(),
-  windDir: z.number(),
-  windUnits: z.number(),
-  windValue: z.number(),
-  skies: z.number(),
-  weatherVarInitial: z.number(),
-  weatherVarOngoing: z.number(),
-  timeOfDay: z.number(),
-  simulatedStartTime: z.coerce.date(),
-  simulatedTimeOffsets: z.array(z.number()),
-  simulatedTimeMultiplier: z.number(),
-  simulatedStartUtcTime: z.coerce.date(),
-});
-export type Weather = z.infer<typeof WeatherSchema>;
-
-export const TrackStateSchema = z.object({
+export const SeriesTrackStateSchema = z.object({
   leaveMarbles: z.boolean(),
   practiceRubber: z.union([z.number(), z.null()]).optional(),
 });
-export type TrackState = z.infer<typeof TrackStateSchema>;
+export type SeriesTrackState = z.infer<typeof SeriesTrackStateSchema>;
 
 export const RaceTimeDescriptorSchema = z.object({
   repeating: z.boolean(),
@@ -201,65 +171,19 @@ export const ScheduleSchema = z.object({
   startZone: z.boolean(),
   enablePitlaneCollisions: z.boolean(),
   shortParadeLap: z.boolean(),
-  track: TrackSchema,
+  track: SeriesTrackSchema,
   weather: WeatherSchema,
-  trackState: TrackStateSchema,
+  trackState: SeriesTrackStateSchema,
   raceTimeDescriptors: z.array(RaceTimeDescriptorSchema),
   carRestrictions: z.array(CarRestrictionSchema),
 });
 export type Schedule = z.infer<typeof ScheduleSchema>;
 
-export const HeatSesInfoSchema = z.object({
-  heatInfoId: z.number(),
-  custId: z.number(),
-  hidden: z.boolean(),
-  created: z.coerce.date(),
-  heatInfoName: z.string(),
-  description: z.string(),
-  maxEntrants: z.number(),
-  raceStyle: z.number(),
-  openPractice: z.boolean(),
-  preQualPracticeLengthMinutes: z.number(),
-  preQualNumToMain: z.number(),
-  qualStyle: z.number(),
-  qualLengthMinutes: z.number(),
-  qualLaps: z.number(),
-  qualNumToMain: z.number(),
-  qualScoring: z.number(),
-  qualCautionType: z.number(),
-  qualOpenDelaySeconds: z.number(),
-  qualScoresChampPoints: z.boolean(),
-  heatLengthMinutes: z.number(),
-  heatLaps: z.number(),
-  heatMaxFieldSize: z.number(),
-  heatNumPositionToInvert: z.number(),
-  heatCautionType: z.number(),
-  heatNumFromEachToMain: z.number(),
-  heatScoresChampPoints: z.boolean(),
-  consolationNumToConsolation: z.number(),
-  consolationNumToMain: z.number(),
-  consolationFirstMaxFieldSize: z.number(),
-  consolationFirstSessionLengthMinutes: z.number(),
-  consolationFirstSessionLaps: z.number(),
-  consolationDeltaMaxFieldSize: z.number(),
-  consolationDeltaSessionLengthMinutes: z.number(),
-  consolationDeltaSessionLaps: z.number(),
-  consolationNumPositionToInvert: z.number(),
-  consolationScoresChampPoints: z.boolean(),
-  consolationRunAlways: z.boolean(),
-  preMainPracticeLengthMinutes: z.number(),
-  mainLengthMinutes: z.number(),
-  mainLaps: z.number(),
-  mainMaxFieldSize: z.number(),
-  mainNumPositionToInvert: z.number(),
-  heatSessionMinutesEstimate: z.number(),
-});
-export type HeatSesInfo = z.infer<typeof HeatSesInfoSchema>;
-
-export const CarTypeSchema = z.object({
-  carType: z.string(),
-});
-export type CarType = z.infer<typeof CarTypeSchema>;
+export const SeriesHeatSesInfoSchema = z.intersection(
+  HeatSesInfoSchema,
+  z.object({ description: z.string() }),
+);
+export type SeriesHeatSesInfo = z.infer<typeof SeriesHeatSesInfoSchema>;
 
 export const AllowedSeasonMemberSchema = z.object({
   seasonId: z.number(),
@@ -333,7 +257,7 @@ export const SeriesSeasonSchema = z.object({
   unsportConductRuleMode: z.number(),
   rookieSeason: z.union([z.null(), z.string()]).optional(),
   regOpenMinutes: z.union([z.number(), z.null()]).optional(),
-  heatSesInfo: z.union([HeatSesInfoSchema, z.null()]).optional(),
+  heatSesInfo: z.union([SeriesHeatSesInfoSchema, z.null()]).optional(),
   racePoints: z.union([z.number(), z.null()]).optional(),
 });
 export type SeriesSeason = z.infer<typeof SeriesSeasonSchema>;

@@ -1,5 +1,7 @@
 import * as z from "zod";
 
+import { HelmetSchema } from "./common";
+
 export const SuitSchema = z.object({
   pattern: z.number(),
   color1: z.string(),
@@ -36,16 +38,6 @@ export const LicensesSchema = z.object({
   dirtRoad: DirtOvalSchema,
 });
 export type Licenses = z.infer<typeof LicensesSchema>;
-
-export const HelmetSchema = z.object({
-  pattern: z.number(),
-  color1: z.string(),
-  color2: z.string(),
-  color3: z.string(),
-  faceType: z.number(),
-  helmetType: z.number(),
-});
-export type Helmet = z.infer<typeof HelmetSchema>;
 
 export const PackageSchema = z.object({
   packageId: z.number(),

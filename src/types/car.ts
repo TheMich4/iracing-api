@@ -1,5 +1,7 @@
 import * as z from "zod";
 
+import { CarTypeSchema } from "./common";
+
 export const CarCategorySchema = z.enum(["oval", "road"]);
 export type CarCategory = z.infer<typeof CarCategorySchema>;
 
@@ -36,11 +38,6 @@ export const PaintRulesSchema = z.intersection(
   z.record(z.string(), PaintRuleSchema),
 );
 export type PaintRules = z.infer<typeof PaintRulesSchema>;
-
-export const CarTypeSchema = z.object({
-  carType: z.string(),
-});
-export type CarType = z.infer<typeof CarTypeSchema>;
 
 export const CarSchema = z.object({
   aiEnabled: z.boolean(),

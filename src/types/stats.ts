@@ -6,15 +6,15 @@ export const CarsDrivenSchema = z.object({
 });
 export type CarsDriven = z.infer<typeof CarsDrivenSchema>;
 
-export const TrackSchema = z.object({
+export const StatsTrackSchema = z.object({
   trackId: z.number(),
   trackName: z.string(),
   configName: z.string(),
 });
-export type Track = z.infer<typeof TrackSchema>;
+export type StatsTrack = z.infer<typeof StatsTrackSchema>;
 
 export const BestSchema = z.object({
-  track: TrackSchema,
+  track: StatsTrackSchema,
   eventType: z.string(),
   bestLapTime: z.number(),
   subsessionId: z.number(),

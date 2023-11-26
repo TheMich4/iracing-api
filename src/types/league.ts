@@ -1,59 +1,25 @@
 import * as z from "zod";
 
-export const WeatherSchema = z.object({
-  version: z.number(),
-  type: z.number(),
-  tempUnits: z.number(),
-  tempValue: z.number(),
-  relHumidity: z.number(),
-  fog: z.number(),
-  windDir: z.number(),
-  windUnits: z.number(),
-  windValue: z.number(),
-  skies: z.number(),
-  weatherVarInitial: z.number(),
-  weatherVarOngoing: z.number(),
-  timeOfDay: z.number(),
-  simulatedStartTime: z.coerce.date(),
-  simulatedTimeMultiplier: z.number(),
-  simulatedTimeOffsets: z.union([z.array(z.number()), z.null()]).optional(),
-});
-export type Weather = z.infer<typeof WeatherSchema>;
+import {
+  CarTypeSchema,
+  EligSchema,
+  EventTypeSchema,
+  FarmSchema,
+  HelmetSchema,
+  HostSchema,
+  LicenseGroupTypeSchema,
+  SessionTypeSchema,
+  TrackStateSchema,
+  TrackTypeSchema,
+  WeatherSchema,
+} from "./common";
 
-export const TrackTypeSchema = z.object({
-  trackType: z.string(),
-});
-export type TrackType = z.infer<typeof TrackTypeSchema>;
-
-export const TrackStateSchema = z.object({
-  leaveMarbles: z.boolean(),
-  practiceRubber: z.number(),
-  qualifyRubber: z.number(),
-  warmupRubber: z.number(),
-  raceRubber: z.number(),
-  practiceGripCompound: z.number(),
-  qualifyGripCompound: z.number(),
-  warmupGripCompound: z.number(),
-  raceGripCompound: z.number(),
-});
-export type TrackState = z.infer<typeof TrackStateSchema>;
-
-export const TrackSchema = z.object({
+export const LeagueTrackSchema = z.object({
   trackId: z.number(),
   trackName: z.string(),
   configName: z.union([z.null(), z.string()]).optional(),
 });
-export type Track = z.infer<typeof TrackSchema>;
-
-export const SessionTypeSchema = z.object({
-  sessionType: z.number(),
-});
-export type SessionType = z.infer<typeof SessionTypeSchema>;
-
-export const LicenseGroupTypeSchema = z.object({
-  licenseGroupType: z.number(),
-});
-export type LicenseGroupType = z.infer<typeof LicenseGroupTypeSchema>;
+export type LeagueTrack = z.infer<typeof LeagueTrackSchema>;
 
 export const ImageSchema = z.object({
   smallLogo: z.string(),
@@ -61,34 +27,7 @@ export const ImageSchema = z.object({
 });
 export type Image = z.infer<typeof ImageSchema>;
 
-export const FarmSchema = z.object({
-  farmId: z.number(),
-  displayName: z.string(),
-  imagePath: z.string(),
-  displayed: z.boolean(),
-});
-export type Farm = z.infer<typeof FarmSchema>;
-
-export const EventTypeSchema = z.object({
-  eventType: z.number(),
-});
-export type EventType = z.infer<typeof EventTypeSchema>;
-
-export const EligSchema = z.object({
-  sessionFull: z.boolean(),
-  canSpot: z.boolean(),
-  canWatch: z.boolean(),
-  canDrive: z.boolean(),
-  hasSessPassword: z.boolean(),
-  needsPurchase: z.boolean(),
-  ownCar: z.boolean(),
-  ownTrack: z.boolean(),
-  purchaseSkus: z.array(z.number()),
-  registered: z.boolean(),
-});
-export type Elig = z.infer<typeof EligSchema>;
-
-export const CarSchema = z.object({
+export const LeagueCarSchema = z.object({
   carId: z.number(),
   carName: z.string(),
   carClassId: z.number(),
@@ -103,29 +42,7 @@ export const CarSchema = z.object({
   raceSetupId: z.union([z.number(), z.null()]).optional(),
   raceSetupFilename: z.union([z.null(), z.string()]).optional(),
 });
-export type Car = z.infer<typeof CarSchema>;
-
-export const CarTypeSchema = z.object({
-  carType: z.string(),
-});
-export type CarType = z.infer<typeof CarTypeSchema>;
-
-export const HelmetSchema = z.object({
-  pattern: z.number(),
-  color1: z.string(),
-  color2: z.string(),
-  color3: z.string(),
-  faceType: z.number(),
-  helmetType: z.number(),
-});
-export type Helmet = z.infer<typeof HelmetSchema>;
-
-export const HostSchema = z.object({
-  custId: z.number(),
-  displayName: z.string(),
-  helmet: HelmetSchema,
-});
-export type Host = z.infer<typeof HostSchema>;
+export type LeagueCar = z.infer<typeof LeagueCarSchema>;
 
 export const SessionSchema = z.object({
   numDrivers: z.number(),
@@ -209,7 +126,7 @@ export const SessionSchema = z.object({
   disallowVirtualMirror: z.boolean(),
   sessionFull: z.boolean(),
   host: HostSchema,
-  track: TrackSchema,
+  track: LeagueTrackSchema,
   weather: WeatherSchema,
   trackState: TrackStateSchema,
   farm: FarmSchema,
@@ -217,7 +134,7 @@ export const SessionSchema = z.object({
   allowedClubs: z.array(z.any()),
   allowedTeams: z.array(z.any()),
   allowedLeagues: z.array(z.number()),
-  cars: z.array(CarSchema),
+  cars: z.array(LeagueCarSchema),
   countByCarId: z.record(z.string(), z.number()),
   countByCarClassId: z.record(z.string(), z.number()),
   carTypes: z.array(CarTypeSchema),

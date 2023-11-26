@@ -6,6 +6,7 @@ import makeFetchCookie from "fetch-cookie";
 export * from "./api/index.js";
 export * from "./consts.js";
 export * from "./helpers.js";
+export * from "./types/index.js";
 
 export default class IracingAPI {
   fetchCookie: FetchCookie;

@@ -1,5 +1,7 @@
 import * as z from "zod";
 
+import { TrackTypeEnumSchema, TrackTypeSchema } from "./common";
+
 export const TrackMapLayersSchema = z.object({
   background: z.string(),
   inactive: z.string(),
@@ -32,26 +34,13 @@ export type TrackAssetValue = z.infer<typeof TrackAssetSchema>;
 export const TrackAssetsSchema = z.record(TrackAssetSchema);
 export type TrackAssets = z.infer<typeof TrackAssetsSchema>;
 
-export const TrackCategorySchema = z.enum([
-  "dirt_oval",
-  "dirt_road",
-  "oval",
-  "road",
-]);
-export type TrackCategory = z.infer<typeof TrackCategorySchema>;
-
-export const TrackTypeSchema = z.object({
-  trackType: TrackCategorySchema,
-});
-export type TrackType = z.infer<typeof TrackTypeSchema>;
-
 export const TrackSchema = z.object({
   aiEnabled: z.boolean(),
   allowPitlaneCollisions: z.boolean(),
   allowRollingStart: z.boolean(),
   allowStandingStart: z.boolean(),
   awardExempt: z.boolean(),
-  category: TrackCategorySchema,
+  category: TrackTypeEnumSchema,
   categoryId: z.number(),
   closes: z.string(),
   configName: z.union([z.null(), z.string()]).optional(),
