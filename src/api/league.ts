@@ -15,7 +15,7 @@ export type GetCustLeagueSessionsParams = z.infer<
 
 export const getCustLeagueSessions = async (
   fetchCookie: FetchCookie,
-  params?: GetCustLeagueSessionsParams
+  params?: GetCustLeagueSessionsParams,
 ) =>
   await getData<CustLeagueSessions>(
     fetchCookie,
@@ -23,7 +23,7 @@ export const getCustLeagueSessions = async (
     {
       mine: params?.mine,
       package_id: params?.packageId,
-    }
+    },
   );
 
 export const GetLeagueDirectoryParamsSchema = z.object({
@@ -46,7 +46,7 @@ export type GetLeagueDirectoryParams = z.infer<
 
 export const getLeagueDirectory = async (
   fetchCookie: FetchCookie,
-  params?: GetLeagueDirectoryParams
+  params?: GetLeagueDirectoryParams,
 ) =>
   await getData<LeagueDirectory>(fetchCookie, "data/league/directory", {
     search: params?.search,
@@ -71,7 +71,7 @@ export type GetLeagueDataParams = z.infer<typeof GetLeagueDataParamsSchema>;
 
 export const getLeagueData = async (
   fetchCookie: FetchCookie,
-  params: GetLeagueDataParams
+  params: GetLeagueDataParams,
 ) =>
   await getData(fetchCookie, "data/league/get", {
     league_id: params.leagueId,
@@ -88,7 +88,7 @@ export type GetLeaguePointSystemParams = z.infer<
 
 export const getLeaguePointSystem = async (
   fetchCookie: FetchCookie,
-  params: GetLeaguePointSystemParams
+  params: GetLeaguePointSystemParams,
 ) =>
   await getData(fetchCookie, "data/league/get_points_systems", {
     league_id: params.leagueId,
@@ -105,7 +105,7 @@ export type GetLeagueMembershipParams = z.infer<
 
 export const getLeagueMembership = async (
   fetchCookie: FetchCookie,
-  params?: GetLeagueMembershipParams
+  params?: GetLeagueMembershipParams,
 ) =>
   await getData(fetchCookie, "data/league/membership", {
     cust_id: params?.customerId,
@@ -122,7 +122,7 @@ export type GetLeagueSeasonsParams = z.infer<
 
 export const getLeagueSeasons = async (
   fetchCookie: FetchCookie,
-  params: GetLeagueSeasonsParams
+  params: GetLeagueSeasonsParams,
 ) =>
   await getData(fetchCookie, "data/league/seasons", {
     league_id: params.leagueId,
@@ -141,7 +141,7 @@ export type GetLeagueSeasonStandingsParams = z.infer<
 
 export const getLeagueSeasonStandings = async (
   fetchCookie: FetchCookie,
-  params: GetLeagueSeasonStandingsParams
+  params: GetLeagueSeasonStandingsParams,
 ) =>
   await getData(fetchCookie, "data/league/season_standings", {
     car_id: params.carId,
@@ -161,7 +161,7 @@ export type GetLeagueSeasonSessionsParams = z.infer<
 
 export const getLeagueSeasonSessions = async (
   fetchCookie: FetchCookie,
-  params: GetLeagueSeasonSessionsParams
+  params: GetLeagueSeasonSessionsParams,
 ) =>
   await getData(fetchCookie, "data/league/season_sessions", {
     league_id: params.leagueId,

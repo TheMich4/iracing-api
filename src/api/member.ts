@@ -12,7 +12,7 @@ export type GetMemberAwardsParams = z.infer<typeof GetMemberAwardsParamsSchema>;
 
 export const getMemberAwards = (
   fetchCookie: FetchCookie,
-  params?: GetMemberAwardsParams
+  params?: GetMemberAwardsParams,
 ) =>
   getData(fetchCookie, "data/member/awards", { cust_id: params?.customerId });
 
@@ -27,7 +27,7 @@ export type GetMemberChartDataParams = z.infer<
 
 export const getMemberChartData = (
   fetchCookie: FetchCookie,
-  params: GetMemberChartDataParams
+  params: GetMemberChartDataParams,
 ) =>
   getData(fetchCookie, "data/member/chart_data", {
     cust_id: params.customerId,
@@ -43,7 +43,7 @@ export type GetMemberDataParams = z.infer<typeof GetMemberDataParamsSchema>;
 
 export const getMemberData = async (
   fetchCookie: FetchCookie,
-  params: GetMemberDataParams
+  params: GetMemberDataParams,
 ) =>
   await getData(fetchCookie, "data/member/get", {
     cust_ids: params.customerIds,
@@ -56,7 +56,7 @@ export const getMemberInfo = async (fetchCookie: FetchCookie) =>
 export const getMemberParticipationCredits = async (fetchCookie: FetchCookie) =>
   await getData<MemberParticipationCredit[]>(
     fetchCookie,
-    "data/member/participation_credits"
+    "data/member/participation_credits",
   );
 
 export const GetMemberProfileParamsSchema = z.object({
@@ -68,7 +68,7 @@ export type GetMemberProfileParams = z.infer<
 
 export const getMemberProfile = async (
   fetchCookie: FetchCookie,
-  params?: GetMemberProfileParams
+  params?: GetMemberProfileParams,
 ) =>
   await getData(fetchCookie, "data/member/profile", {
     cust_id: params?.customerId,

@@ -89,7 +89,7 @@ export default class IracingAPI {
    * @returns
    */
   getHostedCombinedSessions = async (
-    params?: api.GetHostedCombinedSessionsParams
+    params?: api.GetHostedCombinedSessionsParams,
   ) => await api.getHostedCombinedSessions(this.fetchCookie, params);
   /**
    *
@@ -185,7 +185,7 @@ export default class IracingAPI {
    * @returns
    */
   getLeagueSeasonStandings = async (
-    params: api.GetLeagueSeasonStandingsParams
+    params: api.GetLeagueSeasonStandingsParams,
   ) => await api.getLeagueSeasonStandings(this.fetchCookie, params);
   /**
    *
@@ -383,7 +383,7 @@ export default class IracingAPI {
    * @returns
    */
   getSpectatorSubsessionIds = async (
-    params?: api.GetSpectatorSubsessionIdsParams
+    params?: api.GetSpectatorSubsessionIdsParams,
   ) => await api.getSpectatorSubsessionIds(this.fetchCookie, params);
 
   // Series API
@@ -506,7 +506,7 @@ export default class IracingAPI {
    * @returns
    */
   getDriverSeasonStandings = async (
-    params: api.GetDriverSeasonStandingsParams
+    params: api.GetDriverSeasonStandingsParams,
   ) => await api.getDriverSeasonStandings(this.fetchCookie, params);
   /**
    *
@@ -520,7 +520,7 @@ export default class IracingAPI {
    * @returns
    */
   getSupersessionSeasonStandings = async (
-    params: api.GetSupersessionSeasonStandingsParams
+    params: api.GetSupersessionSeasonStandingsParams,
   ) => await api.getSupersessionSeasonStandings(this.fetchCookie, params);
   /**
    *
@@ -545,7 +545,7 @@ export default class IracingAPI {
    * @returns
    */
   getTimeTrialSeasonStandings = async (
-    params: api.GetTimeTrialSeasonStandingsParams
+    params: api.GetTimeTrialSeasonStandingsParams,
   ) => await api.getTimeTrialSeasonStandings(this.fetchCookie, params);
   /**
    *
@@ -553,7 +553,7 @@ export default class IracingAPI {
    * @returns
    */
   getQualifySeasonStandings = async (
-    params: api.GetQualifySeasonResultsParams
+    params: api.GetQualifySeasonResultsParams,
   ) => await api.getQualifySeasonResults(this.fetchCookie, params);
   /**
    *
