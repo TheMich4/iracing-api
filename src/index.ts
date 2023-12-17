@@ -16,10 +16,10 @@ export default class IracingAPI {
   }
 
   // Auth API
-  /*
+  /**
    *
-   * @param email
-   * @param password
+   * @param email - iRacing account email
+   * @param password - iRacing account password
    *
    * @returns
    */
@@ -29,10 +29,16 @@ export default class IracingAPI {
   // Car API
   /**
    *
+   * **Get car assets.**
+   *
+   * *Image paths are relative to https://images-static.iracing.com/*
+   *
    * @returns
    */
   getCarAssets = async () => await api.getCarAssets(this.fetchCookie);
   /**
+   *
+   * **Get list of cars.**
    *
    * @returns
    */
@@ -41,6 +47,8 @@ export default class IracingAPI {
   // Car Class API
   /**
    *
+   * **Get list of car classes.**
+   *
    * @returns
    */
   getCarClasses = async () => await api.getCarClasses(this.fetchCookie);
@@ -48,15 +56,21 @@ export default class IracingAPI {
   // Constants API
   /**
    *
+   * **Get list of categories.**
+   *
    * @returns
    */
   getCategories = async () => await api.getCategories(this.fetchCookie);
   /**
    *
+   * **Get list of divisions.**
+   *
    * @returns
    */
   getDivisions = async () => await api.getDivisions(this.fetchCookie);
   /**
+   *
+   * **Get list of event types.**
    *
    * @returns
    */
@@ -65,13 +79,23 @@ export default class IracingAPI {
   // Hosted API
   /**
    *
-   * @param params
+   * **Get list of hosted combined sessions.**
+   *
+   * *Sessions that can be joined as a driver or spectator, and also includes non-league pending sessions for the user.*
+   *
+   * @param {api.GetHostedCombinedSessionsParams} [params]
+   * @param {number} [params.packageId] - If set, return only sessions using this car or track package ID.
+   *
    * @returns
    */
   getHostedCombinedSessions = async (
     params?: api.GetHostedCombinedSessionsParams
   ) => await api.getHostedCombinedSessions(this.fetchCookie, params);
   /**
+   *
+   * **Get list of hosted sessions.**
+   *
+   * *Sessions that can be joined as a driver. Without spectator and non-league pending sessions for the user.*
    *
    * @returns
    */
@@ -80,49 +104,84 @@ export default class IracingAPI {
   // League API
   /**
    *
-   * @param params
+   * **Get list of league sessions.**
+   *
+   * @param {api.GetCustLeagueSessionsParams} [params]
+   * @param {boolean} [params.mine] - If true, return only sessions created by this user.
+   * @param {number} [params.packageId] - If set, return only sessions using this car or track package ID.
+   *
    * @returns
    */
   getCustLeagueSessions = async (params?: api.GetCustLeagueSessionsParams) =>
     await api.getCustLeagueSessions(this.fetchCookie, params);
   /**
    *
-   * @param params
+   * @param {api.GetLeagueDirectoryParams} [params]
+   * @param {string} [params.search] - Will search against league name, description, owner, and league ID.
+   * @param {string} [params.tag] - One or more tags, comma-separated.
+   * @param {boolean} [params.restrictToMember] - If true include only leagues for which customer is a member.
+   * @param {boolean} [params.restrictToRecruiting] - If true include only leagues which are recruiting.
+   * @param {boolean} [params.restrictToFriends] - If true include only leagues owned by a friend.
+   * @param {boolean} [params.restrictToWatched] - If true include only leagues owned by a watched member.
+   * @param {number} [params.minimumRosterCount] - If set include leagues with at least this number of members.
+   * @param {number} [params.maximumRosterCount] - If set include leagues with no more than this number of members.
+   * @param {number} [params.lowerbound] - First row of results to return. Defaults to 1.
+   * @param {number} [params.upperbound] - Last row of results to return. Defaults to lowerbound + 39.
+   * @param {string} [params.sort] - One of relevance, leaguename, displayname, rostercount. displayname is owners's name. Defaults to relevance.
+   * @param {string} [params.order] - One of asc or desc. Defaults to asc.
+   *
    * @returns
    */
   getLeagueDirectory = async (params?: api.GetLeagueDirectoryParams) =>
     await api.getLeagueDirectory(this.fetchCookie, params);
   /**
    *
-   * @param params
+   * @param {api.GetLeagueDataParams} params
+   * @param {number} params.leagueId - League ID.
+   * @param {boolean} [params.includeLicenses] - For faster responses, only request when necessary.
+   *
    * @returns
    */
   getLeagueData = async (params: api.GetLeagueDataParams) =>
     await api.getLeagueData(this.fetchCookie, params);
   /**
    *
-   * @param params
+   * @param {api.GetLeagueMembershipParams} [params
+   * @param {number} params.leagueId - League ID.
+   * @param {number} [params.seasonId] - If included and the season is using custom points (points_system_id:2) then the custom points option is included in the returned list. Otherwise the custom points option is not returned.
+   *
    * @returns
    */
   getLeaguePointSystem = async (params: api.GetLeaguePointSystemParams) =>
     await api.getLeaguePointSystem(this.fetchCookie, params);
   /**
    *
-   * @param params
+   * @param {api.GetLeagueMembershipParams} [params]
+   * @param {number} [params.customerId] - If different from the authenticated member, the following resrictions apply: - Caller cannot be on requested customer's block list or an empty list will result; - Requested customer cannot have their online activity prefrence set to hidden or an empty list will result; - Only leagues for which the requested customer is an admin and the league roster is not private are returned.
+   * @param {boolean} [params.includeLeague]
+   *
    * @returns
    */
   getLeagueMembership = async (params?: api.GetLeagueMembershipParams) =>
     await api.getLeagueMembership(this.fetchCookie, params);
   /**
    *
-   * @param params
+   * @param {api.GetLeagueSeasonsParams} params
+   * @param {number} params.leagueId - League ID.
+   * @param {number} [params.retired] - If true include seasons which are no longer active.
+   *
    * @returns
    */
   getLeagueSeasons = async (params: api.GetLeagueSeasonsParams) =>
     await api.getLeagueSeasons(this.fetchCookie, params);
   /**
    *
-   * @param params
+   * @param {api.GetLeagueSeasonStandingsParams} params
+   * @param {number} params.leagueId - League ID.
+   * @param {number} params.seasonId - Season ID.
+   * @param {number} [params.carClassId]
+   * @param {number} [params.carId] - If `carClassId` is included then the standings are for the car in that car class, otherwise they are for the car across car classes.
+   *
    * @returns
    */
   getLeagueSeasonStandings = async (
