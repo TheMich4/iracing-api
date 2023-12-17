@@ -19,7 +19,7 @@ export type GetMemberBestsParams = z.infer<typeof GetMemberBestsParamsSchema>;
 
 export const getMemberBests = async (
   fetchCookie: FetchCookie,
-  params?: GetMemberBestsParams,
+  params?: GetMemberBestsParams
 ) =>
   await getData<MemberBests>(fetchCookie, "data/stats/member_bests", {
     cust_id: params?.customerId,
@@ -33,7 +33,7 @@ export type GetMemberCareerParams = z.infer<typeof GetMemberCareerParamsSchema>;
 
 export const getMemberCareer = async (
   fetchCookie: FetchCookie,
-  params?: GetMemberCareerParams,
+  params?: GetMemberCareerParams
 ) =>
   await getData<MemberCareer>(fetchCookie, "data/stats/member_career", {
     cust_id: params?.customerId,
@@ -49,7 +49,7 @@ export type GetMemberDivisionParams = z.infer<
 
 export const getMemberDivision = async (
   fetchCookie: FetchCookie,
-  params: GetMemberDivisionParams,
+  params: GetMemberDivisionParams
 ) =>
   await getData(fetchCookie, "data/stats/member_division", {
     season_id: params.seasonId,
@@ -65,7 +65,7 @@ export type GetMemberRecentRacesParams = z.infer<
 
 export const getMemberRecentRaces = async (
   fetchCookie: FetchCookie,
-  params?: GetMemberRecentRacesParams,
+  params?: GetMemberRecentRacesParams
 ) =>
   await getData(fetchCookie, "stats/member_recent_races", {
     cust_id: params?.customerId,
@@ -80,7 +80,7 @@ export type GetMemberRecapParams = z.infer<typeof GetMemberRecapParamsSchema>;
 
 export const getMemberRecap = async (
   fetchCookie: FetchCookie,
-  params?: GetMemberRecapParams,
+  params?: GetMemberRecapParams
 ) =>
   await getData<MemberRecap>(fetchCookie, "data/stats/member_recap", {
     cust_id: params?.customerId,
@@ -97,7 +97,7 @@ export type GetMemberSummaryParams = z.infer<
 
 export const getMemberSummary = async (
   fetchCookie: FetchCookie,
-  params?: GetMemberSummaryParams,
+  params?: GetMemberSummaryParams
 ) =>
   await getData<MemberSummary>(fetchCookie, "data/stats/member_summary", {
     cust_id: params?.customerId,
@@ -112,7 +112,7 @@ export type GetMemberYearlyStatsParams = z.infer<
 
 export const getMemberYearlyStats = async (
   fetchCookie: FetchCookie,
-  params?: GetMemberYearlyStatsParams,
+  params?: GetMemberYearlyStatsParams
 ) =>
   await getData<MemberYearlyStats>(fetchCookie, "data/stats/member_yearly", {
     cust_id: params?.customerId,
@@ -131,7 +131,7 @@ export type GetDriverSeasonStandingsParams = z.infer<
 
 export const getDriverSeasonStandings = async (
   fetchCookie: FetchCookie,
-  params: GetDriverSeasonStandingsParams,
+  params: GetDriverSeasonStandingsParams
 ) =>
   await getData(fetchCookie, "data/stats/season_driver_standings", {
     season_id: params.seasonId,
@@ -154,7 +154,7 @@ export type GetSupersessionSeasonStandingsParams = z.infer<
 
 export const getSupersessionSeasonStandings = async (
   fetchCookie: FetchCookie,
-  params: GetSupersessionSeasonStandingsParams,
+  params: GetSupersessionSeasonStandingsParams
 ) =>
   await getData(fetchCookie, "data/stats/season_supersession_standings", {
     season_id: params.seasonId,
@@ -175,7 +175,7 @@ export type GetTeamSeasonStandingsParams = z.infer<
 
 export const getTeamSeasonStandings = async (
   fetchCookie: FetchCookie,
-  params: GetTeamSeasonStandingsParams,
+  params: GetTeamSeasonStandingsParams
 ) =>
   await getData(fetchCookie, "data/stats/season_team_standings", {
     season_id: params.seasonId,
@@ -196,7 +196,7 @@ export type GetTimeTrialSeasonStandingsParams = z.infer<
 
 export const getTimeTrialSeasonStandings = async (
   fetchCookie: FetchCookie,
-  params: GetTimeTrialSeasonStandingsParams,
+  params: GetTimeTrialSeasonStandingsParams
 ) =>
   await getData(fetchCookie, "data/stats/season_tt_standings", {
     season_id: params.seasonId,
@@ -211,7 +211,7 @@ export const GetTimeTrialSeasonResultsParamsSchema = z.object({
   carClassId: z.number(),
   clubId: z.number().optional(),
   division: z.number().optional(),
-  raceWeekNumber: z.number().optional(),
+  raceWeekNumber: z.number(),
 });
 export type GetTimeTrialSeasonResultsParams = z.infer<
   typeof GetTimeTrialSeasonResultsParamsSchema
@@ -219,7 +219,7 @@ export type GetTimeTrialSeasonResultsParams = z.infer<
 
 export const getTimeTrialSeasonResults = async (
   fetchCookie: FetchCookie,
-  params: GetTimeTrialSeasonResultsParams,
+  params: GetTimeTrialSeasonResultsParams
 ) =>
   await getData(fetchCookie, "data/stats/season_tt_results", {
     season_id: params.seasonId,
@@ -242,7 +242,7 @@ export type GetQualifySeasonResultsParams = z.infer<
 
 export const getQualifySeasonResults = async (
   fetchCookie: FetchCookie,
-  params: GetQualifySeasonResultsParams,
+  params: GetQualifySeasonResultsParams
 ) =>
   await getData(fetchCookie, "data/stats/season_qualify_results", {
     season_id: params.seasonId,
@@ -262,7 +262,7 @@ export type GetWorldRecordsParams = z.infer<typeof GetWorldRecordsParamsSchema>;
 
 export const getWorldRecords = async (
   fetchCookie: FetchCookie,
-  params: GetWorldRecordsParams,
+  params: GetWorldRecordsParams
 ) =>
   await getData(fetchCookie, "data/stats/world_records", {
     car_id: params.carId,

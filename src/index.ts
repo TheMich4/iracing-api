@@ -189,7 +189,11 @@ export default class IracingAPI {
   ) => await api.getLeagueSeasonStandings(this.fetchCookie, params);
   /**
    *
-   * @param params
+   * @param {api.GetLeagueSeasonSessionsParams} params
+   * @param {number} params.leagueId - League ID.
+   * @param {number} params.seasonId - Season ID.
+   * @param {number} [params.resultsOnly] - If true include only sessions for which results are available.
+   *
    * @returns
    */
   getLeagueSeasonSessions = async (params: api.GetLeagueSeasonSessionsParams) =>
@@ -198,22 +202,31 @@ export default class IracingAPI {
   // Lookup API
   /**
    *
-   * @param params
+   * @param {api.GetClubHistoryParams} params
+   * @param {number} params.seasonYear - Season year.
+   * @param {number} params.seasonQuarter - Season quarter.
+   *
    * @returns
    */
   getClubHistory = async (params: api.GetClubHistoryParams) =>
     await api.getClubHistory(this.fetchCookie, params);
+  /**
+   *
+   * @returns
+   */
   getCountries = async () => await api.getCountries(this.fetchCookie);
   /**
    *
-   * @param params
+   * @param {api.GetDriversParams} params
+   * @param {string} params.searchTerm - A customerId or partial name for which to search.
+   * @param {number} [params.leagueId] - Narrow the search to the roster of the given league
+   *
    * @returns
    */
   getDrivers = async (params: api.GetDriversParams) =>
     await api.getDrivers(this.fetchCookie, params);
   /**
    *
-   * @param params
    * @returns
    */
   getLicenses = async () => await api.getLicenses(this.fetchCookie);
@@ -221,71 +234,94 @@ export default class IracingAPI {
   // Member API
   /**
    *
-   * @param params
+   * @param {api.GetMemberAwardsParams} [params]
+   * @param {number} params.customerId - Defaults to the authenticated member.
+   *
    * @returns
    */
-  getMemberAwards = async (params: api.GetMemberAwardsParams) =>
+  getMemberAwards = async (params?: api.GetMemberAwardsParams) =>
     await api.getMemberAwards(this.fetchCookie, params);
   /**
    *
-   * @param params
+   * @param {api.GetMemberChartDataParams} params
+   * @param {number} [params.customerId] - Defaults to the authenticated member.
+   * @param {number} params.categoryId - 1 - Oval; 2 - Road; 3 - Dirt oval; 4 - Dirt road.
+   * @param {string} params.chartType - 1 - iRating; 2 - TT Rating; 3 - License/SR.
+   *
    * @returns
    */
   getMemberChartData = async (params: api.GetMemberChartDataParams) =>
     await api.getMemberChartData(this.fetchCookie, params);
   /**
    *
-   * @param params
+   * @param {api.GetMemberDataParams} params
+   * @param {number[]} params.customerIds - Array of customer IDs.
+   * @param {boolean} [params.includeLicenses]
+   *
    * @returns
    */
   getMemberData = async (params: api.GetMemberDataParams) =>
     await api.getMemberData(this.fetchCookie, params);
   /**
    *
-   * @param params
    * @returns
    */
   getMemberInfo = async () => await api.getMemberInfo(this.fetchCookie);
   /**
    *
-   * @param params
    * @returns
    */
   getMemberParticipationCredits = async () =>
     await api.getMemberParticipationCredits(this.fetchCookie);
   /**
    *
-   * @param params
+   * @param {api.GetMemberProfileParams} params
+   * @param {number} [params.customerId] - Defaults to the authenticated member.
+   *
    * @returns
    */
-  getMemberProfile = async (params: api.GetMemberProfileParams) =>
+  getMemberProfile = async (params?: api.GetMemberProfileParams) =>
     await api.getMemberProfile(this.fetchCookie, params);
 
   // Results API
   /**
    *
-   * @param params
+   * @param {api.GetResultParams} params
+   * @param {number} params.subsessionId
+   * @param {number} [params.includeLicenses]
+   *
    * @returns
    */
   getResult = async (params: api.GetResultParams) =>
     await api.getResult(this.fetchCookie, params);
   /**
    *
-   * @param params
+   * @param {api.GetResultsEventLogParams} params
+   * @param {number} params.subsessionId
+   * @param {number} [params.simsessionNumber] - The main event is `0`; the preceding event is `-1`, and so on.
+   *
    * @returns
    */
   getResultsEventLog = async (params: api.GetResultsEventLogParams) =>
     await api.getResultsEventLog(this.fetchCookie, params);
   /**
    *
-   * @param params
+   * @param {api.GetResultsLapChartDataParams} params
+   * @param {number} params.subsessionId
+   * @param {number} [params.simsessionNumber] - The main event is `0`; the preceding event is `-1`, and so on.
+   *
    * @returns
    */
   getResultsLapChartData = async (params: api.GetResultsLapChartDataParams) =>
     await api.getResultsLapChartData(this.fetchCookie, params);
   /**
    *
-   * @param params
+   * @param {api.GetResultsLapDataParams} params
+   * @param {number} params.subsessionId
+   * @param {number} [params.simsessionNumber] - The main event is `0`; the preceding event is `-1`, and so on.
+   * @param {number} [params.customerId] - Required if the subsession was a single-driver event. Optional for team events. If omitted for a team event then the laps driven by all the team's drivers will be included.
+   * @param {number} [params.teamId] - Required if the subsession was a team event.
+   *
    * @returns
    */
   getResultsLapData = async (params: api.GetResultsLapDataParams) =>
@@ -293,70 +329,99 @@ export default class IracingAPI {
   /**
    *
    * @param params
+   *
    * @returns
    */
-  searchHosted = async () => await api.searchHosted(this.fetchCookie);
+  // TODO: Fix this
+  searchHosted = async (params: Record<string, any>) =>
+    await api.searchHosted(this.fetchCookie, params);
   /**
    *
    * @param params
+   *
    * @returns
    */
+  // TODO: Fix this
   searchSeries = async (params: any) =>
     await api.searchSeries(this.fetchCookie, params);
   /**
    *
    * @param params
+   *
    * @returns
    */
+  // TODO: Fix this
   getSeasonResults = async (params: any) =>
     await api.getSeasonResults(this.fetchCookie, params);
 
   // Season API
   /**
    *
-   * @param params
+   * @param {api.GetSeasonListParams} params
+   * @param {number} params.seasonYear
+   * @param {number} params.seasonQuarter
+   *
    * @returns
    */
   getSeasonList = async (params: api.GetSeasonListParams) =>
     await api.getSeasonList(this.fetchCookie, params);
   /**
    *
-   * @param params
+   * @param {api.GetSeasonRaceGuideParams} params
+   * @param {string} from - `ISO-8601` offset format. Defaults to the current time. Include sessions with start times up to 3 hours after this time. Times in the past will be rewritten to the current time.
+   * @param {boolean} [includeEndAfterFrom] - Include sessions which start before 'from' but end after.
+   *
    * @returns
    */
   getSeasonRaceGuide = async (params: api.GetSeasonRaceGuideParams) =>
     await api.getSeasonRaceGuide(this.fetchCookie, params);
+  /**
+   *
+   * @param {api.GetSpectatorSubsessionIdsParams} [params]
+   * @param {number[]} [params.eventTypes] - Types of events to include in the search. Defaults to all.
+   *
+   * @returns
+   */
+  getSpectatorSubsessionIds = async (
+    params?: api.GetSpectatorSubsessionIdsParams
+  ) => await api.getSpectatorSubsessionIds(this.fetchCookie, params);
 
   // Series API
   /**
+   * *image paths are relative to https://images-static.iracing.com/*
    *
-   * @param params
    * @returns
    */
   getSeriesAssets = async () => await api.getSeriesAssets(this.fetchCookie);
   /**
    *
-   * @param params
    * @returns
    */
   getSeriesData = async () => await api.getSeriesData(this.fetchCookie);
   /**
    *
-   * @param params
+   * *Get all seasons for a series. Filter list by official:true for seasons with standings.*
+   *
+   * @param {api.GetSeriesPastSeasonsParams} params
+   * @param {number} params.seriesId
+   *
    * @returns
    */
   getSeriesPastSeasons = async (params: api.GetSeriesPastSeasonsParams) =>
     await api.getSeriesPastSeasons(this.fetchCookie, params);
   /**
    *
-   * @param params
+   * @param {api.GetSeriesSeasonsParams} [params]
+   * @param {boolean} [params.includeSeries]
+   *
    * @returns
    */
   getSeriesSeasons = async (params?: api.GetSeriesSeasonsParams) =>
     await api.getSeriesSeasons(this.fetchCookie, params);
   /**
    *
-   * @param params
+   * *To get series and seasons for which standings should be available, filter the list by official: true.*
+   *
    * @returns
    */
   getSeriesStats = async () => await api.getSeriesStats(this.fetchCookie);
@@ -364,56 +429,80 @@ export default class IracingAPI {
   // Stats API
   /**
    *
-   * @param params
+   * @param {api.GetMemberBestsParams} [params]
+   * @param {number} [params.customerId] - Defaults to the authenticated member.
+   * @param {number} [params.carId] - First call should exclude `carId`; use `carsDriven` list in return for subsequent calls.
+   *
    * @returns
    */
   getMemberBests = async (params?: api.GetMemberBestsParams) =>
     await api.getMemberBests(this.fetchCookie, params);
   /**
    *
-   * @param params
+   * @param {api.GetMemberCareerParams} [params]
+   * @param {number} [params.customerId] - Defaults to the authenticated member.
+   *
    * @returns
    */
   getMemberCareer = async (params?: api.GetMemberCareerParams) =>
     await api.getMemberCareer(this.fetchCookie, params);
   /**
    *
-   * @param params
+   * @param {api.GetMemberDivisionParam} params
+   * @param {number} seasonId
+   * @param {number} eventType - The event type code for the division type: `4` - Time Trial; `5` - Race
+   *
    * @returns
    */
   getMemberDivision = async (params: api.GetMemberDivisionParams) =>
     await api.getMemberDivision(this.fetchCookie, params);
   /**
    *
-   * @param params
+   * @param {api.GetMemberRecentRacesParams} [params]
+   * @param {number} [params.customerId] - Defaults to the authenticated member.
+   *
    * @returns
    */
   getMemberRecentRaces = async (params?: api.GetMemberRecentRacesParams) =>
     await api.getMemberRecentRaces(this.fetchCookie, params);
   /**
    *
-   * @param params
+   * @param {api.GetMemberRecapParams} [params]
+   * @param {number} [params.customerId] - Defaults to the authenticated member.
+   * @param {number} [params.year] - Season year; if not supplied the current calendar year (UTC) is used.
+   * @param {number} [params.season] - Season (quarter) within the year; if not supplied the recap will be for the entire year.
+   *
    * @returns
    */
   getMemberRecap = async (params?: api.GetMemberRecapParams) =>
     await api.getMemberRecap(this.fetchCookie, params);
   /**
    *
-   * @param params
+   * @param {api.GetMemberSummaryParams} [params]
+   * @param {number} [params.customerId] - Defaults to the authenticated member.
+   *
    * @returns
    */
   getMemberSummary = async (params?: api.GetMemberSummaryParams) =>
     await api.getMemberSummary(this.fetchCookie, params);
   /**
    *
-   * @param params
+   * @param {api.GetMemberYearlyStatsParams} [params]
+   * @param {number} [params.customerId] - Defaults to the authenticated member.
+   *
    * @returns
    */
   getMemberYearlyStats = async (params?: api.GetMemberYearlyStatsParams) =>
     await api.getMemberYearlyStats(this.fetchCookie, params);
   /**
    *
-   * @param params
+   * @param {api.GetDriverSeasonStandingsParams} params
+   * @param {number} params.seasonId
+   * @param {number} params.carClassId
+   * @param {number} [params.clubId] - Defaults to all (`-1`).
+   * @param {number} [params.division] - Divisions are 0-based: `0` is Division 1, `10` is Rookie. Defaults to all.
+   * @param {number} [params.raceWeekNumber] - The first race week of a season is `0`.
+   *
    * @returns
    */
   getDriverSeasonStandings = async (
@@ -421,7 +510,13 @@ export default class IracingAPI {
   ) => await api.getDriverSeasonStandings(this.fetchCookie, params);
   /**
    *
-   * @param params
+   * @param {api.GetSupersessionSeasonStandingsParams} params
+   * @param {number} params.seasonId
+   * @param {number} params.carClassId
+   * @param {number} [params.clubId] - Defaults to all (`-1`).
+   * @param {number} [params.division] - Divisions are 0-based: `0` is Division 1, `10` is Rookie. Defaults to all.
+   * @param {number} [params.raceWeekNumber] - The first race week of a season is `0`.
+   *
    * @returns
    */
   getSupersessionSeasonStandings = async (
@@ -429,14 +524,24 @@ export default class IracingAPI {
   ) => await api.getSupersessionSeasonStandings(this.fetchCookie, params);
   /**
    *
-   * @param params
+   * @param {api.GetTeamSeasonStandingsParams} params
+   * @param {number} params.seasonId
+   * @param {number} params.carClassId
+   * @param {number} [params.raceWeekNumber] - The first race week of a season is `0`.
+   *
    * @returns
    */
   getTeamSeasonStandings = async (params: api.GetTeamSeasonStandingsParams) =>
     await api.getTeamSeasonStandings(this.fetchCookie, params);
   /**
    *
-   * @param params
+   * @param {api.GetTimeTrialSeasonStandingsParams} params
+   * @param {number} params.seasonId
+   * @param {number} params.carClassId
+   * @param {number} [params.clubId] - Defaults to all (`-1`).
+   * @param {number} [params.division] - Divisions are 0-based: `0` is Division 1, `10` is Rookie. Defaults to all.
+   * @param {number} [params.raceWeekNumber] - The first race week of a season is `0`.
+   *
    * @returns
    */
   getTimeTrialSeasonStandings = async (
@@ -452,7 +557,12 @@ export default class IracingAPI {
   ) => await api.getQualifySeasonResults(this.fetchCookie, params);
   /**
    *
-   * @param params
+   * @param {api.GetWorldRecordsParams} params
+   * @param {number} params.carId
+   * @param {number} params.trackId
+   * @param {number} [params.seasonYear] - Limit best times to a given year.
+   * @param {number} [params.seasonQuarter] - Limit best times to a given quarter.
+   *
    * @returns
    */
   getWorldRecords = async (params: api.GetWorldRecordsParams) =>
@@ -461,7 +571,10 @@ export default class IracingAPI {
   // Team API
   /**
    *
-   * @param params
+   * @param {api.GetTeamDataParams} params
+   * @param {number} params.teamId
+   * @param {boolean} [params.includeLicenses] - For faster responses, only request when necessary.
+   *
    * @returns
    */
   getTeamData = async (params: api.GetTeamDataParams) =>
@@ -470,7 +583,9 @@ export default class IracingAPI {
   // Time Attack API
   /**
    *
-   * @param params
+   * @param {api.GetTimeAttackSeasonParams} params
+   * @param {number} seasonId
+   *
    * @returns
    */
   getTimeAttackSeasonResults = async (params: api.GetTimeAttackSeasonParams) =>
@@ -479,13 +594,13 @@ export default class IracingAPI {
   // Track API
   /**
    *
-   * @param params
+   * *Image paths are relative to https://images-static.iracing.com/*
+   *
    * @returns
    */
   getTrackAssets = async () => await api.getTrackAssets(this.fetchCookie);
   /**
    *
-   * @param params
    * @returns
    */
   getTracks = async () => await api.getTracks(this.fetchCookie);
