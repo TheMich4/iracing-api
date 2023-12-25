@@ -68,6 +68,8 @@ export const SeriesTrackSchema = z.object({
   trackId: z.number(),
   trackName: z.string(),
   configName: z.union([z.null(), z.string()]).optional(),
+  categoryId: z.union([z.null(), z.number()]).optional(),
+  category: z.union([z.null(), z.string()]).optional(),
 });
 export type SeriesTrack = z.infer<typeof SeriesTrackSchema>;
 
@@ -180,7 +182,7 @@ export type Schedule = z.infer<typeof ScheduleSchema>;
 
 export const SeriesHeatSesInfoSchema = z.intersection(
   HeatSesInfoSchema,
-  z.object({ description: z.string() })
+  z.object({ description: z.string() }),
 );
 export type SeriesHeatSesInfo = z.infer<typeof SeriesHeatSesInfoSchema>;
 
