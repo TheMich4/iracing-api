@@ -18,7 +18,7 @@ export const BestSchema = z.object({
   eventType: z.string(),
   bestLapTime: z.number(),
   subsessionId: z.number(),
-  endTime: z.coerce.date(),
+  endTime: z.string(),
   seasonYear: z.number(),
   seasonQuarter: z.number(),
 });

@@ -86,10 +86,10 @@ export const WeatherSchema = z.object({
   weatherVarInitial: z.number(),
   weatherVarOngoing: z.number(),
   timeOfDay: z.number(),
-  simulatedStartTime: z.coerce.date(),
+  simulatedStartTime: z.string(),
   simulatedTimeOffsets: z.array(z.number()),
   simulatedTimeMultiplier: z.number(),
-  simulatedStartUtcTime: z.coerce.date(),
+  simulatedStartUtcTime: z.string(),
 });
 export type Weather = z.infer<typeof WeatherSchema>;
 
@@ -97,7 +97,7 @@ export const HeatSesInfoSchema = z.object({
   heatInfoId: z.number(),
   custId: z.number(),
   hidden: z.boolean(),
-  created: z.coerce.date(),
+  created: z.string(),
   heatInfoName: z.string(),
   maxEntrants: z.number(),
   raceStyle: z.number(),
