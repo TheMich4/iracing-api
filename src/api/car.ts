@@ -1,9 +1,26 @@
-import { Car } from "../types/car.js";
-import { FetchCookie } from "../types.js";
-import { getData } from "../helpers.js";
+import { API } from ".";
+import { getData } from "../helpers";
+import { type Car } from "../types/car";
 
-export const getCarAssets = async (fetchCookie: FetchCookie) =>
-  await getData(fetchCookie, "data/car/assets/get");
-
-export const getCars = async (fetchCookie: FetchCookie) =>
-  await getData<Car[]>(fetchCookie, "data/car/get");
+export class CarAPI extends API {
+  /**
+   *
+   * **Get car assets.**
+   *
+   * *Image paths are relative to https://images-static.iracing.com/*
+   *
+   * @returns
+   */
+  getCarAssets = async () => {
+    return (await getData(this.fetchCookie, "data/car/assets/get"))?.data;
+  };
+  /**
+   *
+   * **Get list of cars.**
+   *
+   * @returns
+   */
+  getCars = async () => {
+    return (await getData<Car[]>(this.fetchCookie, "data/car/get"))?.data;
+  };
+}

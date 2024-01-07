@@ -1,7 +1,6 @@
-import * as z from "zod";
-
-import { FetchCookie } from "../types.js";
-import { getData } from "../helpers.js";
+import { z } from "zod";
+import { API } from ".";
+import { getData } from "../helpers";
 
 export const GetTeamDataParamsSchema = z.object({
   teamId: z.number(),
@@ -9,11 +8,18 @@ export const GetTeamDataParamsSchema = z.object({
 });
 export type GetTeamDataParams = z.infer<typeof GetTeamDataParamsSchema>;
 
-export const getTeamData = async (
-  fetchCookie: FetchCookie,
-  params: GetTeamDataParams,
-) =>
-  await getData(fetchCookie, "data/team/get", {
-    team_id: params.teamId,
-    include_licenses: params.includeLicenses,
-  });
+export class TeamAPI extends API {
+  /**
+   *
+   * @param {api.GetTeamDataParams} params
+   * @param {number} params.teamId
+   * @param {boolean} [params.includeLicenses] - For faster responses, only request when necessary.
+   *
+   * @returns
+   */
+  getTeamData = async (params: GetTeamDataParams) =>
+    await getData(this.fetchCookie, "data/team/get", {
+      team_id: params.teamId,
+      include_licenses: params.includeLicenses,
+    });
+}

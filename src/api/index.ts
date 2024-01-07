@@ -1,15 +1,11 @@
-export * from "./auth.js";
-export * from "./car.js";
-export * from "./carClass.js";
-export * from "./constants.js";
-export * from "./hosted.js";
-export * from "./league.js";
-export * from "./lookup.js";
-export * from "./member.js";
-export * from "./results.js";
-export * from "./season.js";
-export * from "./series.js";
-export * from "./stats.js";
-export * from "./team.js";
-export * from "./timeAttack.js";
-export * from "./track.js";
+import { type FetchCookie, type Options } from "../types";
+
+export class API {
+  fetchCookie: FetchCookie;
+  options: Options;
+
+  constructor(fetchCookie: FetchCookie, options: Options) {
+    this.fetchCookie = fetchCookie;
+    this.options = options;
+  }
+}

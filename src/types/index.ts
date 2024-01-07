@@ -13,3 +13,17 @@ export * from "./stats.js";
 // export * from "./team.js";
 // export * from "./timeAttack.js";
 export * from "./track.js";
+
+export interface FetchCookie {
+  (input: RequestInfo | URL, init?: RequestInit | undefined): Promise<Response>;
+}
+
+export interface Options {
+  throttleToRateLimit?: boolean;
+}
+
+export interface RateLimit {
+  limit: number;
+  remaining: number;
+  reset: number;
+}
