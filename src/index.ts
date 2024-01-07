@@ -10,9 +10,19 @@ export * from "./types/index.js";
 
 export default class IracingAPI {
   fetchCookie: FetchCookie;
+  throttleToRateLimit: boolean;
 
-  constructor() {
+  /**
+   * @param {object} [options]
+   * @param {boolean} [options.throttleToRateLimit] - If true, will throttle requests to the rate limit.
+   */
+  constructor({
+    throttleToRateLimit = false,
+  }: {
+    throttleToRateLimit?: boolean;
+  }) {
     this.fetchCookie = makeFetchCookie(fetch);
+    this.throttleToRateLimit = throttleToRateLimit;
   }
 
   // Auth API
@@ -89,7 +99,7 @@ export default class IracingAPI {
    * @returns
    */
   getHostedCombinedSessions = async (
-    params?: api.GetHostedCombinedSessionsParams,
+    params?: api.GetHostedCombinedSessionsParams
   ) => await api.getHostedCombinedSessions(this.fetchCookie, params);
   /**
    *
@@ -157,7 +167,7 @@ export default class IracingAPI {
   /**
    *
    * @param {api.GetLeagueMembershipParams} [params]
-   * @param {number} [params.customerId] - If different from the authenticated member, the following resrictions apply: - Caller cannot be on requested customer's block list or an empty list will result; - Requested customer cannot have their online activity prefrence set to hidden or an empty list will result; - Only leagues for which the requested customer is an admin and the league roster is not private are returned.
+   * @param {number} [params.customerId] - If different from the authenticated member, the following restrictions apply: - Caller cannot be on requested customer's block list or an empty list will result; - Requested customer cannot have their online activity prefrence set to hidden or an empty list will result; - Only leagues for which the requested customer is an admin and the league roster is not private are returned.
    * @param {boolean} [params.includeLeague]
    *
    * @returns
@@ -185,7 +195,7 @@ export default class IracingAPI {
    * @returns
    */
   getLeagueSeasonStandings = async (
-    params: api.GetLeagueSeasonStandingsParams,
+    params: api.GetLeagueSeasonStandingsParams
   ) => await api.getLeagueSeasonStandings(this.fetchCookie, params);
   /**
    *
@@ -383,7 +393,7 @@ export default class IracingAPI {
    * @returns
    */
   getSpectatorSubsessionIds = async (
-    params?: api.GetSpectatorSubsessionIdsParams,
+    params?: api.GetSpectatorSubsessionIdsParams
   ) => await api.getSpectatorSubsessionIds(this.fetchCookie, params);
 
   // Series API
@@ -506,7 +516,7 @@ export default class IracingAPI {
    * @returns
    */
   getDriverSeasonStandings = async (
-    params: api.GetDriverSeasonStandingsParams,
+    params: api.GetDriverSeasonStandingsParams
   ) => await api.getDriverSeasonStandings(this.fetchCookie, params);
   /**
    *
@@ -520,7 +530,7 @@ export default class IracingAPI {
    * @returns
    */
   getSupersessionSeasonStandings = async (
-    params: api.GetSupersessionSeasonStandingsParams,
+    params: api.GetSupersessionSeasonStandingsParams
   ) => await api.getSupersessionSeasonStandings(this.fetchCookie, params);
   /**
    *
@@ -545,7 +555,7 @@ export default class IracingAPI {
    * @returns
    */
   getTimeTrialSeasonStandings = async (
-    params: api.GetTimeTrialSeasonStandingsParams,
+    params: api.GetTimeTrialSeasonStandingsParams
   ) => await api.getTimeTrialSeasonStandings(this.fetchCookie, params);
   /**
    *
@@ -553,7 +563,7 @@ export default class IracingAPI {
    * @returns
    */
   getQualifySeasonStandings = async (
-    params: api.GetQualifySeasonResultsParams,
+    params: api.GetQualifySeasonResultsParams
   ) => await api.getQualifySeasonResults(this.fetchCookie, params);
   /**
    *
