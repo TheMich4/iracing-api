@@ -1,4 +1,4 @@
-import { API } from ".";
+import { API } from "./api";
 import { getData } from "../helpers";
 
 export class CarClassAPI extends API {

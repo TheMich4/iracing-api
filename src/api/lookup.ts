@@ -1,19 +1,11 @@
-import { z } from "zod";
-import { API } from ".";
+import { API } from "./api";
 import { getData } from "../helpers";
-import { Country, License } from "../types";
-
-export const GetClubHistoryParamsSchema = z.object({
-  seasonYear: z.number(),
-  seasonQuarter: z.number(),
-});
-export type GetClubHistoryParams = z.infer<typeof GetClubHistoryParamsSchema>;
-
-export const GetDriversParamsSchema = z.object({
-  searchTerm: z.string(),
-  leagueId: z.number().optional(),
-});
-export type GetDriversParams = z.infer<typeof GetDriversParamsSchema>;
+import {
+  Country,
+  GetClubHistoryParams,
+  GetDriversParams,
+  License,
+} from "../types";
 
 export class LookupAPI extends API {
   /**

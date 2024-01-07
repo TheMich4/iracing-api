@@ -1,4 +1,4 @@
-import { API } from ".";
+import { API } from "./api";
 import { getData } from "../helpers";
 import { Category, Division } from "../types/index";
 

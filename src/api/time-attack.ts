@@ -1,13 +1,6 @@
-import { z } from "zod";
-import { API } from ".";
+import { API } from "./api";
 import { getData } from "../helpers";
-
-export const GetTimeAttackSeasonParamsSchema = z.object({
-  seasonId: z.number(),
-});
-export type GetTimeAttackSeasonParams = z.infer<
-  typeof GetTimeAttackSeasonParamsSchema
->;
+import { GetTimeAttackSeasonParams } from "../types/time-attack";
 
 export class TimeAttackAPI extends API {
   /**

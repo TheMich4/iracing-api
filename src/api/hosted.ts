@@ -1,14 +1,10 @@
-import { z } from "zod";
-import { API } from ".";
+import { API } from "./api";
 import { getData } from "../helpers";
-import { HostedCombinedSessions, HostedSessions } from "../types/hosted";
-
-export const GetHostedCombinedSessionsParamsSchema = z.object({
-  packageId: z.number().optional(),
-});
-export type GetHostedCombinedSessionsParams = z.infer<
-  typeof GetHostedCombinedSessionsParamsSchema
->;
+import type {
+  GetHostedCombinedSessionsParams,
+  HostedCombinedSessions,
+  HostedSessions,
+} from "../types/hosted";
 
 export class HostedAPI extends API {
   /**

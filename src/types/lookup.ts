@@ -26,3 +26,16 @@ export const LicenseSchema = z.object({
   minNumTt: z.union([z.number(), z.null()]),
 });
 export type License = z.infer<typeof LicenseSchema>;
+
+// Params
+export const GetClubHistoryParamsSchema = z.object({
+  seasonYear: z.number(),
+  seasonQuarter: z.number(),
+});
+export type GetClubHistoryParams = z.infer<typeof GetClubHistoryParamsSchema>;
+
+export const GetDriversParamsSchema = z.object({
+  searchTerm: z.string(),
+  leagueId: z.number().optional(),
+});
+export type GetDriversParams = z.infer<typeof GetDriversParamsSchema>;

@@ -112,3 +112,29 @@ export const MemberParticipationCreditSchema = z.object({
 export type MemberParticipationCredit = z.infer<
   typeof MemberParticipationCreditSchema
 >;
+
+// Params
+
+export const GetMemberAwardsParamsSchema = z.object({
+  customerId: z.number(),
+});
+export type GetMemberAwardsParams = z.infer<typeof GetMemberAwardsParamsSchema>;
+export const GetMemberChartDataParamsSchema = z.object({
+  customerId: z.number().optional(),
+  categoryId: z.number(),
+  chartType: z.string(),
+});
+export type GetMemberChartDataParams = z.infer<
+  typeof GetMemberChartDataParamsSchema
+>;
+export const GetMemberDataParamsSchema = z.object({
+  customerIds: z.array(z.string()),
+  includeLicenses: z.boolean().optional(),
+});
+export type GetMemberDataParams = z.infer<typeof GetMemberDataParamsSchema>;
+export const GetMemberProfileParamsSchema = z.object({
+  customerId: z.number().optional(),
+});
+export type GetMemberProfileParams = z.infer<
+  typeof GetMemberProfileParamsSchema
+>;

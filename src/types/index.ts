@@ -6,12 +6,12 @@ export * from "./hosted.js";
 export * from "./league.js";
 export * from "./lookup.js";
 export * from "./member.js";
-// export * from "./results.js";
-// export * from "./season.js";
+export * from "./results.js";
+export * from "./season.js";
 export * from "./series.js";
 export * from "./stats.js";
-// export * from "./team.js";
-// export * from "./timeAttack.js";
+export * from "./team.js";
+export * from "./time-attack.js";
 export * from "./track.js";
 
 export interface FetchCookie {

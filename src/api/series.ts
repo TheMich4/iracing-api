@@ -1,20 +1,14 @@
-import { z } from "zod";
-import { API } from ".";
+import { API } from "./api";
 import { getData } from "../helpers";
-import { SeriesAssets, SeriesData, SeriesSeason, SeriesStat } from "../types";
+import {
+  GetSeriesPastSeasonsParams,
+  GetSeriesSeasonsParams,
+  SeriesAssets,
+  SeriesData,
+  SeriesSeason,
+  SeriesStat,
+} from "../types";
 
-export const getSeriesPastSeasonsParamsSchema = z.object({
-  seriesId: z.number(),
-});
-export type GetSeriesPastSeasonsParams = z.infer<
-  typeof getSeriesPastSeasonsParamsSchema
->;
-export const GetSeriesSeasonsParamSchema = z.object({
-  includeSeries: z.boolean().optional(),
-});
-export type GetSeriesSeasonsParams = z.infer<
-  typeof GetSeriesSeasonsParamSchema
->;
 export class SeriesAPI extends API {
   // Series API
   /**

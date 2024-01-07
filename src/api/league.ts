@@ -1,82 +1,17 @@
-import { z } from "zod";
-import { API } from ".";
+import { API } from "./api";
 import { getData } from "../helpers";
-import { CustLeagueSessions, LeagueDirectory } from "../types";
-
-export const GetCustLeagueSessionsParamsSchema = z.object({
-  mine: z.boolean().optional(),
-  packageId: z.number().optional(),
-});
-export type GetCustLeagueSessionsParams = z.infer<
-  typeof GetCustLeagueSessionsParamsSchema
->;
-
-export const GetLeagueDirectoryParamsSchema = z.object({
-  search: z.string().optional(),
-  tag: z.string().optional(),
-  restrictToMember: z.boolean().optional(),
-  restrictToRecruiting: z.boolean().optional(),
-  restrictToFriends: z.boolean().optional(),
-  restrictToWatched: z.boolean().optional(),
-  minimumRosterCount: z.number().optional(),
-  maximumRosterCount: z.number().optional(),
-  lowerbound: z.number().optional(),
-  upperbound: z.number().optional(),
-  sort: z.string().optional(),
-  order: z.string().optional(),
-});
-export type GetLeagueDirectoryParams = z.infer<
-  typeof GetLeagueDirectoryParamsSchema
->;
-
-export const GetLeagueDataParamsSchema = z.object({
-  leagueId: z.number(),
-  includeLicenses: z.boolean().optional(),
-});
-export type GetLeagueDataParams = z.infer<typeof GetLeagueDataParamsSchema>;
-
-export const GetLeaguePointSystemParamsSchema = z.object({
-  leagueId: z.number(),
-  seasonId: z.number().optional(),
-});
-export type GetLeaguePointSystemParams = z.infer<
-  typeof GetLeaguePointSystemParamsSchema
->;
-
-export const getLeagueMembershipParamsSchema = z.object({
-  customerId: z.number().optional(),
-  includeLeague: z.boolean().optional(),
-});
-export type GetLeagueMembershipParams = z.infer<
-  typeof getLeagueMembershipParamsSchema
->;
-
-export const GetLeagueSeasonsParamsSchema = z.object({
-  leagueId: z.number(),
-  retired: z.boolean().optional(),
-});
-export type GetLeagueSeasonsParams = z.infer<
-  typeof GetLeagueSeasonsParamsSchema
->;
-
-export const GetLeagueSeasonStandingsParamsSchema = z.object({
-  leagueId: z.number(),
-  seasonId: z.number(),
-  carClassId: z.number().optional(),
-  carId: z.number().optional(),
-});
-export type GetLeagueSeasonStandingsParams = z.infer<
-  typeof GetLeagueSeasonStandingsParamsSchema
->;
-
-export const GetLeagueSeasonSessionsParamsSchema = z.object({
-  leagueId: z.number(),
-  seasonId: z.number(),
-  resultsOnly: z.boolean().optional(),
-});
-export type GetLeagueSeasonSessionsParams = z.infer<
-  typeof GetLeagueSeasonSessionsParamsSchema
->;
+import type {
+  CustLeagueSessions,
+  GetCustLeagueSessionsParams,
+  GetLeagueDataParams,
+  GetLeagueDirectoryParams,
+  GetLeagueMembershipParams,
+  GetLeaguePointSystemParams,
+  GetLeagueSeasonSessionsParams,
+  GetLeagueSeasonStandingsParams,
+  GetLeagueSeasonsParams,
+  LeagueDirectory,
+} from "../types";
 
 export class LeagueAPI extends API {
   // League API

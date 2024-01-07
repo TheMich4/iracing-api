@@ -182,7 +182,7 @@ export type Schedule = z.infer<typeof ScheduleSchema>;
 
 export const SeriesHeatSesInfoSchema = z.intersection(
   HeatSesInfoSchema,
-  z.object({ description: z.string() }),
+  z.object({ description: z.string() })
 );
 export type SeriesHeatSesInfo = z.infer<typeof SeriesHeatSesInfoSchema>;
 
@@ -262,3 +262,18 @@ export const SeriesSeasonSchema = z.object({
   racePoints: z.union([z.number(), z.null()]).optional(),
 });
 export type SeriesSeason = z.infer<typeof SeriesSeasonSchema>;
+
+// Params
+
+export const getSeriesPastSeasonsParamsSchema = z.object({
+  seriesId: z.number(),
+});
+export type GetSeriesPastSeasonsParams = z.infer<
+  typeof getSeriesPastSeasonsParamsSchema
+>;
+export const GetSeriesSeasonsParamSchema = z.object({
+  includeSeries: z.boolean().optional(),
+});
+export type GetSeriesSeasonsParams = z.infer<
+  typeof GetSeriesSeasonsParamSchema
+>;

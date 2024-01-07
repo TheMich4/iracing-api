@@ -1,6 +1,6 @@
 import { API_URL } from "./consts.js";
 import CryptoJS from "crypto-js";
-import { FetchCookie, RateLimit } from "./types.js";
+import { FetchCookie, RateLimit } from "./types/index.js";
 import humps from "humps";
 
 const { camelizeKeys } = humps;
@@ -47,6 +47,7 @@ export const getData = async <
   params?: Parameters | Record<string, unknown>
 ): Promise<{ data: Data | undefined; rateLimit: RateLimit } | undefined> => {
   const url = getUrl(endpoint, params);
+  console.log("===", { fetchCookie });
   try {
     const response = await fetchCookie(url, {
       cache: "no-cache",

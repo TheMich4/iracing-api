@@ -1,119 +1,25 @@
-import { z } from "zod";
-import { API } from ".";
+import { API } from "./api";
 import { getData } from "../helpers";
 import {
+  GetDriverSeasonStandingsParams,
+  GetMemberBestsParams,
+  GetMemberCareerParams,
+  GetMemberDivisionParams,
+  GetMemberRecapParams,
+  GetMemberRecentRacesParams,
+  GetMemberSummaryParams,
+  GetMemberYearlyStatsParams,
+  GetQualifySeasonResultsParams,
+  GetSupersessionSeasonStandingsParams,
+  GetTeamSeasonStandingsParams,
+  GetTimeTrialSeasonStandingsParams,
+  GetWorldRecordsParams,
   MemberBests,
   MemberCareer,
   MemberRecap,
   MemberSummary,
   MemberYearlyStats,
 } from "../types";
-
-export const GetMemberBestsParamsSchema = z.object({
-  customerId: z.number().optional(),
-  carId: z.number().optional(),
-});
-export type GetMemberBestsParams = z.infer<typeof GetMemberBestsParamsSchema>;
-export const GetMemberCareerParamsSchema = z.object({
-  customerId: z.number().optional(),
-});
-export type GetMemberCareerParams = z.infer<typeof GetMemberCareerParamsSchema>;
-export const GetMemberDivisionParamsSchema = z.object({
-  seasonId: z.number(),
-  eventType: z.number(),
-});
-export type GetMemberDivisionParams = z.infer<
-  typeof GetMemberDivisionParamsSchema
->;
-export const GetMemberRecentRacesParamsSchema = z.object({
-  customerId: z.number().optional(),
-});
-export type GetMemberRecentRacesParams = z.infer<
-  typeof GetMemberRecentRacesParamsSchema
->;
-export const GetMemberRecapParamsSchema = z.object({
-  customerId: z.number().optional(),
-  year: z.number().optional(),
-  season: z.number().optional(),
-});
-export type GetMemberRecapParams = z.infer<typeof GetMemberRecapParamsSchema>;
-export const GetMemberSummaryParamsSchema = z.object({
-  customerId: z.number().optional(),
-});
-export type GetMemberSummaryParams = z.infer<
-  typeof GetMemberSummaryParamsSchema
->;
-export const GetMemberYearlyStatsParamsSchema = z.object({
-  customerId: z.number().optional(),
-});
-export type GetMemberYearlyStatsParams = z.infer<
-  typeof GetMemberYearlyStatsParamsSchema
->;
-export const GetDriverSeasonStandingsParamsSchema = z.object({
-  seasonId: z.number(),
-  carClassId: z.number(),
-  clubId: z.number().optional(),
-  division: z.number().optional(),
-  raceWeekNumber: z.number().optional(),
-});
-export type GetDriverSeasonStandingsParams = z.infer<
-  typeof GetDriverSeasonStandingsParamsSchema
->;
-export const getSupersessionSeasonStandingsParamsSchema = z.object({
-  seasonId: z.number(),
-  carClassId: z.number(),
-  clubId: z.number().optional(),
-  division: z.number().optional(),
-  raceWeekNumber: z.number().optional(),
-});
-export type GetSupersessionSeasonStandingsParams = z.infer<
-  typeof getSupersessionSeasonStandingsParamsSchema
->;
-export const GetTeamSeasonStandingsParamsSchema = z.object({
-  seasonId: z.number(),
-  carClassId: z.number(),
-  raceWeekNumber: z.number().optional(),
-});
-export type GetTeamSeasonStandingsParams = z.infer<
-  typeof GetTeamSeasonStandingsParamsSchema
->;
-export const GetTimeTrialSeasonStandingsParamsSchema = z.object({
-  seasonId: z.number(),
-  carClassId: z.number(),
-  clubId: z.number().optional(),
-  division: z.number().optional(),
-  raceWeekNumber: z.number().optional(),
-});
-export type GetTimeTrialSeasonStandingsParams = z.infer<
-  typeof GetTimeTrialSeasonStandingsParamsSchema
->;
-export const GetTimeTrialSeasonResultsParamsSchema = z.object({
-  seasonId: z.number(),
-  carClassId: z.number(),
-  clubId: z.number().optional(),
-  division: z.number().optional(),
-  raceWeekNumber: z.number(),
-});
-export type GetTimeTrialSeasonResultsParams = z.infer<
-  typeof GetTimeTrialSeasonResultsParamsSchema
->;
-export const GetQualifySeasonResultsParamsSchema = z.object({
-  seasonId: z.number(),
-  carClassId: z.number(),
-  clubId: z.number().optional(),
-  division: z.number().optional(),
-  raceWeekNumber: z.number().optional(),
-});
-export type GetQualifySeasonResultsParams = z.infer<
-  typeof GetQualifySeasonResultsParamsSchema
->;
-export const GetWorldRecordsParamsSchema = z.object({
-  carId: z.number(),
-  trackId: z.number(),
-  seasonYear: z.number().optional(),
-  seasonQuarter: z.number().optional(),
-});
-export type GetWorldRecordsParams = z.infer<typeof GetWorldRecordsParamsSchema>;
 
 export class StatsAPI extends API {
   // Stats API
