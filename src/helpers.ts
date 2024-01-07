@@ -1,13 +1,21 @@
 import { API_URL } from "./consts.js";
 import CryptoJS from "crypto-js";
-import { FetchCookie } from "./types.js";
+import { FetchCookie, RateLimit } from "./types.js";
 import humps from "humps";
 
 const { camelizeKeys } = humps;
 
+const getRateLimit = (response: Response) => {
+  const limit = +response.headers.get("x-ratelimit-limit")! ?? 0;
+  const remaining = +response.headers.get("x-ratelimit-remaining")! ?? 0;
+  const reset = +response.headers.get("x-ratelimit-reset")! ?? 0;
+
+  return { limit, remaining, reset };
+};
+
 const getUrl = <Parameters = Record<string, unknown>>(
   endpoint: string,
-  params?: Parameters,
+  params?: Parameters
 ) => {
   // Filter out empty values
   const searchParams =
@@ -18,7 +26,7 @@ const getUrl = <Parameters = Record<string, unknown>>(
 };
 
 export const getLinkData = async <Data>(
-  link: string | undefined,
+  link: string | undefined
 ): Promise<Data | undefined> => {
   if (!link) return undefined;
 
@@ -36,8 +44,8 @@ export const getData = async <
 >(
   fetchCookie: FetchCookie,
   endpoint: string,
-  params?: Parameters | Record<string, unknown>,
-): Promise<Data | undefined> => {
+  params?: Parameters | Record<string, unknown>
+): Promise<{ data: Data | undefined; rateLimit: RateLimit } | undefined> => {
   const url = getUrl(endpoint, params);
   try {
     const response = await fetchCookie(url, {
@@ -45,12 +53,21 @@ export const getData = async <
       credentials: "include",
     });
     const data = await response.json();
+    const rateLimit = getRateLimit(response);
 
     if (data?.link) {
-      return await getLinkData<Data>(data?.link);
+      const linkData = await getLinkData<Data>(data?.link);
+
+      return {
+        data: linkData,
+        rateLimit: rateLimit,
+      };
     }
 
-    return data as Data | undefined;
+    return {
+      data: data as Data | undefined,
+      rateLimit: rateLimit,
+    };
   } catch (error) {
     console.error(`Error getting data for ${url}`, error);
     return undefined;
@@ -59,5 +76,5 @@ export const getData = async <
 
 export const encryptPassword = (email: string, password: string) =>
   CryptoJS.enc.Base64.stringify(
-    CryptoJS.SHA256(password + email.toLowerCase()),
+    CryptoJS.SHA256(password + email.toLowerCase())
   );
