@@ -1,5 +1,4 @@
 import { API } from "./api";
-import { getData, getLinkData } from "../helpers";
 import {
   GetResultParams,
   GetResultsEventLogParams,
@@ -17,7 +16,7 @@ export class ResultsAPI extends API {
    * @returns
    */
   getResult = async (params: GetResultParams) =>
-    await getData(this.fetchCookie, "data/results/get", {
+    await this._getData("data/results/get", {
       subsession_id: params.subsessionId,
       include_licenses: params.includeLicenses,
     });
@@ -30,7 +29,7 @@ export class ResultsAPI extends API {
    * @returns
    */
   getResultsEventLog = async (params: GetResultsEventLogParams) =>
-    await getData(this.fetchCookie, "data/results/event_log", {
+    await this._getData("data/results/event_log", {
       subsession_id: params.subsessionId,
       simsession_number: params.simsessionNumber,
     });
@@ -43,7 +42,7 @@ export class ResultsAPI extends API {
    * @returns
    */
   getResultsLapChartData = async (params: GetResultsLapChartDataParams) =>
-    await getData(this.fetchCookie, "data/results/lap_chart_data", {
+    await this._getData("data/results/lap_chart_data", {
       subsession_id: params.subsessionId,
       simsession_number: params.simsessionNumber,
     });
@@ -58,7 +57,7 @@ export class ResultsAPI extends API {
    * @returns
    */
   getResultsLapData = async (params: GetResultsLapDataParams) =>
-    await getData(this.fetchCookie, "data/results/lap_data", {
+    await this._getData("data/results/lap_data", {
       subsession_id: params.subsessionId,
       simsession_number: params.simsessionNumber,
       customer_id: params.customerId,
@@ -72,7 +71,7 @@ export class ResultsAPI extends API {
    */
   // TODO: Fix this
   searchHosted = async (params: Record<string, any>) =>
-    await getData(this.fetchCookie, "data/results/search_hosted", params);
+    await this._getData("data/results/search_hosted", params);
   /**
    *
    * @param params
@@ -83,8 +82,7 @@ export class ResultsAPI extends API {
   searchSeries = async (params: any) => {
     // TODO: Add type
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const responseData: any = await getData(
-      this.fetchCookie,
+    const responseData: any = await this._getData(
       "data/results/search_series",
       {
         season_year: params?.seasonYear,
@@ -114,7 +112,7 @@ export class ResultsAPI extends API {
 
     const chunksData = await Promise.all(
       chunk_file_names.map(async (chunkFileName: string) => {
-        return await getLinkData(`${base_download_url}${chunkFileName}`);
+        return await this._getLinkData(`${base_download_url}${chunkFileName}`);
       })
     );
 
@@ -128,7 +126,7 @@ export class ResultsAPI extends API {
    */
   // TODO: Fix this
   getSeasonResults = async (params: any) =>
-    await getData(this.fetchCookie, "data/results/season_results", {
+    await this._getData("data/results/season_results", {
       season_id: params.seasonId,
       event_type: params.eventType,
       race_week_num: params.raceWeekNumber,

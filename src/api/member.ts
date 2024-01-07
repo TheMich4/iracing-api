@@ -1,5 +1,4 @@
 import { API } from "./api";
-import { getData } from "../helpers";
 import {
   GetMemberAwardsParams,
   GetMemberChartDataParams,
@@ -18,7 +17,7 @@ export class MemberAPI extends API {
    * @returns
    */
   getMemberAwards = async (params?: GetMemberAwardsParams) =>
-    getData(this.fetchCookie, "data/member/awards", {
+    this._getData("data/member/awards", {
       cust_id: params?.customerId,
     });
   /**
@@ -31,7 +30,7 @@ export class MemberAPI extends API {
    * @returns
    */
   getMemberChartData = async (params: GetMemberChartDataParams) =>
-    getData(this.fetchCookie, "data/member/chart_data", {
+    this._getData("data/member/chart_data", {
       cust_id: params.customerId,
       category_id: params.categoryId,
       chart_type: params.chartType,
@@ -45,7 +44,7 @@ export class MemberAPI extends API {
    * @returns
    */
   getMemberData = async (params: GetMemberDataParams) =>
-    await getData(this.fetchCookie, "data/member/get", {
+    await this._getData("data/member/get", {
       cust_ids: params.customerIds,
       include_licenses: params.includeLicenses,
     });
@@ -54,14 +53,13 @@ export class MemberAPI extends API {
    * @returns
    */
   getMemberInfo = async () =>
-    await getData<MemberInfo>(this.fetchCookie, "data/member/info");
+    await this._getData<MemberInfo>("data/member/info");
   /**
    *
    * @returns
    */
   getMemberParticipationCredits = async () =>
-    await getData<MemberParticipationCredit[]>(
-      this.fetchCookie,
+    await this._getData<MemberParticipationCredit[]>(
       "data/member/participation_credits"
     );
   /**
@@ -72,7 +70,7 @@ export class MemberAPI extends API {
    * @returns
    */
   getMemberProfile = async (params?: GetMemberProfileParams) =>
-    await getData(this.fetchCookie, "data/member/profile", {
+    await this._getData("data/member/profile", {
       cust_id: params?.customerId,
     });
 }

@@ -1,5 +1,4 @@
 import { API } from "./api";
-import { getData } from "../helpers";
 import {
   Country,
   GetClubHistoryParams,
@@ -17,7 +16,7 @@ export class LookupAPI extends API {
    * @returns
    */
   getClubHistory = async (params: GetClubHistoryParams) =>
-    await getData(this.fetchCookie, "data/lookup/club_history", {
+    await this._getData("data/lookup/club_history", {
       season_year: params.seasonYear,
       season_quarter: params.seasonQuarter,
     });
@@ -26,7 +25,7 @@ export class LookupAPI extends API {
    * @returns
    */
   getCountries = async () =>
-    await getData<Country[]>(this.fetchCookie, "data/lookup/countries");
+    await this._getData<Country[]>("data/lookup/countries");
   /**
    *
    * @param {GetDriversParams} params
@@ -36,7 +35,7 @@ export class LookupAPI extends API {
    * @returns
    */
   getDrivers = async (params: GetDriversParams) =>
-    await getData(this.fetchCookie, "data/lookup/drivers", {
+    await this._getData("data/lookup/drivers", {
       search_term: params.searchTerm,
       league_id: params.leagueId,
     });
@@ -45,5 +44,5 @@ export class LookupAPI extends API {
    * @returns
    */
   getLicenses = async () =>
-    await getData<License[]>(this.fetchCookie, "data/lookup/licenses");
+    await this._getData<License[]>("data/lookup/licenses");
 }

@@ -1,5 +1,4 @@
 import { API } from "./api";
-import { getData } from "../helpers";
 import { type Car } from "../types/car";
 
 export class CarAPI extends API {
@@ -12,7 +11,7 @@ export class CarAPI extends API {
    * @returns
    */
   getCarAssets = async () => {
-    return (await getData(this.fetchCookie, "data/car/assets/get"))?.data;
+    return await this._getData("data/car/assets/get");
   };
   /**
    *
@@ -21,6 +20,6 @@ export class CarAPI extends API {
    * @returns
    */
   getCars = async () => {
-    return (await getData<Car[]>(this.fetchCookie, "data/car/get"))?.data;
+    return await this._getData<Car[]>("data/car/get");
   };
 }

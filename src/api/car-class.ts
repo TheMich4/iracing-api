@@ -1,5 +1,4 @@
 import { API } from "./api";
-import { getData } from "../helpers";
 
 export class CarClassAPI extends API {
   /**
@@ -9,6 +8,6 @@ export class CarClassAPI extends API {
    * @returns
    */
   getCarClasses = async () => {
-    return (await getData(this.fetchCookie, "data/carclass/get"))?.data;
+    return await this._getData("data/carclass/get");
   };
 }

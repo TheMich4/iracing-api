@@ -1,5 +1,4 @@
 import { API } from "./api";
-import { getData } from "../helpers";
 import {
   GetDriverSeasonStandingsParams,
   GetMemberBestsParams,
@@ -32,7 +31,7 @@ export class StatsAPI extends API {
    * @returns
    */
   getMemberBests = async (params?: GetMemberBestsParams) =>
-    await getData<MemberBests>(this.fetchCookie, "data/stats/member_bests", {
+    await this._getData<MemberBests>("data/stats/member_bests", {
       cust_id: params?.customerId,
       car_id: params?.carId,
     });
@@ -44,7 +43,7 @@ export class StatsAPI extends API {
    * @returns
    */
   getMemberCareer = async (params?: GetMemberCareerParams) =>
-    await getData<MemberCareer>(this.fetchCookie, "data/stats/member_career", {
+    await this._getData<MemberCareer>("data/stats/member_career", {
       cust_id: params?.customerId,
     });
   /**
@@ -56,7 +55,7 @@ export class StatsAPI extends API {
    * @returns
    */
   getMemberDivision = async (params: GetMemberDivisionParams) =>
-    await getData(this.fetchCookie, "data/stats/member_division", {
+    await this._getData("data/stats/member_division", {
       season_id: params.seasonId,
       event_type: params.eventType,
     });
@@ -68,7 +67,7 @@ export class StatsAPI extends API {
    * @returns
    */
   getMemberRecentRaces = async (params?: GetMemberRecentRacesParams) =>
-    await getData(this.fetchCookie, "stats/member_recent_races", {
+    await this._getData("stats/member_recent_races", {
       cust_id: params?.customerId,
     });
   /**
@@ -81,7 +80,7 @@ export class StatsAPI extends API {
    * @returns
    */
   getMemberRecap = async (params?: GetMemberRecapParams) =>
-    await getData<MemberRecap>(this.fetchCookie, "data/stats/member_recap", {
+    await this._getData<MemberRecap>("data/stats/member_recap", {
       cust_id: params?.customerId,
       year: params?.year,
       season: params?.season,
@@ -94,13 +93,9 @@ export class StatsAPI extends API {
    * @returns
    */
   getMemberSummary = async (params?: GetMemberSummaryParams) =>
-    await getData<MemberSummary>(
-      this.fetchCookie,
-      "data/stats/member_summary",
-      {
-        cust_id: params?.customerId,
-      }
-    );
+    await this._getData<MemberSummary>("data/stats/member_summary", {
+      cust_id: params?.customerId,
+    });
   /**
    *
    * @param {GetMemberYearlyStatsParams} [params]
@@ -109,13 +104,9 @@ export class StatsAPI extends API {
    * @returns
    */
   getMemberYearlyStats = async (params?: GetMemberYearlyStatsParams) =>
-    await getData<MemberYearlyStats>(
-      this.fetchCookie,
-      "data/stats/member_yearly",
-      {
-        cust_id: params?.customerId,
-      }
-    );
+    await this._getData<MemberYearlyStats>("data/stats/member_yearly", {
+      cust_id: params?.customerId,
+    });
   /**
    *
    * @param {GetDriverSeasonStandingsParams} params
@@ -128,7 +119,7 @@ export class StatsAPI extends API {
    * @returns
    */
   getDriverSeasonStandings = async (params: GetDriverSeasonStandingsParams) =>
-    await getData(this.fetchCookie, "data/stats/season_driver_standings", {
+    await this._getData("data/stats/season_driver_standings", {
       season_id: params.seasonId,
       car_class_id: params.carClassId,
       club_id: params.clubId,
@@ -149,17 +140,13 @@ export class StatsAPI extends API {
   getSupersessionSeasonStandings = async (
     params: GetSupersessionSeasonStandingsParams
   ) =>
-    await getData(
-      this.fetchCookie,
-      "data/stats/season_supersession_standings",
-      {
-        season_id: params.seasonId,
-        car_class_id: params.carClassId,
-        club_id: params.clubId,
-        division: params.division,
-        race_week_num: params.raceWeekNumber,
-      }
-    );
+    await this._getData("data/stats/season_supersession_standings", {
+      season_id: params.seasonId,
+      car_class_id: params.carClassId,
+      club_id: params.clubId,
+      division: params.division,
+      race_week_num: params.raceWeekNumber,
+    });
   /**
    *
    * @param {GetTeamSeasonStandingsParams} params
@@ -170,7 +157,7 @@ export class StatsAPI extends API {
    * @returns
    */
   getTeamSeasonStandings = async (params: GetTeamSeasonStandingsParams) =>
-    await getData(this.fetchCookie, "data/stats/season_team_standings", {
+    await this._getData("data/stats/season_team_standings", {
       season_id: params.seasonId,
       car_class_id: params.carClassId,
       race_week_num: params.raceWeekNumber,
@@ -189,7 +176,7 @@ export class StatsAPI extends API {
   getTimeTrialSeasonStandings = async (
     params: GetTimeTrialSeasonStandingsParams
   ) =>
-    await getData(this.fetchCookie, "data/stats/season_tt_results", {
+    await this._getData("data/stats/season_tt_results", {
       season_id: params.seasonId,
       car_class_id: params.carClassId,
       race_week_num: params.raceWeekNumber,
@@ -202,7 +189,7 @@ export class StatsAPI extends API {
    * @returns
    */
   getQualifySeasonStandings = async (params: GetQualifySeasonResultsParams) =>
-    await getData(this.fetchCookie, "data/stats/season_qualify_results", {
+    await this._getData("data/stats/season_qualify_results", {
       season_id: params.seasonId,
       car_class_id: params.carClassId,
       race_week_num: params.raceWeekNumber,
@@ -220,7 +207,7 @@ export class StatsAPI extends API {
    * @returns
    */
   getWorldRecords = async (params: GetWorldRecordsParams) =>
-    await getData(this.fetchCookie, "data/stats/world_records", {
+    await this._getData("data/stats/world_records", {
       car_id: params.carId,
       track_id: params.trackId,
       season_year: params.seasonYear,

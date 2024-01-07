@@ -1,5 +1,4 @@
 import { API } from "./api";
-import { getData } from "../helpers";
 import type {
   CustLeagueSessions,
   GetCustLeagueSessionsParams,
@@ -25,18 +24,14 @@ export class LeagueAPI extends API {
    *
    * @returns
    */
-  getCustLeagueSessions = async (params?: GetCustLeagueSessionsParams) => {
-    return (
-      await getData<CustLeagueSessions>(
-        this.fetchCookie,
-        "data/league/cust_league_sessions",
-        {
-          mine: params?.mine,
-          package_id: params?.packageId,
-        }
-      )
-    )?.data;
-  };
+  getCustLeagueSessions = async (params?: GetCustLeagueSessionsParams) =>
+    await this._getData<CustLeagueSessions>(
+      "data/league/cust_league_sessions",
+      {
+        mine: params?.mine,
+        package_id: params?.packageId,
+      }
+    );
 
   /**
    *
@@ -56,28 +51,21 @@ export class LeagueAPI extends API {
    *
    * @returns
    */
-  getLeagueDirectory = async (params?: GetLeagueDirectoryParams) => {
-    return (
-      await getData<LeagueDirectory>(
-        this.fetchCookie,
-        "data/league/directory",
-        {
-          search: params?.search,
-          tag: params?.tag,
-          restrict_to_member: params?.restrictToMember,
-          restrict_to_recruiting: params?.restrictToRecruiting,
-          restrict_to_friends: params?.restrictToFriends,
-          restrict_to_watched: params?.restrictToWatched,
-          minimum_roster_count: params?.minimumRosterCount,
-          maximum_roster_count: params?.maximumRosterCount,
-          lowerbound: params?.lowerbound,
-          upperbound: params?.upperbound,
-          sort: params?.sort,
-          order: params?.order,
-        }
-      )
-    )?.data;
-  };
+  getLeagueDirectory = async (params?: GetLeagueDirectoryParams) =>
+    await this._getData<LeagueDirectory>("data/league/directory", {
+      search: params?.search,
+      tag: params?.tag,
+      restrict_to_member: params?.restrictToMember,
+      restrict_to_recruiting: params?.restrictToRecruiting,
+      restrict_to_friends: params?.restrictToFriends,
+      restrict_to_watched: params?.restrictToWatched,
+      minimum_roster_count: params?.minimumRosterCount,
+      maximum_roster_count: params?.maximumRosterCount,
+      lowerbound: params?.lowerbound,
+      upperbound: params?.upperbound,
+      sort: params?.sort,
+      order: params?.order,
+    });
 
   /**
    *
@@ -87,14 +75,11 @@ export class LeagueAPI extends API {
    *
    * @returns
    */
-  getLeagueData = async (params: GetLeagueDataParams) => {
-    return (
-      await getData(this.fetchCookie, "data/league/get", {
-        league_id: params.leagueId,
-        include_licenses: params.includeLicenses,
-      })
-    )?.data;
-  };
+  getLeagueData = async (params: GetLeagueDataParams) =>
+    await this._getData("data/league/get", {
+      league_id: params.leagueId,
+      include_licenses: params.includeLicenses,
+    });
 
   /**
    *
@@ -104,14 +89,11 @@ export class LeagueAPI extends API {
    *
    * @returns
    */
-  getLeaguePointSystem = async (params: GetLeaguePointSystemParams) => {
-    return (
-      await getData(this.fetchCookie, "data/league/get_points_systems", {
-        league_id: params.leagueId,
-        season_id: params.seasonId,
-      })
-    )?.data;
-  };
+  getLeaguePointSystem = async (params: GetLeaguePointSystemParams) =>
+    await this._getData("data/league/get_points_systems", {
+      league_id: params.leagueId,
+      season_id: params.seasonId,
+    });
 
   /**
    *
@@ -121,14 +103,11 @@ export class LeagueAPI extends API {
    *
    * @returns
    */
-  getLeagueMembership = async (params?: GetLeagueMembershipParams) => {
-    return (
-      await getData(this.fetchCookie, "data/league/membership", {
-        cust_id: params?.customerId,
-        include_league: params?.includeLeague,
-      })
-    )?.data;
-  };
+  getLeagueMembership = async (params?: GetLeagueMembershipParams) =>
+    await this._getData("data/league/membership", {
+      cust_id: params?.customerId,
+      include_league: params?.includeLeague,
+    });
   /**
    *
    * @param {GetLeagueSeasonsParams} params
@@ -137,14 +116,11 @@ export class LeagueAPI extends API {
    *
    * @returns
    */
-  getLeagueSeasons = async (params: GetLeagueSeasonsParams) => {
-    return (
-      await getData(this.fetchCookie, "data/league/seasons", {
-        league_id: params.leagueId,
-        retired: params.retired,
-      })
-    )?.data;
-  };
+  getLeagueSeasons = async (params: GetLeagueSeasonsParams) =>
+    await this._getData("data/league/seasons", {
+      league_id: params.leagueId,
+      retired: params.retired,
+    });
   /**
    *
    * @param {GetLeagueSeasonStandingsParams} params
@@ -155,16 +131,13 @@ export class LeagueAPI extends API {
    *
    * @returns
    */
-  getLeagueSeasonStandings = async (params: GetLeagueSeasonStandingsParams) => {
-    return (
-      await getData(this.fetchCookie, "data/league/season_standings", {
-        car_id: params.carId,
-        car_class_id: params.carClassId,
-        league_id: params.leagueId,
-        season_id: params.seasonId,
-      })
-    )?.data;
-  };
+  getLeagueSeasonStandings = async (params: GetLeagueSeasonStandingsParams) =>
+    await this._getData("data/league/season_standings", {
+      car_id: params.carId,
+      car_class_id: params.carClassId,
+      league_id: params.leagueId,
+      season_id: params.seasonId,
+    });
   /**
    *
    * @param {GetLeagueSeasonSessionsParams} params
@@ -174,13 +147,10 @@ export class LeagueAPI extends API {
    *
    * @returns
    */
-  getLeagueSeasonSessions = async (params: GetLeagueSeasonSessionsParams) => {
-    return (
-      await getData(this.fetchCookie, "data/league/season_sessions", {
-        league_id: params.leagueId,
-        season_id: params.seasonId,
-        results_only: params.resultsOnly,
-      })
-    )?.data;
-  };
+  getLeagueSeasonSessions = async (params: GetLeagueSeasonSessionsParams) =>
+    await this._getData("data/league/season_sessions", {
+      league_id: params.leagueId,
+      season_id: params.seasonId,
+      results_only: params.resultsOnly,
+    });
 }

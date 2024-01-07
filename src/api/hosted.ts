@@ -1,5 +1,4 @@
 import { API } from "./api";
-import { getData } from "../helpers";
 import type {
   GetHostedCombinedSessionsParams,
   HostedCombinedSessions,
@@ -21,15 +20,12 @@ export class HostedAPI extends API {
   getHostedCombinedSessions = async (
     params?: GetHostedCombinedSessionsParams
   ) => {
-    return (
-      await getData<HostedCombinedSessions>(
-        this.fetchCookie,
-        "data/hosted/combined_sessions",
-        {
-          package_id: params?.packageId,
-        }
-      )
-    )?.data;
+    return await this._getData<HostedCombinedSessions>(
+      "data/hosted/combined_sessions",
+      {
+        package_id: params?.packageId,
+      }
+    );
   };
   /**
    *
@@ -40,8 +36,6 @@ export class HostedAPI extends API {
    * @returns
    */
   getHostedSessions = async () => {
-    return (
-      await getData<HostedSessions>(this.fetchCookie, "data/hosted/sessions")
-    )?.data;
+    return await this._getData<HostedSessions>("data/hosted/sessions");
   };
 }

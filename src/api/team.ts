@@ -1,5 +1,4 @@
 import { API } from "./api";
-import { getData } from "../helpers";
 import { GetTeamDataParams } from "../types/team";
 
 export class TeamAPI extends API {
@@ -12,7 +11,7 @@ export class TeamAPI extends API {
    * @returns
    */
   getTeamData = async (params: GetTeamDataParams) =>
-    await getData(this.fetchCookie, "data/team/get", {
+    await this._getData("data/team/get", {
       team_id: params.teamId,
       include_licenses: params.includeLicenses,
     });

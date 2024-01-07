@@ -1,5 +1,4 @@
 import { API } from "./api";
-import { getData } from "../helpers";
 import { Track, TrackAssets } from "../types";
 
 export class TrackAPI extends API {
@@ -10,11 +9,10 @@ export class TrackAPI extends API {
    * @returns
    */
   getTrackAssets = async () =>
-    await getData<TrackAssets>(this.fetchCookie, "data/track/assets");
+    await this._getData<TrackAssets>("data/track/assets");
   /**
    *
    * @returns
    */
-  getTracks = async () =>
-    await getData<Track[]>(this.fetchCookie, "data/track/get");
+  getTracks = async () => await this._getData<Track[]>("data/track/get");
 }

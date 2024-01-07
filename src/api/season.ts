@@ -1,5 +1,4 @@
 import { API } from "./api";
-import { getData } from "../helpers";
 import {
   GetSeasonListParams,
   GetSeasonRaceGuideParams,
@@ -16,7 +15,7 @@ export class SeasonAPI extends API {
    * @returns
    */
   getSeasonList = async (params: GetSeasonListParams) =>
-    await getData(this.fetchCookie, "data/season/list", {
+    await this._getData("data/season/list", {
       season_year: params.seasonYear,
       season_quarter: params.seasonQuarter,
     });
@@ -29,7 +28,7 @@ export class SeasonAPI extends API {
    * @returns
    */
   getSeasonRaceGuide = async (params: GetSeasonRaceGuideParams) =>
-    await getData(this.fetchCookie, "data/season/race_guide", {
+    await this._getData("data/season/race_guide", {
       from: params?.from,
       include_end_after_from: params?.includeEndAfterFrom,
     });
@@ -43,7 +42,7 @@ export class SeasonAPI extends API {
   getSpectatorSubsessionIds = async (
     params?: GetSpectatorSubsessionIdsParams
   ) =>
-    await getData(this.fetchCookie, "data/season/spectator_subsession_ids", {
+    await this._getData("data/season/spectator_subsession_ids", {
       event_types: params?.eventTypes,
     });
 }

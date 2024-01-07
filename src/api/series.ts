@@ -1,5 +1,4 @@
 import { API } from "./api";
-import { getData } from "../helpers";
 import {
   GetSeriesPastSeasonsParams,
   GetSeriesSeasonsParams,
@@ -17,13 +16,13 @@ export class SeriesAPI extends API {
    * @returns
    */
   getSeriesAssets = async () =>
-    await getData<SeriesAssets>(this.fetchCookie, "data/series/assets");
+    await this._getData<SeriesAssets>("data/series/assets");
   /**
    *
    * @returns
    */
   getSeriesData = async () =>
-    await getData<SeriesData[]>(this.fetchCookie, "data/series/get");
+    await this._getData<SeriesData[]>("data/series/get");
   /**
    *
    * *Get all seasons for a series. Filter list by official:true for seasons with standings.*
@@ -34,7 +33,7 @@ export class SeriesAPI extends API {
    * @returns
    */
   getSeriesPastSeasons = async (params: GetSeriesPastSeasonsParams) =>
-    await getData(this.fetchCookie, "data/series/past_seasons", {
+    await this._getData("data/series/past_seasons", {
       series_id: params.seriesId,
     });
   /**
@@ -45,7 +44,7 @@ export class SeriesAPI extends API {
    * @returns
    */
   getSeriesSeasons = async (params?: GetSeriesSeasonsParams) =>
-    await getData<SeriesSeason[]>(this.fetchCookie, "data/series/seasons", {
+    await this._getData<SeriesSeason[]>("data/series/seasons", {
       include_series: params?.includeSeries,
     });
   /**
@@ -55,5 +54,5 @@ export class SeriesAPI extends API {
    * @returns
    */
   getSeriesStats = async () =>
-    await getData<SeriesStat[]>(this.fetchCookie, "data/series/stats_series");
+    await this._getData<SeriesStat[]>("data/series/stats_series");
 }
