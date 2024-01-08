@@ -20,7 +20,8 @@ export interface FetchCookie {
 
 export interface Options {
   logger?: boolean;
-  throttleToRateLimit?: boolean;
+  manageRateLimit?: boolean;
+  rateLimitPadding?: number;
 }
 
 export interface RateLimit {

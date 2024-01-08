@@ -21,27 +21,36 @@ export class API {
     endpoint: string,
     params?: Parameters | Record<string, unknown>
   ): Promise<Data | undefined> => {
-    const parsedParams = `[${Object.entries(params ?? {})
-      .map(([key, value]) => `${key}=${value}`)
-      .join(", ")}]`;
-    logger(`Getting data from '${endpoint}'`, parsedParams);
+    try {
+      const canProceed = this.rateLimiter.checkRateLimit();
 
-    const url = this._getUrl(endpoint, params);
-    const response = await this.fetchCookie(url, {
-      cache: "no-cache",
-      credentials: "include",
-    });
-    this.rateLimiter.updateRateLimit(response);
+      if (!canProceed) {
+        await this.rateLimiter.waitForReset();
+      }
 
-    const data = await response.json();
+      const parsedParams = `[${Object.entries(params ?? {})
+        .map(([key, value]) => `${key}=${value}`)
+        .join(", ")}]`;
+      logger(`Getting data from '${endpoint}'`, parsedParams);
 
-    if (data?.link) {
-      const linkData = await this._getLinkData<Data>(data?.link);
+      const url = this._getUrl(endpoint, params);
+      const response = await this.fetchCookie(url, {
+        cache: "no-cache",
+        credentials: "include",
+      });
+      this.rateLimiter.updateRateLimit(response);
 
-      return linkData;
+      const data = await response.json();
+
+      if (data?.link) {
+        return await this._getLinkData<Data>(data?.link);
+      }
+
+      return data as Data | undefined;
+    } catch (error) {
+      logger(`Error getting data from '${endpoint}'`);
+      return undefined;
     }
-
-    return data as Data | undefined;
   };
 
   _getLinkData = async <Data>(

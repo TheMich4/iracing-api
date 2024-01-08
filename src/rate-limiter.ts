@@ -1,18 +1,23 @@
+import { DEFAULT_RATE_LIMIT_PADDING } from "./consts";
+import { logger } from "./logger";
 import { type Options, type RateLimit } from "./types";
 
 export class RateLimiter {
   static instance: RateLimiter;
 
-  isActive = false;
-  rateLimit: RateLimit | undefined;
+  isActive: boolean = false;
+  rateLimit: RateLimit | undefined = undefined;
+  limitPadding: number = DEFAULT_RATE_LIMIT_PADDING;
 
   constructor(options: Options) {
     if (RateLimiter.instance) {
       return RateLimiter.instance;
     }
 
-    if (options.throttleToRateLimit) {
+    if (options.manageRateLimit) {
       this.isActive = true;
+      this.limitPadding =
+        options.rateLimitPadding ?? DEFAULT_RATE_LIMIT_PADDING;
     }
 
     RateLimiter.instance = this;
@@ -22,6 +27,31 @@ export class RateLimiter {
     if (!this.isActive) return;
 
     this.rateLimit = this._getRateLimit(response);
+  };
+
+  checkRateLimit = (): boolean => {
+    if (!this.isActive) return true;
+    if (!this.rateLimit) return true;
+    if (this.rateLimit.remaining > this.limitPadding) return true;
+    if (this.rateLimit.reset < new Date()) {
+      this.rateLimit = undefined;
+      return true;
+    }
+
+    return false;
+  };
+
+  waitForReset = async () => {
+    if (!this.isActive || !this.rateLimit) return;
+
+    const timeToReset =
+      this.rateLimit.reset.getTime() - new Date().getTime() + 1000;
+
+    logger(
+      `Rate limit exceeded. Waiting for reset at ${this.rateLimit.reset.toLocaleString()}...`
+    );
+
+    await new Promise((resolve) => setTimeout(resolve, timeToReset));
   };
 
   _getRateLimit = (response: Response): RateLimit => {
