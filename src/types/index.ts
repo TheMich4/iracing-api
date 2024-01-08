@@ -26,5 +26,5 @@ export interface Options {
 export interface RateLimit {
   limit: number;
   remaining: number;
-  reset: number;
+  reset: Date;
 }
