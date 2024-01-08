@@ -113,7 +113,7 @@ export const YearlyStatSchema = z.intersection(
   StatSchema,
   z.object({
     year: z.number(),
-  })
+  }),
 );
 export type YearlyStat = z.infer<typeof StatSchema>;
 

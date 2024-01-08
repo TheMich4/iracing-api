@@ -30,7 +30,7 @@ export class LeagueAPI extends API {
       {
         mine: params?.mine,
         package_id: params?.packageId,
-      }
+      },
     );
 
   /**

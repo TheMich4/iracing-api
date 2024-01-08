@@ -48,7 +48,7 @@ export class RateLimiter {
       this.rateLimit.reset.getTime() - new Date().getTime() + 1000;
 
     logger(
-      `Rate limit exceeded. Waiting for reset at ${this.rateLimit.reset.toLocaleString()}...`
+      `Rate limit exceeded. Waiting for reset at ${this.rateLimit.reset.toLocaleString()}...`,
     );
 
     await new Promise((resolve) => setTimeout(resolve, timeToReset));
@@ -58,7 +58,7 @@ export class RateLimiter {
     const limit = +response.headers.get("x-ratelimit-limit")! ?? 0;
     const remaining = +response.headers.get("x-ratelimit-remaining")! ?? 0;
     const reset = new Date(
-      (+response.headers.get("x-ratelimit-reset")! ?? 0) * 1000
+      (+response.headers.get("x-ratelimit-reset")! ?? 0) * 1000,
     );
 
     return { limit, remaining, reset };

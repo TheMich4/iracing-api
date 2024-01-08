@@ -60,7 +60,7 @@ export class MemberAPI extends API {
    */
   getMemberParticipationCredits = async () =>
     await this._getData<MemberParticipationCredit[]>(
-      "data/member/participation_credits"
+      "data/member/participation_credits",
     );
   /**
    *

@@ -182,7 +182,7 @@ export type Schedule = z.infer<typeof ScheduleSchema>;
 
 export const SeriesHeatSesInfoSchema = z.intersection(
   HeatSesInfoSchema,
-  z.object({ description: z.string() })
+  z.object({ description: z.string() }),
 );
 export type SeriesHeatSesInfo = z.infer<typeof SeriesHeatSesInfoSchema>;
 

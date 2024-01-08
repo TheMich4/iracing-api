@@ -19,7 +19,7 @@ export class API {
 
   _getData = async <Data = Record<string, unknown>, Parameters = void>(
     endpoint: string,
-    params?: Parameters | Record<string, unknown>
+    params?: Parameters | Record<string, unknown>,
   ): Promise<Data | undefined> => {
     try {
       const canProceed = this.rateLimiter.checkRateLimit();
@@ -54,7 +54,7 @@ export class API {
   };
 
   _getLinkData = async <Data>(
-    link: string | undefined
+    link: string | undefined,
   ): Promise<Data | undefined> => {
     if (!link) return undefined;
 
@@ -68,7 +68,7 @@ export class API {
 
   _getUrl = <Parameters = Record<string, unknown>>(
     endpoint: string,
-    params?: Parameters
+    params?: Parameters,
   ) => {
     // Filter out empty values
     const searchParams =

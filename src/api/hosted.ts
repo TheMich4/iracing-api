@@ -18,13 +18,13 @@ export class HostedAPI extends API {
    * @returns
    */
   getHostedCombinedSessions = async (
-    params?: GetHostedCombinedSessionsParams
+    params?: GetHostedCombinedSessionsParams,
   ) => {
     return await this._getData<HostedCombinedSessions>(
       "data/hosted/combined_sessions",
       {
         package_id: params?.packageId,
-      }
+      },
     );
   };
   /**

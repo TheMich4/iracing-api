@@ -97,7 +97,7 @@ export class ResultsAPI extends API {
         official_only: params?.officialOnly,
         event_types: params?.eventTypes,
         category_ids: params?.categoryIds,
-      }
+      },
     );
 
     if (!responseData?.data?.success || !responseData?.data?.chunk_info) {
@@ -113,7 +113,7 @@ export class ResultsAPI extends API {
     const chunksData = await Promise.all(
       chunk_file_names.map(async (chunkFileName: string) => {
         return await this._getLinkData(`${base_download_url}${chunkFileName}`);
-      })
+      }),
     );
 
     return chunksData.flatMap((chunk) => chunk);

@@ -138,7 +138,7 @@ export class StatsAPI extends API {
    * @returns
    */
   getSupersessionSeasonStandings = async (
-    params: GetSupersessionSeasonStandingsParams
+    params: GetSupersessionSeasonStandingsParams,
   ) =>
     await this._getData("data/stats/season_supersession_standings", {
       season_id: params.seasonId,
@@ -174,7 +174,7 @@ export class StatsAPI extends API {
    * @returns
    */
   getTimeTrialSeasonStandings = async (
-    params: GetTimeTrialSeasonStandingsParams
+    params: GetTimeTrialSeasonStandingsParams,
   ) =>
     await this._getData("data/stats/season_tt_results", {
       season_id: params.seasonId,

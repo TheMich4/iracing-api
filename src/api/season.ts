@@ -40,7 +40,7 @@ export class SeasonAPI extends API {
    * @returns
    */
   getSpectatorSubsessionIds = async (
-    params?: GetSpectatorSubsessionIdsParams
+    params?: GetSpectatorSubsessionIdsParams,
   ) =>
     await this._getData("data/season/spectator_subsession_ids", {
       event_types: params?.eventTypes,
