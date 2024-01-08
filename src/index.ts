@@ -17,6 +17,7 @@ import { StatsAPI } from "./api/stats.js";
 import { TeamAPI } from "./api/team.js";
 import { TimeAttackAPI } from "./api/time-attack.js";
 import { TrackAPI } from "./api/track.js";
+import { createLogger, logger } from "./logger.js";
 
 export * from "./consts.js";
 export * from "./helpers.js";
@@ -66,6 +67,8 @@ export default class IracingAPI {
     this.team = new TeamAPI(this.fetchCookie, this.options);
     this.timeAttack = new TimeAttackAPI(this.fetchCookie, this.options);
     this.track = new TrackAPI(this.fetchCookie, this.options);
+
+    createLogger(this.options);
   }
 
   /**
@@ -89,8 +92,11 @@ export default class IracingAPI {
     });
 
     if (response.status !== 200) {
+      logger("Login failed...");
       return { error: response.statusText ?? "Failed to login to iracing-api" };
     }
+
+    logger("Login successful...");
 
     return await response.json();
   };
