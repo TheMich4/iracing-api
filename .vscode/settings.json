@@ -15,6 +15,7 @@
     "pitroad",
     "Pitstalls",
     "precip",
+    "ratelimit",
     "sess",
     "simsession",
     "subsession",

@@ -1,10 +1,18 @@
-import { Track, TrackAssets } from "../types/track.js";
+import { API } from "./api";
+import { Track, TrackAssets } from "../types";
 
-import { FetchCookie } from "../types.js";
-import { getData } from "../helpers.js";
-
-export const getTrackAssets = async (fetchCookie: FetchCookie) =>
-  await getData<TrackAssets>(fetchCookie, "data/track/assets");
-
-export const getTracks = async (fetchCookie: FetchCookie) =>
-  await getData<Track[]>(fetchCookie, "data/track/get");
+export class TrackAPI extends API {
+  /**
+   *
+   * *Image paths are relative to https://images-static.iracing.com/*
+   *
+   * @returns
+   */
+  getTrackAssets = async () =>
+    await this._getData<TrackAssets>("data/track/assets");
+  /**
+   *
+   * @returns
+   */
+  getTracks = async () => await this._getData<Track[]>("data/track/get");
+}

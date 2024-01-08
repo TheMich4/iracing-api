@@ -161,3 +161,11 @@ export const HostedCombinedSessionsSchema = z.object({
 export type HostedCombinedSessions = z.infer<
   typeof HostedCombinedSessionsSchema
 >;
+
+// Params
+export const GetHostedCombinedSessionsParamsSchema = z.object({
+  packageId: z.number().optional(),
+});
+export type GetHostedCombinedSessionsParams = z.infer<
+  typeof GetHostedCombinedSessionsParamsSchema
+>;

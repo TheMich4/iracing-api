@@ -1,50 +1,58 @@
-import * as z from "zod";
-
+import { API } from "./api";
 import {
+  GetSeriesPastSeasonsParams,
+  GetSeriesSeasonsParams,
   SeriesAssets,
   SeriesData,
   SeriesSeason,
   SeriesStat,
-} from "../types/series.js";
+} from "../types";
 
-import { FetchCookie } from "../types.js";
-import { getData } from "../helpers.js";
-
-export const getSeriesAssets = async (fetchCookie: FetchCookie) =>
-  await getData<SeriesAssets>(fetchCookie, "data/series/assets");
-
-export const getSeriesData = async (fetchCookie: FetchCookie) =>
-  await getData<SeriesData[]>(fetchCookie, "data/series/get");
-
-export const getSeriesPastSeasonsParamsSchema = z.object({
-  seriesId: z.number(),
-});
-export type GetSeriesPastSeasonsParams = z.infer<
-  typeof getSeriesPastSeasonsParamsSchema
->;
-
-export const getSeriesPastSeasons = async (
-  fetchCookie: FetchCookie,
-  params: GetSeriesPastSeasonsParams,
-) =>
-  await getData(fetchCookie, "data/series/past_seasons", {
-    series_id: params.seriesId,
-  });
-
-export const GetSeriesSeasonsParamSchema = z.object({
-  includeSeries: z.boolean().optional(),
-});
-export type GetSeriesSeasonsParams = z.infer<
-  typeof GetSeriesSeasonsParamSchema
->;
-
-export const getSeriesSeasons = async (
-  fetchCookie: FetchCookie,
-  params?: GetSeriesSeasonsParams,
-) =>
-  await getData<SeriesSeason[]>(fetchCookie, "data/series/seasons", {
-    include_series: params?.includeSeries,
-  });
-
-export const getSeriesStats = async (fetchCookie: FetchCookie) =>
-  await getData<SeriesStat[]>(fetchCookie, "data/series/stats_series");
+export class SeriesAPI extends API {
+  // Series API
+  /**
+   * *image paths are relative to https://images-static.iracing.com/*
+   *
+   * @returns
+   */
+  getSeriesAssets = async () =>
+    await this._getData<SeriesAssets>("data/series/assets");
+  /**
+   *
+   * @returns
+   */
+  getSeriesData = async () =>
+    await this._getData<SeriesData[]>("data/series/get");
+  /**
+   *
+   * *Get all seasons for a series. Filter list by official:true for seasons with standings.*
+   *
+   * @param {api.GetSeriesPastSeasonsParams} params
+   * @param {number} params.seriesId
+   *
+   * @returns
+   */
+  getSeriesPastSeasons = async (params: GetSeriesPastSeasonsParams) =>
+    await this._getData("data/series/past_seasons", {
+      series_id: params.seriesId,
+    });
+  /**
+   *
+   * @param {api.GetSeriesSeasonsParams} [params]
+   * @param {boolean} [params.includeSeries]
+   *
+   * @returns
+   */
+  getSeriesSeasons = async (params?: GetSeriesSeasonsParams) =>
+    await this._getData<SeriesSeason[]>("data/series/seasons", {
+      include_series: params?.includeSeries,
+    });
+  /**
+   *
+   * *To get series and seasons for which standings should be available, filter the list by official: true.*
+   *
+   * @returns
+   */
+  getSeriesStats = async () =>
+    await this._getData<SeriesStat[]>("data/series/stats_series");
+}

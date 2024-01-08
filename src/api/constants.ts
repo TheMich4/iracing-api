@@ -1,13 +1,32 @@
-import { Category, Division } from "../types/constants.js";
+import { API } from "./api";
+import { Category, Division } from "../types/index";
 
-import { FetchCookie } from "../types.js";
-import { getData } from "../helpers.js";
-
-export const getCategories = async (fetchCookie: FetchCookie) =>
-  await getData<Category[]>(fetchCookie, "data/constants/categories");
-
-export const getDivisions = async (fetchCookie: FetchCookie) =>
-  await getData<Division[]>(fetchCookie, "data/constants/divisions");
-
-export const getEventTypes = async (fetchCookie: FetchCookie) =>
-  await getData<Event[]>(fetchCookie, "data/constants/event_types");
+export class ConstantsAPI extends API {
+  /**
+   *
+   * **Get list of categories.**
+   *
+   * @returns
+   */
+  getCategories = async () => {
+    return await this._getData<Category[]>("data/constants/categories");
+  };
+  /**
+   *
+   * **Get list of divisions.**
+   *
+   * @returns
+   */
+  getDivisions = async () => {
+    return await this._getData<Division[]>("data/constants/divisions");
+  };
+  /**
+   *
+   * **Get list of event types.**
+   *
+   * @returns
+   */
+  getEventTypes = async () => {
+    return await this._getData<Event[]>("data/constants/event_types");
+  };
+}

@@ -1,75 +1,76 @@
-import * as z from "zod";
+import { API } from "./api";
+import {
+  GetMemberAwardsParams,
+  GetMemberChartDataParams,
+  GetMemberDataParams,
+  GetMemberProfileParams,
+  MemberInfo,
+  MemberParticipationCredit,
+} from "../types";
 
-import { MemberInfo, MemberParticipationCredit } from "../types/member.js";
-
-import { FetchCookie } from "../types.js";
-import { getData } from "../helpers.js";
-
-export const GetMemberAwardsParamsSchema = z.object({
-  customerId: z.number(),
-});
-export type GetMemberAwardsParams = z.infer<typeof GetMemberAwardsParamsSchema>;
-
-export const getMemberAwards = (
-  fetchCookie: FetchCookie,
-  params?: GetMemberAwardsParams,
-) =>
-  getData(fetchCookie, "data/member/awards", { cust_id: params?.customerId });
-
-export const GetMemberChartDataParamsSchema = z.object({
-  customerId: z.number().optional(),
-  categoryId: z.number(),
-  chartType: z.string(),
-});
-export type GetMemberChartDataParams = z.infer<
-  typeof GetMemberChartDataParamsSchema
->;
-
-export const getMemberChartData = (
-  fetchCookie: FetchCookie,
-  params: GetMemberChartDataParams,
-) =>
-  getData(fetchCookie, "data/member/chart_data", {
-    cust_id: params.customerId,
-    category_id: params.categoryId,
-    chart_type: params.chartType,
-  });
-
-export const GetMemberDataParamsSchema = z.object({
-  customerIds: z.array(z.string()),
-  includeLicenses: z.boolean().optional(),
-});
-export type GetMemberDataParams = z.infer<typeof GetMemberDataParamsSchema>;
-
-export const getMemberData = async (
-  fetchCookie: FetchCookie,
-  params: GetMemberDataParams,
-) =>
-  await getData(fetchCookie, "data/member/get", {
-    cust_ids: params.customerIds,
-    include_licenses: params.includeLicenses,
-  });
-
-export const getMemberInfo = async (fetchCookie: FetchCookie) =>
-  await getData<MemberInfo>(fetchCookie, "data/member/info");
-
-export const getMemberParticipationCredits = async (fetchCookie: FetchCookie) =>
-  await getData<MemberParticipationCredit[]>(
-    fetchCookie,
-    "data/member/participation_credits",
-  );
-
-export const GetMemberProfileParamsSchema = z.object({
-  customerId: z.number().optional(),
-});
-export type GetMemberProfileParams = z.infer<
-  typeof GetMemberProfileParamsSchema
->;
-
-export const getMemberProfile = async (
-  fetchCookie: FetchCookie,
-  params?: GetMemberProfileParams,
-) =>
-  await getData(fetchCookie, "data/member/profile", {
-    cust_id: params?.customerId,
-  });
+export class MemberAPI extends API {
+  /**
+   *
+   * @param {GetMemberAwardsParams} [params]
+   * @param {number} params.customerId - Defaults to the authenticated member.
+   *
+   * @returns
+   */
+  getMemberAwards = async (params?: GetMemberAwardsParams) =>
+    this._getData("data/member/awards", {
+      cust_id: params?.customerId,
+    });
+  /**
+   *
+   * @param {GetMemberChartDataParams} params
+   * @param {number} [params.customerId] - Defaults to the authenticated member.
+   * @param {number} params.categoryId - 1 - Oval; 2 - Road; 3 - Dirt oval; 4 - Dirt road.
+   * @param {string} params.chartType - 1 - iRating; 2 - TT Rating; 3 - License/SR.
+   *
+   * @returns
+   */
+  getMemberChartData = async (params: GetMemberChartDataParams) =>
+    this._getData("data/member/chart_data", {
+      cust_id: params.customerId,
+      category_id: params.categoryId,
+      chart_type: params.chartType,
+    });
+  /**
+   *
+   * @param {GetMemberDataParams} params
+   * @param {number[]} params.customerIds - Array of customer IDs.
+   * @param {boolean} [params.includeLicenses]
+   *
+   * @returns
+   */
+  getMemberData = async (params: GetMemberDataParams) =>
+    await this._getData("data/member/get", {
+      cust_ids: params.customerIds,
+      include_licenses: params.includeLicenses,
+    });
+  /**
+   *
+   * @returns
+   */
+  getMemberInfo = async () =>
+    await this._getData<MemberInfo>("data/member/info");
+  /**
+   *
+   * @returns
+   */
+  getMemberParticipationCredits = async () =>
+    await this._getData<MemberParticipationCredit[]>(
+      "data/member/participation_credits",
+    );
+  /**
+   *
+   * @param {GetMemberProfileParams} params
+   * @param {number} [params.customerId] - Defaults to the authenticated member.
+   *
+   * @returns
+   */
+  getMemberProfile = async (params?: GetMemberProfileParams) =>
+    await this._getData("data/member/profile", {
+      cust_id: params?.customerId,
+    });
+}
