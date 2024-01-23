@@ -101,7 +101,7 @@ export class ResultsAPI extends API {
     );
 
     if (!responseData?.data?.success || !responseData?.data?.chunk_info) {
-      return undefined;
+      return responseData;
     }
 
     const {
