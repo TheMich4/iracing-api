@@ -143,7 +143,7 @@ export class LeagueAPI extends API {
      * @param {GetLeagueSeasonSessionsParams} params
      * @param {number} params.leagueId - League ID.
      * @param {number} params.seasonId - Season ID.
-     * @param {number} [params.resultsOnly] - If true include only sessions for which results are available.
+     * @param {number} [params.resultsOnly] - If true, include only sessions for which results are available.
      *
      * @returns
      */
