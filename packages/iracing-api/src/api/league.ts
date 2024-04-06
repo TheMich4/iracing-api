@@ -83,7 +83,7 @@ export class LeagueAPI extends API {
 
     /**
      *
-     * @param {GetLeagueMembershipParams} [params
+     * @param {GetLeagueMembershipParams} [params]
      * @param {number} params.leagueId - League ID.
      * @param {number} [params.seasonId] - If included and the season is using custom points (points_system_id:2) then the custom points option is included in the returned list. Otherwise the custom points option is not returned.
      *
