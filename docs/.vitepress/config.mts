@@ -32,6 +32,7 @@ export default defineConfig({
           { text: 'Results', link: '/api/results' },
           { text: 'Season', link: '/api/season' },
           { text: 'Series', link: '/api/series' },
+          { text: 'Stats', link: '/api/stats' },
           { text: 'Team', link: '/api/team' },
           { text: 'Time Attack', link: '/api/time-attack' },
           { text: 'Track', link: '/api/track' },
