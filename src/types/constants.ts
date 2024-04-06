@@ -1,19 +1,19 @@
-import * as z from "zod";
+import * as z from 'zod'
 
-export const CategorySchema = z.object({
-  label: z.string(),
-  value: z.number(),
-});
-export type Category = z.infer<typeof CategorySchema>;
+export const ConstantCategorySchema = z.object({
+    label: z.string(),
+    value: z.number(),
+})
+export type Category = z.infer<typeof ConstantCategorySchema>
 
 export const DivisionSchema = z.object({
-  label: z.string(),
-  value: z.number(),
-});
-export type Division = z.infer<typeof DivisionSchema>;
+    label: z.string(),
+    value: z.number(),
+})
+export type Division = z.infer<typeof DivisionSchema>
 
 export const EventSchema = z.object({
-  label: z.string(),
-  value: z.number(),
-});
-export type Event = z.infer<typeof EventSchema>;
+    label: z.string(),
+    value: z.number(),
+})
+export type Event = z.infer<typeof EventSchema>

@@ -20,22 +20,22 @@ bun i iracing-api
 // First you have to login to iracing using your credentials in order to be able to use the API.
 
 ```typescript
-import IracingAPI from "iracing-api";
+import IracingAPI from 'iracing-api'
 
-const irUser = "FOO@gmail.com";
-const irPass = "BAR";
+const irUser = 'FOO@gmail.com'
+const irPass = 'BAR'
 
 const main = async () => {
-  const ir = new IracingAPI();
+    const ir = new IracingAPI()
 
-  console.log(cars);
-  await ir.login(irUser, irPass);
+    console.log(cars)
+    await ir.login(irUser, irPass)
 
-  // Now you can use any endpoint, e.g. getCars
-  const cars = await ir.car.getCars();
-};
+    // Now you can use any endpoint, e.g. getCars
+    const cars = await ir.car.getCars()
+}
 
-main().then(() => "Done");
+main().then(() => 'Done')
 ```
 
 ### Note that since this is a work in progress, the API is not stable and may change in the future.

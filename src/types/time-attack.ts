@@ -1,10 +1,10 @@
-import { z } from "zod";
+import { z } from 'zod'
 
 // Params
 //
 export const GetTimeAttackSeasonParamsSchema = z.object({
-  seasonId: z.number(),
-});
+    seasonId: z.number(),
+})
 export type GetTimeAttackSeasonParams = z.infer<
-  typeof GetTimeAttackSeasonParamsSchema
->;
+    typeof GetTimeAttackSeasonParamsSchema
+>

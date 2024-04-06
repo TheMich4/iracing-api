@@ -1,31 +1,34 @@
-export * from "./car.js";
-export * from "./carClass.js";
-export * from "./common.js";
-export * from "./constants.js";
-export * from "./hosted.js";
-export * from "./league.js";
-export * from "./lookup.js";
-export * from "./member.js";
-export * from "./results.js";
-export * from "./season.js";
-export * from "./series.js";
-export * from "./stats.js";
-export * from "./team.js";
-export * from "./time-attack.js";
-export * from "./track.js";
+export * from './car.js'
+export * from './carClass.js'
+export * from './common.js'
+export * from './constants.js'
+export * from './hosted.js'
+export * from './league.js'
+export * from './lookup.js'
+export * from './member.js'
+export * from './results.js'
+export * from './season.js'
+export * from './series.js'
+export * from './stats.js'
+export * from './team.js'
+export * from './time-attack.js'
+export * from './track.js'
 
 export interface FetchCookie {
-  (input: RequestInfo | URL, init?: RequestInit | undefined): Promise<Response>;
+    (
+        input: RequestInfo | URL,
+        init?: RequestInit | undefined
+    ): Promise<Response>
 }
 
 export interface Options {
-  logger?: boolean;
-  manageRateLimit?: boolean;
-  rateLimitPadding?: number;
+    logger?: boolean
+    manageRateLimit?: boolean
+    rateLimitPadding?: number
 }
 
 export interface RateLimit {
-  limit: number;
-  remaining: number;
-  reset: Date;
+    limit: number
+    remaining: number
+    reset: Date
 }
