@@ -1,11 +1,5 @@
 # iracing-api
 
-## This is a work in progress!
-
-This is a work in progress. The goal of this project is to create a javascript wrapper around official iRacing API that will also provide all typings. The API is documented [here](https://forums.iracing.com/discussion/15068/general-availability-of-data-api/p1).
-
-### _Full docs coming soon. You can look into the source code in the mean time_
-
 ## Installation
 
 ```bash
@@ -16,7 +10,6 @@ bun i iracing-api
 ```
 
 ## Basic Usage
-
 
 ```typescript
 import IracingAPI from 'iracing-api'
@@ -39,4 +32,3 @@ const main = async () => {
 main().then(() => 'Done')
 ```
 
-### Note that since this is a work in progress, the API is not stable and may change in the future.
