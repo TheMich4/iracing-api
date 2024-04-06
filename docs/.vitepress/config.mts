@@ -17,6 +17,25 @@ export default defineConfig({
         items: [
           { text: 'Getting started', link: '/getting-started' },
         ]
+      },
+      {
+        text: 'API',
+        items: [
+          { text: 'How to use', link: '/api/how-to-use' },
+          { text: 'Car', link: '/api/car' },
+          { text: 'Car Class', link: '/api/car-class' },
+          { text: 'Constants', link: '/api/constants' },
+          { text: 'Hosted', link: '/api/hosted' },
+          { text: 'League', link: '/api/league' },
+          { text: 'Lookup', link: '/api/lookup' },
+          { text: 'Member', link: '/api/member' },
+          { text: 'Results', link: '/api/results' },
+          { text: 'Season', link: '/api/season' },
+          { text: 'Series', link: '/api/series' },
+          { text: 'Team', link: '/api/team' },
+          { text: 'Time Attack', link: '/api/time-attack' },
+          { text: 'Track', link: '/api/track' },
+        ]
       }
     ],
 
