@@ -11,11 +11,11 @@ export class CarAPI extends API {
      * @returns
      */
     getCarAssets = async () => {
-        return await this._getData('data/car/assets/get')
+        return await this._getData('data/car/assets')
     }
     /**
      *
-     * **Get list of cars.**
+     * **Get a list of cars.**
      *
      * @returns
      */
