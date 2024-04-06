@@ -1,4 +1,9 @@
 {
   "name": "iracing-api-root",
-  "private": true
+  "private": true,
+  "scripts": {
+    "docs:dev": "pnpm --filter iracing-api-docs dev",
+    "docs:build": "pnpm --filter iracing-api-docs build",
+    "docs:serve": "pnpm --filter iracing-api-docs serve"
+  }
 }
