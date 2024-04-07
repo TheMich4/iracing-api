@@ -60,7 +60,7 @@ export class ResultsAPI extends API {
         await this._getData('data/results/lap_data', {
             subsession_id: params.subsessionId,
             simsession_number: params.simsessionNumber,
-            customer_id: params.customerId,
+            cust_id: params.customerId,
             team_id: params.teamId,
         })
     /**
