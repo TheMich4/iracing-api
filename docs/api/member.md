@@ -44,7 +44,7 @@ Available parameters:
 Get the member data.
 
 ```ts
-const memberData = await ir.member.getMemberData();
+const memberData = await ir.member.getMemberData(params);
 ```
 
 Available parameters:
@@ -69,7 +69,7 @@ const memberInfo = await ir.member.getMemberInfo();
 Get the participation credits.
 
 * Always the authenticated member.
-* 
+
 ```ts
 const participationCredits = await ir.member.getParticipationCredits();
 ```
@@ -79,11 +79,13 @@ const participationCredits = await ir.member.getParticipationCredits();
 
 Get the member profile.
 
+
+```ts
+const memberProfile = await ir.member.getMemberProfile(params);
+```
+
 Available parameters:
 * `customerId?: number` - The customer ID of the member to get the profile for.
   * Defaults to the authenticated member.
-
-```ts
-const memberProfile = await ir.member.getMemberProfile();
-```
+  
 <sub>https://members-ng.iracing.com/data/member/profile</sub>
