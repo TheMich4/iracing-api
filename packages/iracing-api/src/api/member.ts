@@ -25,7 +25,7 @@ export class MemberAPI extends API {
      * @param {GetMemberChartDataParams} params
      * @param {number} [params.customerId] - Defaults to the authenticated member.
      * @param {number} params.categoryId - 1 - Oval; 2 - Road; 3 - Dirt oval; 4 - Dirt road.
-     * @param {string} params.chartType - 1 - iRating; 2 - TT Rating; 3 - License/SR.
+     * @param {number} params.chartType - 1 - iRating; 2 - TT Rating; 3 - License/SR.
      *
      * @returns
      */

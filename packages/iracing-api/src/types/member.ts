@@ -122,7 +122,7 @@ export type GetMemberAwardsParams = z.infer<typeof GetMemberAwardsParamsSchema>
 export const GetMemberChartDataParamsSchema = z.object({
     customerId: z.number().optional(),
     categoryId: z.number(),
-    chartType: z.string(),
+    chartType: z.number(),
 })
 export type GetMemberChartDataParams = z.infer<
     typeof GetMemberChartDataParamsSchema
