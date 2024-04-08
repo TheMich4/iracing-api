@@ -11,15 +11,15 @@ hero:
       text: Get Started
       link: /getting-started
     - theme: alt
-      text: View on HitHub
+      text: View on GitHub
       link: https://github.com/themich4/iracing-api
 
-#features:
-#  - title: Feature A
-#    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-#  - title: Feature B
-#    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-#  - title: Feature C
-#    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+features:
+  - title: Type safe
+    details: Responses are typed using TypeScript.
+  - title: Handle rate limits
+    details: Rate limits are handled automatically, so you don't have to worry about them.
+  - title: Easy to use
+    details: The API is designed to be easy to use and understand.
 ---
 
