@@ -7,7 +7,7 @@ All methods in the `Team` API are available through the `team` property of the `
 Get the team data.
 
 ```ts
-const teamData = await ir.team.getTeamData();
+const teamData = await ir.team.getTeamData(params);
 ```
 
 Available parameters:

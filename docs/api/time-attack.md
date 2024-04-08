@@ -9,7 +9,7 @@ Get the time attack season results.
 * Results for the authenticated member, if any.
 
 ```ts
-const seasonResults = await ir.timeAttack.getTimeAttackSeasonResults();
+const seasonResults = await ir.timeAttack.getTimeAttackSeasonResults(params);
 ```
 
 Available parameters:
