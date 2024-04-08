@@ -1,11 +1,11 @@
 import { API } from './api'
-import { GetTimeAttackSeasonParams } from '../types/time-attack'
+import { GetTimeAttackSeasonParams } from '../types'
 
 export class TimeAttackAPI extends API {
     /**
      *
      * @param {GetTimeAttackSeasonParams} params
-     * @param {number} seasonId
+     * @param {number} params.seasonId
      *
      * @returns
      */
