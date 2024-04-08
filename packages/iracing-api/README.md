@@ -1,5 +1,7 @@
 # iracing-api
 
+[Full docs](https://iracing-api.dyczkowski.dev/)
+
 ## Installation
 
 ```bash
@@ -25,10 +27,9 @@ const main = async () => {
 
     // Now you can use any endpoint, e.g. getCars
     const cars = await ir.car.getCars()
-    
+
     console.log(cars)
 }
 
 main().then(() => 'Done')
 ```
-
