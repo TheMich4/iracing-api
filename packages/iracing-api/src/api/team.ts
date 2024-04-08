@@ -1,10 +1,10 @@
 import { API } from './api'
-import { GetTeamDataParams } from '../types/team'
+import { GetTeamDataParams } from '../types'
 
 export class TeamAPI extends API {
     /**
      *
-     * @param {api.GetTeamDataParams} params
+     * @param {GetTeamDataParams} params
      * @param {number} params.teamId
      * @param {boolean} [params.includeLicenses] - For faster responses, only request when necessary.
      *
