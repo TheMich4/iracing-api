@@ -27,7 +27,7 @@ export class SeriesAPI extends API {
      *
      * *Get all seasons for a series. Filter list by official:true for seasons with standings.*
      *
-     * @param {api.GetSeriesPastSeasonsParams} params
+     * @param {GetSeriesPastSeasonsParams} params
      * @param {number} params.seriesId
      *
      * @returns
@@ -38,7 +38,7 @@ export class SeriesAPI extends API {
         })
     /**
      *
-     * @param {api.GetSeriesSeasonsParams} [params]
+     * @param {GetSeriesSeasonsParams} [params]
      * @param {boolean} [params.includeSeries]
      *
      * @returns
