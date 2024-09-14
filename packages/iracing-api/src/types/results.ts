@@ -31,3 +31,9 @@ export const GetResultsLapDataParamsSchema = z
 export type GetResultsLapDataParams = z.infer<
     typeof GetResultsLapDataParamsSchema
 >
+export const GetResultsLapDataOptionsSchema = z.object({
+    getAllChunks: z.boolean().optional(),
+})
+export type GetResultsLapDataOptions = z.infer<
+    typeof GetResultsLapDataOptionsSchema
+>

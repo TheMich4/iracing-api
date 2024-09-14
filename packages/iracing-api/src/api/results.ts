@@ -3,6 +3,7 @@ import {
     GetResultParams,
     GetResultsEventLogParams,
     GetResultsLapChartDataParams,
+    GetResultsLapDataOptions,
     GetResultsLapDataParams,
 } from '../types/results'
 
@@ -54,15 +55,37 @@ export class ResultsAPI extends API {
      * @param {number} [params.customerId] - Required if the subsession was a single-driver event. Optional for team events. If omitted for a team event then the laps driven by all the team's drivers will be included.
      * @param {number} [params.teamId] - Required if the subsession was a team event.
      *
+     * @param {GetResultsLapDataOptions} [options]
+     * @param {boolean} [options.getAllChunks] - If true, all chunks will be downloaded and returned.
+     *
      * @returns
      */
-    getResultsLapData = async (params: GetResultsLapDataParams) =>
-        await this._getData('data/results/lap_data', {
+    getResultsLapData = async (
+        params: GetResultsLapDataParams,
+        options?: GetResultsLapDataOptions
+    ) => {
+        const data = await this._getData<any>('data/results/lap_data', {
             subsession_id: params.subsessionId,
             simsession_number: params.simsessionNumber,
             cust_id: params.customerId,
             team_id: params.teamId,
         })
+
+        if (!options?.getAllChunks) return data
+
+        const chunkData = await Promise.all(
+            data?.chunkInfo.chunkFileNames.map((chunkFileName: string) => {
+                return this._getLinkData(
+                    `${data?.chunkInfo.baseDownloadUrl}${chunkFileName}`
+                )
+            })
+        )
+
+        return {
+            ...data,
+            lapData: chunkData.flatMap((chunk) => chunk),
+        }
+    }
     /**
      *
      * @param params
