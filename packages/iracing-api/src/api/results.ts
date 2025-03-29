@@ -1,6 +1,7 @@
 import { API } from './api'
 import {
     GetResultParams,
+    GetResultResponse,
     GetResultsEventLogParams,
     GetResultsLapChartDataParams,
     GetResultsLapDataOptions,
@@ -14,10 +15,12 @@ export class ResultsAPI extends API {
      * @param {number} params.subsessionId
      * @param {number} [params.includeLicenses]
      *
-     * @returns
+     * @returns {Promise<GetResultResponse | undefined>} The race result data or undefined if there was an error
      */
-    getResult = async (params: GetResultParams) =>
-        await this._getData('data/results/get', {
+    getResult = async (
+        params: GetResultParams
+    ): Promise<GetResultResponse | undefined> =>
+        await this._getData<GetResultResponse>('data/results/get', {
             subsession_id: params.subsessionId,
             include_licenses: params.includeLicenses,
         })
