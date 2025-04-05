@@ -18,7 +18,6 @@ import { TeamAPI } from './api/team.js'
 import { TimeAttackAPI } from './api/time-attack.js'
 import { TrackAPI } from './api/track.js'
 import { createLogger, logger } from './logger.js'
-import { API } from './api/api.js'
 
 export * from './consts.js'
 export * from './helpers.js'
@@ -44,7 +43,6 @@ export default class IracingAPI {
     team: TeamAPI
     timeAttack: TimeAttackAPI
     track: TrackAPI
-    private _api: API
 
     /**
      *
@@ -54,8 +52,6 @@ export default class IracingAPI {
     constructor(options?: Options) {
         this.fetchCookie = makeFetchCookie(fetch)
         this.options = options ?? DEFAULT_OPTIONS
-
-        this._api = new API(this.fetchCookie, this.options)
 
         this.car = new CarAPI(this.fetchCookie, this.options)
         this.carClass = new CarClassAPI(this.fetchCookie, this.options)
