@@ -4,6 +4,7 @@ import {
     GetSeasonListResponse,
     GetSeasonRaceGuideParams,
     GetSeasonRaceGuideResponse,
+    GetSpectatorSubsessionIdsDetailParams,
     GetSpectatorSubsessionIdsParams,
     GetSpectatorSubsessionIdsResponse,
 } from '../types'
@@ -60,4 +61,20 @@ export class SeasonAPI extends API {
                 event_types: params?.eventTypes,
             }
         )
+    /**
+     * Get detailed information about subsession IDs that are available for spectating.
+     *
+     * @param {GetSpectatorSubsessionIdsDetailParams} [params] - Optional parameters to filter by event type and season.
+     * @param {number[]} [params.eventTypes] - Array of event type IDs to include. Defaults to all.
+     * @param {number[]} [params.seasonIds] - Array of season IDs to include. Defaults to all.
+     *
+     * @returns A promise resolving to the detailed list of spectator subsession IDs, or undefined on error.
+     */
+    getSpectatorSubsessionIdsDetail = async (
+        params?: GetSpectatorSubsessionIdsDetailParams
+    ) =>
+        await this._getData('data/season/spectator_subsessionids_detail', {
+            event_types: params?.eventTypes,
+            season_ids: params?.seasonIds,
+        })
 }

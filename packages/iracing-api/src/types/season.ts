@@ -20,6 +20,14 @@ export type GetSpectatorSubsessionIdsParams = z.infer<
     typeof GetSpectatorSubsessionIdsParamsSchema
 >
 
+export const GetSpectatorSubsessionIdsDetailParamsSchema = z.object({
+    eventTypes: z.array(z.number()).optional(),
+    seasonIds: z.array(z.number()).optional(),
+})
+export type GetSpectatorSubsessionIdsDetailParams = z.infer<
+    typeof GetSpectatorSubsessionIdsDetailParamsSchema
+>
+
 // Response
 export const SeasonListEntrySchema = z.object({
     seasonId: z.number(),

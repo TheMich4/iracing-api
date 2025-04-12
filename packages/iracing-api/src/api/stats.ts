@@ -11,6 +11,7 @@ import {
     GetQualifySeasonResultsParams,
     GetSupersessionSeasonStandingsParams,
     GetTeamSeasonStandingsParams,
+    GetTimeTrialSeasonResultsParams,
     GetTimeTrialSeasonStandingsParams,
     GetWorldRecordsParams,
     MemberBests,
@@ -182,7 +183,7 @@ export class StatsAPI extends API {
     /**
      * Get the time trial results for a specific season.
      *
-     * @param {GetTimeTrialSeasonStandingsParams} params - Parameters for the request.
+     * @param {GetTimeTrialSeasonResultsParams} params - Parameters for the request.
      * @param {number} params.seasonId - The ID of the season.
      * @param {number} params.carClassId - The ID of the car class.
      * @param {number} [params.clubId=-1] - Filter by club ID. Defaults to all.
@@ -191,8 +192,8 @@ export class StatsAPI extends API {
      *
      * @returns A promise resolving to the time trial results data, or undefined on error.
      */
-    getTimeTrialSeasonStandings = async (
-        params: GetTimeTrialSeasonStandingsParams
+    getTimeTrialSeasonResults = async (
+        params: GetTimeTrialSeasonResultsParams
     ) =>
         await this._getData('data/stats/season_tt_results', {
             season_id: params.seasonId,
@@ -200,6 +201,28 @@ export class StatsAPI extends API {
             race_week_num: params.raceWeekNumber,
             club_id: params.clubId,
             division: params.division,
+        })
+    /**
+     * Get the time trial season standings.
+     *
+     * @param {GetTimeTrialSeasonStandingsParams} params - Parameters for the request.
+     * @param {number} params.seasonId - The season ID to get the standings for.
+     * @param {number} params.carClassId - The car class ID to get the standings for.
+     * @param {number} [params.clubId=-1] - Filter by club ID. Defaults to all.
+     * @param {number} [params.division] - Filter by division (0-based). Defaults to all.
+     * @param {number} [params.raceWeekNumber] - Filter by race week number (0-based).
+     *
+     * @returns A promise resolving to the time trial season standings, or undefined on error.
+     */
+    getTimeTrialSeasonStandings = async (
+        params: GetTimeTrialSeasonStandingsParams
+    ) =>
+        await this._getData('data/stats/season_tt_standings', {
+            season_id: params.seasonId,
+            car_class_id: params.carClassId,
+            club_id: params.clubId,
+            division: params.division,
+            race_week_num: params.raceWeekNumber,
         })
     /**
      * Get the qualify results for a specific season.

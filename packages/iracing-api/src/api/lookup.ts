@@ -54,4 +54,12 @@ export class LookupAPI extends API {
      */
     getLicenses = async () =>
         await this._getData<License[]>('data/lookup/licenses')
+
+    /**
+     * Get various lookup data.
+     * This endpoint accepts query parameters in the format ?key=value&key=value
+     *
+     * @returns A promise resolving to the lookup data, or undefined on error.
+     */
+    getLookupData = async () => await this._getData('data/lookup/get')
 }

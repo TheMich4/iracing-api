@@ -6,6 +6,7 @@ import type {
     GetLeagueDirectoryParams,
     GetLeagueMembershipParams,
     GetLeaguePointSystemParams,
+    GetLeagueRosterParams,
     GetLeagueSeasonSessionsParams,
     GetLeagueSeasonStandingsParams,
     GetLeagueSeasonsParams,
@@ -160,5 +161,20 @@ export class LeagueAPI extends API {
             league_id: params.leagueId,
             season_id: params.seasonId,
             results_only: params.resultsOnly,
+        })
+
+    /**
+     * Get the roster for a specific league.
+     *
+     * @param {GetLeagueRosterParams} params - Parameters for the request.
+     * @param {number} params.leagueId - The ID of the league.
+     * @param {boolean} [params.includeLicenses=false] - Include license information for roster members (can slow down response).
+     *
+     * @returns A promise resolving to the league roster, or undefined on error.
+     */
+    getLeagueRoster = async (params: GetLeagueRosterParams) =>
+        await this._getData('data/league/roster', {
+            league_id: params.leagueId,
+            include_licenses: params.includeLicenses,
         })
 }

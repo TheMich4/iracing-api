@@ -160,6 +160,14 @@ export type GetMemberProfileParams = z.infer<
     typeof GetMemberProfileParamsSchema
 >
 
+export const GetMemberAwardInstancesParamsSchema = z.object({
+    awardId: z.number(),
+    customerId: z.number().optional(),
+})
+export type GetMemberAwardInstancesParams = z.infer<
+    typeof GetMemberAwardInstancesParamsSchema
+>
+
 // Response
 
 export const GetMemberAwardsDataSchema = z.object({

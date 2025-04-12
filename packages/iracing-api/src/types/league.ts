@@ -282,3 +282,9 @@ export const GetLeagueSeasonSessionsParamsSchema = z.object({
 export type GetLeagueSeasonSessionsParams = z.infer<
     typeof GetLeagueSeasonSessionsParamsSchema
 >
+
+export const GetLeagueRosterParamsSchema = z.object({
+    leagueId: z.number(),
+    includeLicenses: z.boolean().optional(),
+})
+export type GetLeagueRosterParams = z.infer<typeof GetLeagueRosterParamsSchema>

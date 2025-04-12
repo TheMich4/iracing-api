@@ -10,6 +10,7 @@ import {
     GetMemberProfileResponse,
     MemberInfo,
     MemberParticipationCredit,
+    GetMemberAwardInstancesParams,
 } from '../types'
 
 /**
@@ -96,5 +97,19 @@ export class MemberAPI extends API {
     ): Promise<GetMemberProfileResponse | undefined> =>
         await this._getData<GetMemberProfileResponse>('data/member/profile', {
             cust_id: params?.customerId,
+        })
+    /**
+     * Get specific award instances for a member.
+     *
+     * @param {GetMemberAwardInstancesParams} params - Parameters for the request.
+     * @param {number} params.awardId - The ID of the award to get instances for.
+     * @param {number} [params.customerId] - The customer ID to get award instances for. Defaults to the authenticated member.
+     *
+     * @returns A promise resolving to the member's award instances, or undefined on error.
+     */
+    getMemberAwardInstances = async (params: GetMemberAwardInstancesParams) =>
+        await this._getData('data/member/award_instances', {
+            award_id: params.awardId,
+            cust_id: params.customerId,
         })
 }

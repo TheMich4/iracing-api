@@ -288,9 +288,9 @@ export type GetTimeTrialSeasonStandingsParams = z.infer<
 export const GetTimeTrialSeasonResultsParamsSchema = z.object({
     seasonId: z.number(),
     carClassId: z.number(),
+    raceWeekNumber: z.number(),
     clubId: z.number().optional(),
     division: z.number().optional(),
-    raceWeekNumber: z.number(),
 })
 export type GetTimeTrialSeasonResultsParams = z.infer<
     typeof GetTimeTrialSeasonResultsParamsSchema
