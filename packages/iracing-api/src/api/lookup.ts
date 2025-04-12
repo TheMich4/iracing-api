@@ -4,16 +4,22 @@ import {
     GetClubHistoryParams,
     GetDriversParams,
     License,
-} from '../types'
+} from '../types/lookup'
 
+/**
+ * Provides methods for interacting with lookup endpoints (e.g., countries, drivers, licenses).
+ */
 export class LookupAPI extends API {
     /**
+     * Get club history for a specific season.
      *
-     * @param {GetClubHistoryParams} params
-     * @param {number} params.seasonYear - Season year.
-     * @param {number} params.seasonQuarter - Season quarter.
+     * Note: Returns an earlier history if the requested quarter does not have a club history.
      *
-     * @returns
+     * @param {GetClubHistoryParams} params - Parameters for the request.
+     * @param {number} params.seasonYear - The year of the season.
+     * @param {number} params.seasonQuarter - The quarter of the season (1-4).
+     *
+     * @returns A promise resolving to the club history data, or undefined on error.
      */
     getClubHistory = async (params: GetClubHistoryParams) =>
         await this._getData('data/lookup/club_history', {
@@ -21,18 +27,20 @@ export class LookupAPI extends API {
             season_quarter: params.seasonQuarter,
         })
     /**
+     * Get a list of all countries recognized by iRacing.
      *
-     * @returns
+     * @returns A promise resolving to an array of country objects, or undefined on error.
      */
     getCountries = async () =>
         await this._getData<Country[]>('data/lookup/countries')
     /**
+     * Search for drivers by customer ID or partial name.
      *
-     * @param {GetDriversParams} params
-     * @param {string} params.searchTerm - A customerId or partial name for which to search.
-     * @param {number} [params.leagueId] - Narrow the search to the roster of the given league
+     * @param {GetDriversParams} params - Parameters for the search.
+     * @param {string} params.searchTerm - A customer ID or partial name to search for.
+     * @param {number} [params.leagueId] - Optional league ID to narrow the search to the league's roster.
      *
-     * @returns
+     * @returns A promise resolving to the driver search results, or undefined on error.
      */
     getDrivers = async (params: GetDriversParams) =>
         await this._getData('data/lookup/drivers', {
@@ -40,9 +48,18 @@ export class LookupAPI extends API {
             league_id: params.leagueId,
         })
     /**
+     * Get a list of all iRacing licenses.
      *
-     * @returns
+     * @returns A promise resolving to an array of license objects, or undefined on error.
      */
     getLicenses = async () =>
         await this._getData<License[]>('data/lookup/licenses')
+
+    /**
+     * Get various lookup data.
+     * This endpoint accepts query parameters in the format ?key=value&key=value
+     *
+     * @returns A promise resolving to the lookup data, or undefined on error.
+     */
+    getLookupData = async () => await this._getData('data/lookup/get')
 }

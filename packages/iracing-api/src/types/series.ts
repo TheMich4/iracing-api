@@ -37,6 +37,7 @@ export const AllowedLicenseSchema = z.object({
     licenseGroup: z.number(),
     maxLicenseLevel: z.number(),
     minLicenseLevel: z.number(),
+    parentId: z.number().optional(),
 })
 export type AllowedLicense = z.infer<typeof AllowedLicenseSchema>
 
@@ -93,6 +94,7 @@ export const SeasonSchema = z.object({
     driverChanges: z.boolean(),
     fixedSetup: z.boolean(),
     licenseGroup: z.number(),
+    hasSupersessions: z.boolean().optional(),
     licenseGroupTypes: z.array(LicenseGroupTypeSchema),
     carClasses: z.array(SeriesCarClassSchema),
     raceWeeks: z.array(RaceWeekSchema),
@@ -270,3 +272,12 @@ export const GetSeriesSeasonsParamSchema = z.object({
     includeSeries: z.boolean().optional(),
 })
 export type GetSeriesSeasonsParams = z.infer<typeof GetSeriesSeasonsParamSchema>
+
+export const GetSeriesPastSeasonsResponseSchema = z.object({
+    success: z.boolean(),
+    series: SeriesStatSchema,
+    seriesId: z.number(),
+})
+export type GetSeriesPastSeasonsResponse = z.infer<
+    typeof GetSeriesPastSeasonsResponseSchema
+>

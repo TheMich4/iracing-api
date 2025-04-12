@@ -77,3 +77,25 @@ export const CarSchema = z.object({
     sku: z.number(),
 })
 export type Car = z.infer<typeof CarSchema>
+
+export const CarAssetSchema = z.object({
+    carId: z.number(),
+    carRules: z.array(z.any()).optional(), // Type further if structure is known
+    detailCopy: z.string().nullable().optional(),
+    detailScreenShotImages: z.string().nullable().optional(),
+    detailTechspecsCopy: z.string().nullable().optional(),
+    folder: z.string().nullable().optional(),
+    galleryImages: z.string().nullable().optional(),
+    galleryPrefix: z.string().nullable().optional(),
+    groupImage: z.string().nullable().optional(),
+    groupName: z.string().nullable().optional(),
+    largeImage: z.string().nullable().optional(),
+    logo: z.string().nullable().optional(),
+    smallImage: z.string().nullable().optional(),
+    sponsorLogo: z.string().nullable().optional(),
+    templatePath: z.string().nullable().optional(),
+})
+export type CarAsset = z.infer<typeof CarAssetSchema>
+
+export const CarAssetsResponseSchema = z.record(z.string(), CarAssetSchema)
+export type CarAssetsResponse = z.infer<typeof CarAssetsResponseSchema>

@@ -1,4 +1,6 @@
 import * as z from 'zod'
+import { HelmetSchema } from './common'
+import { BasicLiverySchema } from './results'
 
 export const CarsDrivenSchema = z.object({
     carId: z.number(),
@@ -31,6 +33,86 @@ export const MemberBestsSchema = z.object({
     carId: z.number(),
 })
 export type MemberBests = z.infer<typeof MemberBestsSchema>
+
+export const MemberDivisionSchema = z.object({
+    division: z.number(),
+    projected: z.boolean(),
+    eventType: z.number(),
+    success: z.boolean(),
+    seasonId: z.number(),
+})
+export type MemberDivision = z.infer<typeof MemberDivisionSchema>
+
+export const RecentRaceTrackSchema = z.object({
+    trackId: z.number(),
+    trackName: z.string(),
+})
+export type RecentRaceTrack = z.infer<typeof RecentRaceTrackSchema>
+
+export const RecentRaceSchema = z.object({
+    seasonId: z.number(),
+    seriesId: z.number(),
+    seriesName: z.string(),
+    carId: z.number(),
+    carClassId: z.number(),
+    livery: BasicLiverySchema,
+    licenseLevel: z.number(),
+    sessionStartTime: z.string(),
+    winnerGroupId: z.number(),
+    winnerName: z.string(),
+    winnerHelmet: HelmetSchema,
+    winnerLicenseLevel: z.number(),
+    startPosition: z.number(),
+    finishPosition: z.number(),
+    qualifyingTime: z.number(),
+    laps: z.number(),
+    lapsLed: z.number(),
+    incidents: z.number(),
+    clubPoints: z.number(),
+    points: z.number(),
+    strengthOfField: z.number(),
+    subsessionId: z.number(),
+    oldSubLevel: z.number(),
+    newSubLevel: z.number(),
+    oldiRating: z.number(),
+    newiRating: z.number(),
+    track: RecentRaceTrackSchema,
+    dropRace: z.boolean(),
+    seasonYear: z.number(),
+    seasonQuarter: z.number(),
+    raceWeekNum: z.number(),
+})
+export type RecentRace = z.infer<typeof RecentRaceSchema>
+
+export const MemberRecentRacesSchema = z.object({
+    races: z.array(RecentRaceSchema),
+    custId: z.number(),
+})
+export type MemberRecentRaces = z.infer<typeof MemberRecentRacesSchema>
+
+export const WorldRecordsChunkInfoSchema = z.object({
+    chunk_size: z.number(),
+    num_chunks: z.number(),
+    rows: z.number(),
+    base_download_url: z.string(),
+    chunk_file_names: z.array(z.string()),
+})
+export type WorldRecordsChunkInfo = z.infer<typeof WorldRecordsChunkInfoSchema>
+
+export const WorldRecordsDataSchema = z.object({
+    success: z.boolean(),
+    car_id: z.number(),
+    track_id: z.number(),
+    chunk_info: WorldRecordsChunkInfoSchema,
+    last_updated: z.string(),
+})
+export type WorldRecordsData = z.infer<typeof WorldRecordsDataSchema>
+
+export const WorldRecordsSchema = z.object({
+    type: z.literal('stats_world_records'),
+    data: WorldRecordsDataSchema,
+})
+export type WorldRecords = z.infer<typeof WorldRecordsSchema>
 
 export const StatSchema = z.object({
     categoryId: z.number(),
@@ -206,9 +288,9 @@ export type GetTimeTrialSeasonStandingsParams = z.infer<
 export const GetTimeTrialSeasonResultsParamsSchema = z.object({
     seasonId: z.number(),
     carClassId: z.number(),
+    raceWeekNumber: z.number(),
     clubId: z.number().optional(),
     division: z.number().optional(),
-    raceWeekNumber: z.number(),
 })
 export type GetTimeTrialSeasonResultsParams = z.infer<
     typeof GetTimeTrialSeasonResultsParamsSchema
