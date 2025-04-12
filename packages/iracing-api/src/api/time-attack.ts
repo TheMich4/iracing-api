@@ -10,7 +10,10 @@ export class TimeAttackAPI extends API {
      * @returns
      */
     getTimeAttackSeasonResults = async (params: GetTimeAttackSeasonParams) =>
-        this._getData('data/time_attack/member_season_results', {
-            ta_comp_season_id: params.seasonId,
-        })
+        this._getData<Array<unknown>>(
+            'data/time_attack/member_season_results',
+            {
+                ta_comp_season_id: params.seasonId,
+            }
+        )
 }

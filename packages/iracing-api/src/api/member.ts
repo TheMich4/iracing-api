@@ -1,9 +1,13 @@
 import { API } from './api'
 import {
     GetMemberAwardsParams,
+    GetMemberAwardsResponse,
     GetMemberChartDataParams,
+    GetMemberChartDataResponse,
     GetMemberDataParams,
+    GetMemberDataResponse,
     GetMemberProfileParams,
+    GetMemberProfileResponse,
     MemberInfo,
     MemberParticipationCredit,
 } from '../types'
@@ -12,12 +16,14 @@ export class MemberAPI extends API {
     /**
      *
      * @param {GetMemberAwardsParams} [params]
-     * @param {number} params.customerId - Defaults to the authenticated member.
+     * @param {number} [params.customerId] - Defaults to the authenticated member.
      *
-     * @returns
+     * @returns {Promise<GetMemberAwardsResponse | undefined>}
      */
-    getMemberAwards = async (params?: GetMemberAwardsParams) =>
-        this._getData('data/member/awards', {
+    getMemberAwards = async (
+        params?: GetMemberAwardsParams
+    ): Promise<GetMemberAwardsResponse | undefined> =>
+        await this._getData<GetMemberAwardsResponse>('data/member/awards', {
             cust_id: params?.customerId,
         })
     /**
@@ -27,32 +33,40 @@ export class MemberAPI extends API {
      * @param {number} params.categoryId - 1 - Oval; 2 - Road; 3 - Dirt oval; 4 - Dirt road.
      * @param {number} params.chartType - 1 - iRating; 2 - TT Rating; 3 - License/SR.
      *
-     * @returns
+     * @returns {Promise<GetMemberChartDataResponse | undefined>}
      */
-    getMemberChartData = async (params: GetMemberChartDataParams) =>
-        this._getData('data/member/chart_data', {
-            cust_id: params.customerId,
-            category_id: params.categoryId,
-            chart_type: params.chartType,
-        })
+    getMemberChartData = async (
+        params: GetMemberChartDataParams
+    ): Promise<GetMemberChartDataResponse | undefined> =>
+        await this._getData<GetMemberChartDataResponse>(
+            'data/member/chart_data',
+            {
+                cust_id: params.customerId,
+                category_id: params.categoryId,
+                chart_type: params.chartType,
+            }
+        )
     /**
      *
      * @param {GetMemberDataParams} params
-     * @param {number[]} params.customerIds - Array of customer IDs.
+     * @param {string[]} params.customerIds - Array of customer IDs (as strings).
      * @param {boolean} [params.includeLicenses]
      *
-     * @returns
+     * @returns {Promise<GetMemberDataResponse | undefined>}
      */
-    getMemberData = async (params: GetMemberDataParams) =>
-        await this._getData('data/member/get', {
-            cust_ids: params.customerIds,
+    getMemberData = async (
+        params: GetMemberDataParams
+    ): Promise<GetMemberDataResponse | undefined> =>
+        await this._getData<GetMemberDataResponse>('data/member/get', {
+            cust_ids: params.customerIds.join(','),
             include_licenses: params.includeLicenses,
         })
     /**
+     * Get detailed information about the authenticated member.
      *
-     * @returns
+     * @returns {Promise<MemberInfo | undefined>}
      */
-    getMemberInfo = async () =>
+    getMemberInfo = async (): Promise<MemberInfo | undefined> =>
         await this._getData<MemberInfo>('data/member/info')
     /**
      *
@@ -63,14 +77,17 @@ export class MemberAPI extends API {
             'data/member/participation_credits'
         )
     /**
+     * Get profile data for a member, including recent awards, activity, licenses, etc.
      *
-     * @param {GetMemberProfileParams} params
+     * @param {GetMemberProfileParams} [params]
      * @param {number} [params.customerId] - Defaults to the authenticated member.
      *
-     * @returns
+     * @returns {Promise<GetMemberProfileResponse | undefined>}
      */
-    getMemberProfile = async (params?: GetMemberProfileParams) =>
-        await this._getData('data/member/profile', {
+    getMemberProfile = async (
+        params?: GetMemberProfileParams
+    ): Promise<GetMemberProfileResponse | undefined> =>
+        await this._getData<GetMemberProfileResponse>('data/member/profile', {
             cust_id: params?.customerId,
         })
 }

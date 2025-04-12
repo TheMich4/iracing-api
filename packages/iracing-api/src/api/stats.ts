@@ -18,6 +18,9 @@ import {
     MemberRecap,
     MemberSummary,
     MemberYearlyStats,
+    MemberDivision,
+    MemberRecentRaces,
+    WorldRecords,
 } from '../types'
 
 export class StatsAPI extends API {
@@ -55,7 +58,7 @@ export class StatsAPI extends API {
      * @returns
      */
     getMemberDivision = async (params: GetMemberDivisionParams) =>
-        await this._getData('data/stats/member_division', {
+        await this._getData<MemberDivision>('data/stats/member_division', {
             season_id: params.seasonId,
             event_type: params.eventType,
         })
@@ -67,7 +70,7 @@ export class StatsAPI extends API {
      * @returns
      */
     getMemberRecentRaces = async (params?: GetMemberRecentRacesParams) =>
-        await this._getData('stats/member_recent_races', {
+        await this._getData<MemberRecentRaces>('stats/member_recent_races', {
             cust_id: params?.customerId,
         })
     /**
@@ -207,7 +210,7 @@ export class StatsAPI extends API {
      * @returns
      */
     getWorldRecords = async (params: GetWorldRecordsParams) =>
-        await this._getData('data/stats/world_records', {
+        await this._getData<WorldRecords>('data/stats/world_records', {
             car_id: params.carId,
             track_id: params.trackId,
             season_year: params.seasonYear,

@@ -1,6 +1,7 @@
 import { API } from './api'
 import {
     GetSeriesPastSeasonsParams,
+    GetSeriesPastSeasonsResponse,
     GetSeriesSeasonsParams,
     SeriesAssets,
     SeriesData,
@@ -30,12 +31,15 @@ export class SeriesAPI extends API {
      * @param {GetSeriesPastSeasonsParams} params
      * @param {number} params.seriesId
      *
-     * @returns
+     * @returns {Promise<GetSeriesPastSeasonsResponse>}
      */
     getSeriesPastSeasons = async (params: GetSeriesPastSeasonsParams) =>
-        await this._getData('data/series/past_seasons', {
-            series_id: params.seriesId,
-        })
+        await this._getData<GetSeriesPastSeasonsResponse>(
+            'data/series/past_seasons',
+            {
+                series_id: params.seriesId,
+            }
+        )
     /**
      *
      * @param {GetSeriesSeasonsParams} [params]

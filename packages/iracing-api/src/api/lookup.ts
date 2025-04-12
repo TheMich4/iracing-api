@@ -2,6 +2,7 @@ import { API } from './api'
 import {
     Country,
     GetClubHistoryParams,
+    GetClubHistoryResponse,
     GetDriversParams,
     License,
 } from '../types'
@@ -13,13 +14,18 @@ export class LookupAPI extends API {
      * @param {number} params.seasonYear - Season year.
      * @param {number} params.seasonQuarter - Season quarter.
      *
-     * @returns
+     * @returns {Promise<GetClubHistoryResponse | undefined>}
      */
-    getClubHistory = async (params: GetClubHistoryParams) =>
-        await this._getData('data/lookup/club_history', {
-            season_year: params.seasonYear,
-            season_quarter: params.seasonQuarter,
-        })
+    getClubHistory = async (
+        params: GetClubHistoryParams
+    ): Promise<GetClubHistoryResponse | undefined> =>
+        await this._getData<GetClubHistoryResponse>(
+            'data/lookup/club_history',
+            {
+                season_year: params.seasonYear,
+                season_quarter: params.seasonQuarter,
+            }
+        )
     /**
      *
      * @returns

@@ -19,7 +19,8 @@ export class API {
 
     _getData = async <Data = Record<string, unknown>, Parameters = void>(
         endpoint: string,
-        params?: Parameters | Record<string, unknown>
+        params?: Parameters | Record<string, unknown>,
+        getLinkData: boolean = true
     ): Promise<Data | undefined> => {
         try {
             const canProceed = this.rateLimiter.checkRateLimit()
@@ -42,7 +43,7 @@ export class API {
 
             const data = await response.json()
 
-            if (data?.link) {
+            if (data?.link && getLinkData) {
                 return await this._getLinkData<Data>(data?.link)
             }
 

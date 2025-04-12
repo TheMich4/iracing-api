@@ -1,5 +1,10 @@
 import { z } from 'zod'
-import { HelmetSchema, TrackStateSchema, WeatherSchema } from './common'
+import {
+    FarmSchema,
+    HelmetSchema,
+    TrackStateSchema,
+    WeatherSchema,
+} from './common'
 import { SuitSchema } from './member'
 
 // Params
@@ -38,6 +43,14 @@ export const GetResultsLapDataOptionsSchema = z.object({
 })
 export type GetResultsLapDataOptions = z.infer<
     typeof GetResultsLapDataOptionsSchema
+>
+export const GetSeasonResultsParamsSchema = z.object({
+    seasonId: z.number(),
+    eventType: z.number(),
+    raceWeekNumber: z.number(),
+})
+export type GetSeasonResultsParams = z.infer<
+    typeof GetSeasonResultsParamsSchema
 >
 
 // Result Response Types
@@ -265,3 +278,273 @@ export const GetResultResponseSchema = z.object({
 })
 
 export type GetResultResponse = z.infer<typeof GetResultResponseSchema>
+
+export const GetSeasonResultsResponseSchema = z.object({
+    success: z.boolean(),
+    seasonId: z.number(),
+    raceWeekNum: z.number(),
+    eventType: z.number(),
+    resultsList: z.array(
+        z.object({
+            sessionId: z.number(),
+            subsessionId: z.number(),
+            raceWeekNum: z.number(),
+            carClasses: z.array(
+                z.object({
+                    carClassId: z.number(),
+                    shortName: z.string(),
+                    name: z.string(),
+                    numEntries: z.number(),
+                    strengthOfField: z.number(),
+                })
+            ),
+            driverChanges: z.boolean(),
+            eventBestLapTime: z.number(),
+            eventStrengthOfField: z.number(),
+            eventType: z.number(),
+            eventTypeName: z.string(),
+            farm: FarmSchema,
+            numCautionLaps: z.number(),
+            numCautions: z.number(),
+            numDrivers: z.number(),
+            numLeadChanges: z.number(),
+            officialSession: z.boolean(),
+            startTime: z.string(),
+            track: z.object({
+                configName: z.string(),
+                trackId: z.number(),
+                trackName: z.string(),
+            }),
+            winnerHelmet: HelmetSchema,
+            winnerId: z.number(),
+            winnerLicenseLevel: z.number(),
+            winnerName: z.string(),
+        })
+    ),
+})
+
+export type GetSeasonResultsResponse = z.infer<
+    typeof GetSeasonResultsResponseSchema
+>
+
+export const SearchSeriesParamsSchema = z
+    .object({
+        seasonYear: z.number().optional(),
+        seasonQuarter: z.number().optional(),
+        startRangeBegin: z.string().optional(),
+        startRangeEnd: z.string().optional(),
+        finishRangeBegin: z.string().optional(),
+        finishRangeEnd: z.string().optional(),
+        customerId: z.number().optional(),
+        teamId: z.number().optional(),
+        seriesId: z.number().optional(),
+        raceWeekNum: z.number().optional(),
+        officialOnly: z.boolean().optional(),
+        eventTypes: z.array(z.number()).optional(),
+        categoryIds: z.array(z.number()).optional(),
+    })
+    .refine(
+        (data) => {
+            if (
+                data.seasonYear !== undefined ||
+                data.seasonQuarter !== undefined
+            ) {
+                return (
+                    data.seasonYear !== undefined &&
+                    data.seasonQuarter !== undefined
+                )
+            }
+            return true
+        },
+        {
+            message:
+                'Both seasonYear and seasonQuarter must be provided if either is used',
+        }
+    )
+
+export type SearchSeriesParams = z.infer<typeof SearchSeriesParamsSchema>
+
+export const SearchSeriesChunkInfoSchema = z.object({
+    base_download_url: z.string(),
+    chunk_file_names: z.array(z.string()),
+})
+
+export const SearchSeriesDataSchema = z.object({
+    success: z.boolean(),
+    chunk_info: SearchSeriesChunkInfoSchema,
+})
+
+export const SearchSeriesResponseSchema = z.object({
+    data: SearchSeriesDataSchema,
+})
+
+export type SearchSeriesResponse = z.infer<typeof SearchSeriesResponseSchema>
+
+export const LapDataTrackSchema = z.object({
+    configName: z.string(),
+    trackId: z.number(),
+    trackName: z.string(),
+})
+
+export const LapDataSessionInfoSchema = z.object({
+    subsessionId: z.number(),
+    sessionId: z.number(),
+    simsessionNumber: z.number(),
+    simsessionType: z.number(),
+    simsessionName: z.string(),
+    numLapsForQualAverage: z.number(),
+    numLapsForSoloAverage: z.number(),
+    eventType: z.number(),
+    eventTypeName: z.string(),
+    privateSessionId: z.number(),
+    seasonName: z.string(),
+    seasonShortName: z.string(),
+    seriesName: z.string(),
+    seriesShortName: z.string(),
+    startTime: z.string(),
+    track: LapDataTrackSchema,
+})
+
+export const LapDataChunkInfoSchema = z.object({
+    chunkSize: z.number(),
+    numChunks: z.number(),
+    rows: z.number(),
+    baseDownloadUrl: z.string(),
+    chunkFileNames: z.array(z.string()),
+})
+
+export const LapDataLiverySchema = z.object({
+    carId: z.number(),
+    pattern: z.number(),
+    color1: z.string(),
+    color2: z.string(),
+    color3: z.string(),
+    numberFont: z.number(),
+    numberColor1: z.string(),
+    numberColor2: z.string(),
+    numberColor3: z.string(),
+    numberSlant: z.number(),
+    sponsor1: z.number(),
+    sponsor2: z.number(),
+    carNumber: z.string(),
+    wheelColor: z.string().nullable(),
+    rimType: z.number(),
+})
+
+export const LapDataHelmetSchema = z.object({
+    pattern: z.number(),
+    color1: z.string(),
+    color2: z.string(),
+    color3: z.string(),
+    face_type: z.number(),
+    helmet_type: z.number(),
+})
+
+export const LapDataItemSchema = z.object({
+    group_id: z.number(),
+    name: z.string(),
+    cust_id: z.number(),
+    display_name: z.string(),
+    lap_number: z.number(),
+    flags: z.number(),
+    incident: z.boolean(),
+    session_time: z.number(),
+    session_start_time: z.string().nullable(),
+    lap_time: z.number(),
+    team_fastest_lap: z.boolean(),
+    personal_best_lap: z.boolean(),
+    helmet: LapDataHelmetSchema,
+    license_level: z.number(),
+    car_number: z.string(),
+    lap_events: z.array(z.string()),
+    ai: z.boolean(),
+})
+
+export type LapDataItem = z.infer<typeof LapDataItemSchema>
+
+export const GetResultsLapDataResponseSchema = z.object({
+    success: z.boolean(),
+    sessionInfo: LapDataSessionInfoSchema,
+    bestLapNum: z.number(),
+    bestLapTime: z.number(),
+    bestNlapsNum: z.number(),
+    bestNlapsTime: z.number(),
+    bestQualLapNum: z.number(),
+    bestQualLapTime: z.number(),
+    bestQualLapAt: z.string().nullable(),
+    chunkInfo: LapDataChunkInfoSchema,
+    lastUpdated: z.string(),
+    groupId: z.number(),
+    custId: z.number(),
+    name: z.string(),
+    carId: z.number(),
+    licenseLevel: z.number(),
+    livery: LapDataLiverySchema,
+})
+
+export type GetResultsLapDataResponse = z.infer<
+    typeof GetResultsLapDataResponseSchema
+>
+
+export const GetResultsLapDataWithChunksResponseSchema = z.object({
+    ...GetResultsLapDataResponseSchema.shape,
+    lapData: z.array(LapDataItemSchema),
+})
+
+export type GetResultsLapDataWithChunksResponse = z.infer<
+    typeof GetResultsLapDataWithChunksResponseSchema
+>
+
+export const SearchHostedParamsSchema = z.object({
+    startRangeBegin: z.string().datetime().optional(),
+    startRangeEnd: z.string().datetime().optional(),
+    finishRangeBegin: z.string().datetime().optional(),
+    finishRangeEnd: z.string().datetime().optional(),
+    custId: z.number().optional(),
+    teamId: z.number().optional(),
+    hostCustId: z.number().optional(),
+    sessionName: z.string().optional(),
+    leagueId: z.number().optional(),
+    leagueSeasonId: z.number().optional(),
+    carId: z.number().optional(),
+    trackId: z.number().optional(),
+    categoryIds: z.array(z.number()).optional(),
+})
+export type SearchHostedParams = z.infer<typeof SearchHostedParamsSchema>
+
+// Schemas for SearchHosted response
+export const SearchHostedChunkInfoSchema = z.object({
+    chunk_size: z.number(),
+    num_chunks: z.number(),
+    rows: z.number(),
+    base_download_url: z.string().url(),
+    chunk_file_names: z.array(z.string()),
+})
+
+export const SearchHostedResponseParamsSchema = z.object({
+    start_range_begin: z.string().datetime().optional(),
+    start_range_end: z.string().datetime().optional(),
+    finish_range_begin: z.string().datetime().optional(),
+    finish_range_end: z.string().datetime().optional(),
+    cust_id: z.number().optional(),
+    team_id: z.number().optional(),
+    host_cust_id: z.number().optional(),
+    session_name: z.string().optional(),
+    league_id: z.number().optional(),
+    league_season_id: z.number().optional(),
+    car_id: z.number().optional(),
+    track_id: z.number().optional(),
+    category_ids: z.array(z.number()).optional(),
+})
+
+export const SearchHostedDataSchema = z.object({
+    success: z.boolean(),
+    chunk_info: SearchHostedChunkInfoSchema,
+    params: SearchHostedResponseParamsSchema.optional(),
+})
+
+export const SearchHostedResponseSchema = z.object({
+    type: z.literal('search_hosted_results'),
+    data: SearchHostedDataSchema,
+})
+export type SearchHostedResponse = z.infer<typeof SearchHostedResponseSchema>
