@@ -1,3 +1,4 @@
+import { CarClass } from '../types/car-class'
 import { API } from './api'
 
 export class CarClassAPI extends API {
@@ -8,6 +9,6 @@ export class CarClassAPI extends API {
      * @returns
      */
     getCarClasses = async () => {
-        return await this._getData('data/carclass/get')
+        return await this._getData<CarClass[]>('data/carclass/get')
     }
 }

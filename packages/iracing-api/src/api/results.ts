@@ -170,7 +170,7 @@ export class ResultsAPI extends API {
      * @param {number[]} [params.eventTypes] - Types of events to include in the search. Defaults to all.
      * @param {number[]} [params.categoryIds] - License categories to include in the search. Defaults to all.
      *
-     * @returns {Promise<any[]>} The search results
+     * @returns {Promise<SearchSeriesResponse | undefined>} The search results
      */
     searchSeries = async (params?: SearchSeriesParams) => {
         const responseData = await this._getData<SearchSeriesResponse>(

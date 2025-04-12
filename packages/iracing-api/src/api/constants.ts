@@ -1,5 +1,5 @@
 import { API } from './api'
-import { Category, Division } from '../types/index'
+import { Category, Division, Event } from '../types/index'
 
 export class ConstantsAPI extends API {
     /**

@@ -1,5 +1,6 @@
 import { API } from './api'
 import { type Car } from '../types/car'
+import { type CarAssetsResponse } from '../types/car'
 
 export class CarAPI extends API {
     /**
@@ -11,7 +12,7 @@ export class CarAPI extends API {
      * @returns
      */
     getCarAssets = async () => {
-        return await this._getData('data/car/assets')
+        return await this._getData<CarAssetsResponse>('data/car/assets')
     }
     /**
      *
