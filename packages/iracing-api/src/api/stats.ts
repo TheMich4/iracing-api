@@ -79,9 +79,12 @@ export class StatsAPI extends API {
      * @returns A promise resolving to the list of recent races, or undefined on error.
      */
     getMemberRecentRaces = async (params?: GetMemberRecentRacesParams) =>
-        await this._getData<MemberRecentRaces>('stats/member_recent_races', {
-            cust_id: params?.customerId,
-        })
+        await this._getData<MemberRecentRaces>(
+            'data/stats/member_recent_races',
+            {
+                cust_id: params?.customerId,
+            }
+        )
     /**
      * Get a recap of a member's statistics for a specific year or season.
      *
