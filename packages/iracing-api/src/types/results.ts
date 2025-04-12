@@ -389,7 +389,7 @@ export const LapDataTrackSchema = z.object({
     trackName: z.string(),
 })
 
-export const LapDataSessionInfoSchema = z.object({
+export const SessionInfoSchema = z.object({
     subsessionId: z.number(),
     sessionId: z.number(),
     simsessionNumber: z.number(),
@@ -408,7 +408,7 @@ export const LapDataSessionInfoSchema = z.object({
     track: LapDataTrackSchema,
 })
 
-export const LapDataChunkInfoSchema = z.object({
+export const ChunkInfoSchema = z.object({
     chunkSize: z.number(),
     numChunks: z.number(),
     rows: z.number(),
@@ -443,6 +443,39 @@ export const LapDataHelmetSchema = z.object({
     helmet_type: z.number(),
 })
 
+export const LapChartDataItemSchema = z.object({
+    groupId: z.number(),
+    name: z.string(),
+    custId: z.number(),
+    displayName: z.string(),
+    lapNumber: z.number(),
+    flags: z.number(),
+    incident: z.boolean(),
+    sessionTime: z.number(),
+    sessionStartTime: z.string().nullable(),
+    lapTime: z.number(),
+    teamFastestLap: z.boolean(),
+    personalBestLap: z.boolean(),
+    helmet: z.object({
+        pattern: z.number(),
+        color1: z.string(),
+        color2: z.string(),
+        color3: z.string(),
+        faceType: z.number(),
+        helmetType: z.number(),
+    }),
+    licenseLevel: z.number(),
+    carNumber: z.string(),
+    lapEvents: z.array(z.string()),
+    lapPosition: z.number(),
+    interval: z.number().nullable(),
+    intervalUnits: z.string().nullable(),
+    fastestLap: z.boolean(),
+    ai: z.boolean(),
+})
+
+export type LapChartDataItem = z.infer<typeof LapChartDataItemSchema>
+
 export const LapDataItemSchema = z.object({
     group_id: z.number(),
     name: z.string(),
@@ -465,9 +498,10 @@ export const LapDataItemSchema = z.object({
 
 export type LapDataItem = z.infer<typeof LapDataItemSchema>
 
-export const GetResultsLapDataResponseSchema = z.object({
+export const GetResultsLapChartDataResponseSchema = z.object({
     success: z.boolean(),
-    sessionInfo: LapDataSessionInfoSchema,
+    sessionInfo: SessionInfoSchema,
+    chunkInfo: ChunkInfoSchema,
     bestLapNum: z.number(),
     bestLapTime: z.number(),
     bestNlapsNum: z.number(),
@@ -475,7 +509,23 @@ export const GetResultsLapDataResponseSchema = z.object({
     bestQualLapNum: z.number(),
     bestQualLapTime: z.number(),
     bestQualLapAt: z.string().nullable(),
-    chunkInfo: LapDataChunkInfoSchema,
+    lapChartData: z.array(LapChartDataItemSchema).optional(),
+})
+
+export type GetResultsLapChartDataResponse = z.infer<
+    typeof GetResultsLapChartDataResponseSchema
+>
+export const GetResultsLapDataResponseSchema = z.object({
+    success: z.boolean(),
+    sessionInfo: SessionInfoSchema,
+    bestLapNum: z.number(),
+    bestLapTime: z.number(),
+    bestNlapsNum: z.number(),
+    bestNlapsTime: z.number(),
+    bestQualLapNum: z.number(),
+    bestQualLapTime: z.number(),
+    bestQualLapAt: z.string().nullable(),
+    chunkInfo: ChunkInfoSchema,
     lastUpdated: z.string(),
     groupId: z.number(),
     custId: z.number(),
@@ -551,3 +601,39 @@ export const SearchHostedResponseSchema = z.object({
     data: SearchHostedDataSchema,
 })
 export type SearchHostedResponse = z.infer<typeof SearchHostedResponseSchema>
+
+export const EventLogItemSchema = z.object({
+    subsessionId: z.number(),
+    simsessionNumber: z.number(),
+    sessionTime: z.number(),
+    eventSeq: z.number(),
+    eventCode: z.number(),
+    groupId: z.number(),
+    custId: z.number(),
+    lapNumber: z.number(),
+    description: z.string(),
+    message: z.string(),
+    displayName: z.string(),
+})
+
+export type EventLogItem = z.infer<typeof EventLogItemSchema>
+
+export const GetResultsEventLogResponseSchema = z.object({
+    success: z.boolean(),
+    chunkInfo: ChunkInfoSchema.optional(),
+    eventLog: z.array(EventLogItemSchema).optional(),
+})
+
+export type GetResultsEventLogResponse = z.infer<
+    typeof GetResultsEventLogResponseSchema
+>
+
+export const GetResultsEventLogWithChunksResponseSchema = z.object({
+    success: z.boolean(),
+    chunkInfo: ChunkInfoSchema.optional(),
+    eventLog: z.array(EventLogItemSchema),
+})
+
+export type GetResultsEventLogWithChunksResponse = z.infer<
+    typeof GetResultsEventLogWithChunksResponseSchema
+>

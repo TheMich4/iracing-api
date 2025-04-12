@@ -15,6 +15,11 @@ import {
     SearchSeriesResponse,
     SearchHostedParams,
     SearchHostedResponse,
+    GetResultsLapChartDataResponse,
+    LapChartDataItem,
+    EventLogItem,
+    GetResultsEventLogResponse,
+    GetResultsEventLogWithChunksResponse,
 } from '../types/results'
 
 /**
@@ -45,28 +50,88 @@ export class ResultsAPI extends API {
      * @param {GetResultsEventLogParams} params - Parameters for the request.
      * @param {number} params.subsessionId - The ID of the subsession.
      * @param {number} params.simsessionNumber - The simsession number (0 for main event, -1 for preceding, etc.).
+     * @param {Object} [options] - Options for fetching data.
+     * @param {boolean} [options.getAllChunks=false] - If true, fetch and combine data from all chunks (if applicable).
      *
-     * @returns A promise resolving to the event log data, or undefined on error.
+     * @returns A promise resolving to the event log data, potentially combined from chunks, or throws an error if fetching fails.
      */
-    getResultsEventLog = async (params: GetResultsEventLogParams) =>
-        await this._getData('data/results/event_log', {
-            subsession_id: params.subsessionId,
-            simsession_number: params.simsessionNumber,
-        })
+    getResultsEventLog = async (
+        params: GetResultsEventLogParams,
+        options?: { getAllChunks?: boolean }
+    ): Promise<
+        GetResultsEventLogResponse | GetResultsEventLogWithChunksResponse
+    > => {
+        const data = await this._getData<GetResultsEventLogResponse>(
+            'data/results/event_log',
+            {
+                subsession_id: params.subsessionId,
+                simsession_number: params.simsessionNumber,
+            }
+        )
+
+        if (!data) {
+            throw new Error('Failed to fetch event log data')
+        }
+
+        if (!options?.getAllChunks || !data.chunkInfo) return data
+
+        const chunkData = await Promise.all(
+            data.chunkInfo.chunkFileNames.map((chunkFileName: string) => {
+                return this._getLinkData(
+                    `${data.chunkInfo!.baseDownloadUrl}${chunkFileName}`
+                )
+            })
+        )
+
+        return {
+            ...data,
+            eventLog: chunkData.flatMap((chunk) => chunk as EventLogItem[]),
+        }
+    }
     /**
      * Get lap chart data for a specific subsession and simsession.
      *
      * @param {GetResultsLapChartDataParams} params - Parameters for the request.
      * @param {number} params.subsessionId - The ID of the subsession.
      * @param {number} params.simsessionNumber - The simsession number (0 for main event, -1 for preceding, etc.).
+     * @param {Object} [options] - Options for fetching data.
+     * @param {boolean} [options.getAllChunks=false] - If true, fetch and combine data from all chunks (if applicable).
      *
-     * @returns A promise resolving to the lap chart data, or undefined on error.
+     * @returns A promise resolving to the lap chart data, potentially combined from chunks, or throws an error if fetching fails.
      */
-    getResultsLapChartData = async (params: GetResultsLapChartDataParams) =>
-        await this._getData('data/results/lap_chart_data', {
-            subsession_id: params.subsessionId,
-            simsession_number: params.simsessionNumber,
-        })
+    getResultsLapChartData = async (
+        params: GetResultsLapChartDataParams,
+        options?: { getAllChunks?: boolean }
+    ) => {
+        const data = await this._getData<GetResultsLapChartDataResponse>(
+            'data/results/lap_chart_data',
+            {
+                subsession_id: params.subsessionId,
+                simsession_number: params.simsessionNumber,
+            }
+        )
+
+        if (!data) {
+            throw new Error('Failed to fetch lap chart data')
+        }
+
+        if (!options?.getAllChunks) return data
+
+        const chunkData = await Promise.all(
+            data.chunkInfo?.chunkFileNames?.map((chunkFileName: string) => {
+                return this._getLinkData(
+                    `${data.chunkInfo?.baseDownloadUrl}${chunkFileName}`
+                )
+            }) ?? []
+        )
+
+        return {
+            ...data,
+            lapChartData: chunkData.flatMap(
+                (chunk) => chunk as LapChartDataItem[]
+            ),
+        }
+    }
 
     /**
      * Get lap data for a driver or team in a specific subsession and simsession.
