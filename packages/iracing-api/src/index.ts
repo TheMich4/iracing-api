@@ -6,7 +6,6 @@ import { FetchCookie, Options } from './types/index.js'
 import { CarAPI } from './api/car.js'
 import { CarClassAPI } from './api/car-class.js'
 import { ConstantsAPI } from './api/constants.js'
-import { DriverStatsAPI } from './api/driver-stats.js'
 import { HostedAPI } from './api/hosted.js'
 import { LeagueAPI } from './api/league.js'
 import { LookupAPI } from './api/lookup.js'
@@ -36,7 +35,6 @@ export default class IracingAPI {
     car: CarAPI
     carClass: CarClassAPI
     constants: ConstantsAPI
-    driverStats: DriverStatsAPI
     hosted: HostedAPI
     league: LeagueAPI
     lookup: LookupAPI
@@ -64,7 +62,6 @@ export default class IracingAPI {
         this.car = new CarAPI(this.fetchCookie, this.options)
         this.carClass = new CarClassAPI(this.fetchCookie, this.options)
         this.constants = new ConstantsAPI(this.fetchCookie, this.options)
-        this.driverStats = new DriverStatsAPI(this.fetchCookie, this.options)
         this.hosted = new HostedAPI(this.fetchCookie, this.options)
         this.league = new LeagueAPI(this.fetchCookie, this.options)
         this.lookup = new LookupAPI(this.fetchCookie, this.options)
