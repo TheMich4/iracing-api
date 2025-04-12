@@ -1,4 +1,6 @@
 import * as z from 'zod'
+import { HelmetSchema } from './common'
+import { BasicLiverySchema } from './results'
 
 export const CarsDrivenSchema = z.object({
     carId: z.number(),
@@ -41,25 +43,6 @@ export const MemberDivisionSchema = z.object({
 })
 export type MemberDivision = z.infer<typeof MemberDivisionSchema>
 
-export const LiverySchema = z.object({
-    carId: z.number(),
-    pattern: z.number(),
-    color1: z.string(),
-    color2: z.string(),
-    color3: z.string(),
-})
-export type Livery = z.infer<typeof LiverySchema>
-
-export const HelmetSchema = z.object({
-    pattern: z.number(),
-    color1: z.string(),
-    color2: z.string(),
-    color3: z.string(),
-    faceType: z.number(),
-    helmetType: z.number(),
-})
-export type Helmet = z.infer<typeof HelmetSchema>
-
 export const RecentRaceTrackSchema = z.object({
     trackId: z.number(),
     trackName: z.string(),
@@ -72,7 +55,7 @@ export const RecentRaceSchema = z.object({
     seriesName: z.string(),
     carId: z.number(),
     carClassId: z.number(),
-    livery: LiverySchema,
+    livery: BasicLiverySchema,
     licenseLevel: z.number(),
     sessionStartTime: z.string(),
     winnerGroupId: z.number(),

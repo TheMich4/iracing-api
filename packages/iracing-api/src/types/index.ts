@@ -1,6 +1,5 @@
-export * from './auth'
 export * from './car'
-export * from './carClass'
+export * from './car-class'
 export * from './common'
 export * from './constants'
 export * from './hosted'
@@ -12,9 +11,8 @@ export * from './season'
 export * from './series'
 export * from './stats'
 export * from './team'
-export * from './timeAttack'
+export * from './time-attack'
 export * from './track'
-export * from './updater'
 
 export interface FetchCookie {
     (

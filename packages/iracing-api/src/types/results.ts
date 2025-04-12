@@ -88,13 +88,16 @@ export const RaceSummarySchema = z.object({
     specialEventType: z.number(),
     specialEventTypeText: z.string(),
 })
-
-export const LiverySchema = z.object({
+export const BasicLiverySchema = z.object({
     carId: z.number(),
     pattern: z.number(),
     color1: z.string(),
     color2: z.string(),
     color3: z.string(),
+})
+export type Livery = z.infer<typeof BasicLiverySchema>
+
+export const LiverySchema = BasicLiverySchema.extend({
     numberFont: z.number(),
     numberColor1: z.string(),
     numberColor2: z.string(),

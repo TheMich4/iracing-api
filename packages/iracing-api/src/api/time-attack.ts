@@ -1,5 +1,5 @@
 import { API } from './api'
-import { GetTimeAttackSeasonParams } from '../types'
+import { GetTimeAttackSeasonParams } from '../types/time-attack'
 
 export class TimeAttackAPI extends API {
     /**
