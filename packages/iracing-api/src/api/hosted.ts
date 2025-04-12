@@ -5,17 +5,20 @@ import type {
     HostedSessions,
 } from '../types'
 
+/**
+ * Provides methods for interacting with hosted session endpoints.
+ */
 export class HostedAPI extends API {
     /**
+     * Get a list of combined hosted sessions.
      *
-     * **Get a list of hosted combined sessions.**
+     * Includes sessions that can be joined as a driver or spectator,
+     * and also includes non-league pending sessions for the user.
      *
-     * *Sessions that can be joined as a driver or spectator, and also include non-league pending sessions for the user.*
-     *
-     * @param {GetHostedCombinedSessionsParams} [params]
+     * @param {GetHostedCombinedSessionsParams} [params] - Optional parameters to filter the sessions.
      * @param {number} [params.packageId] - If set, return only sessions using this car or track package ID.
      *
-     * @returns
+     * @returns A promise resolving to the combined hosted sessions data, or undefined on error.
      */
     getHostedCombinedSessions = async (
         params?: GetHostedCombinedSessionsParams
@@ -28,12 +31,11 @@ export class HostedAPI extends API {
         )
     }
     /**
+     * Get a list of hosted sessions that can be joined as a driver.
      *
-     * **Get a list of hosted sessions.**
+     * Excludes spectator sessions and non-league pending sessions.
      *
-     * *Sessions that can be joined as a driver. Without spectator and non-league pending sessions for the user.*
-     *
-     * @returns
+     * @returns A promise resolving to the hosted sessions data, or undefined on error.
      */
     getHostedSessions = async () => {
         return await this._getData<HostedSessions>('data/hosted/sessions')

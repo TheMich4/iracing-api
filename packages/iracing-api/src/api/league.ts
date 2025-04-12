@@ -12,17 +12,17 @@ import type {
     LeagueDirectory,
 } from '../types'
 
+/**
+ * Provides methods for interacting with league-related endpoints.
+ */
 export class LeagueAPI extends API {
-    // League API
     /**
+     * Get a list of customer league sessions.
      *
-     * **Get list of league sessions.**
-     *
-     * @param {GetCustLeagueSessionsParams} [params]
-     * @param {boolean} [params.mine] - If true, return only sessions created by this user.
+     * @param {GetCustLeagueSessionsParams} [params] - Optional parameters to filter the sessions.
+     * @param {boolean} [params.mine] - If true, return only sessions created by the authenticated user.
      * @param {number} [params.packageId] - If set, return only sessions using this car or track package ID.
-     *
-     * @returns
+     * @returns A promise resolving to the customer league sessions data, or undefined on error.
      */
     getCustLeagueSessions = async (params?: GetCustLeagueSessionsParams) =>
         await this._getData<CustLeagueSessions>(
@@ -34,22 +34,23 @@ export class LeagueAPI extends API {
         )
 
     /**
+     * Search the league directory.
      *
-     * @param {GetLeagueDirectoryParams} [params]
-     * @param {string} [params.search] - Will search against league name, description, owner, and league ID.
+     * @param {GetLeagueDirectoryParams} [params] - Optional parameters to filter and sort the league directory.
+     * @param {string} [params.search] - Search term for league name, description, owner, and league ID.
      * @param {string} [params.tag] - One or more tags, comma-separated.
-     * @param {boolean} [params.restrictToMember] - If true include only leagues for which customer is a member.
-     * @param {boolean} [params.restrictToRecruiting] - If true include only leagues which are recruiting.
-     * @param {boolean} [params.restrictToFriends] - If true include only leagues owned by a friend.
-     * @param {boolean} [params.restrictToWatched] - If true include only leagues owned by a watched member.
-     * @param {number} [params.minimumRosterCount] - If set include leagues with at least this number of members.
-     * @param {number} [params.maximumRosterCount] - If set include leagues with no more than this number of members.
-     * @param {number} [params.lowerbound] - First row of results to return. Defaults to 1.
-     * @param {number} [params.upperbound] - Last row of results to return. Defaults to lowerbound + 39.
-     * @param {string} [params.sort] - One of relevance, leaguename, displayname, rostercount. displayname is owners's name. Defaults to relevance.
-     * @param {string} [params.order] - One of asc or desc. Defaults to asc.
+     * @param {boolean} [params.restrictToMember=false] - Include only leagues the customer is a member of.
+     * @param {boolean} [params.restrictToRecruiting=false] - Include only leagues which are recruiting.
+     * @param {boolean} [params.restrictToFriends=false] - Include only leagues owned by a friend.
+     * @param {boolean} [params.restrictToWatched=false] - Include only leagues owned by a watched member.
+     * @param {number} [params.minimumRosterCount] - Minimum number of members for included leagues.
+     * @param {number} [params.maximumRosterCount] - Maximum number of members for included leagues.
+     * @param {number} [params.lowerbound=1] - First row of results to return.
+     * @param {number} [params.upperbound] - Last row of results to return (defaults to lowerbound + 39).
+     * @param {string} [params.sort='relevance'] - Sort criteria: 'relevance', 'leaguename', 'displayname' (owner's name), 'rostercount'.
+     * @param {string} [params.order='asc'] - Sort order: 'asc' or 'desc'.
      *
-     * @returns
+     * @returns A promise resolving to the league directory search results, or undefined on error.
      */
     getLeagueDirectory = async (params?: GetLeagueDirectoryParams) =>
         await this._getData<LeagueDirectory>('data/league/directory', {
@@ -68,12 +69,13 @@ export class LeagueAPI extends API {
         })
 
     /**
+     * Get detailed information about a specific league.
      *
-     * @param {GetLeagueDataParams} params
-     * @param {number} params.leagueId - League ID.
-     * @param {boolean} [params.includeLicenses] - For faster responses, only request when necessary.
+     * @param {GetLeagueDataParams} params - Parameters for the request.
+     * @param {number} params.leagueId - The ID of the league to retrieve.
+     * @param {boolean} [params.includeLicenses=false] - Include license information for members (can slow down response).
      *
-     * @returns
+     * @returns A promise resolving to the league data, or undefined on error.
      */
     getLeagueData = async (params: GetLeagueDataParams) =>
         await this._getData('data/league/get', {
@@ -82,12 +84,13 @@ export class LeagueAPI extends API {
         })
 
     /**
+     * Get the points systems available for a league, optionally filtered by season.
      *
-     * @param {GetLeagueMembershipParams} [params]
-     * @param {number} params.leagueId - League ID.
-     * @param {number} [params.seasonId] - If included and the season is using custom points (points_system_id:2) then the custom points option is included in the returned list. Otherwise the custom points option is not returned.
+     * @param {GetLeaguePointSystemParams} params - Parameters for the request.
+     * @param {number} params.leagueId - The ID of the league.
+     * @param {number} [params.seasonId] - If provided and the season uses custom points, include the custom option.
      *
-     * @returns
+     * @returns A promise resolving to the list of points systems, or undefined on error.
      */
     getLeaguePointSystem = async (params: GetLeaguePointSystemParams) =>
         await this._getData('data/league/get_points_systems', {
@@ -96,12 +99,14 @@ export class LeagueAPI extends API {
         })
 
     /**
+     * Get league membership information for a customer.
      *
-     * @param {GetLeagueMembershipParams} [params]
-     * @param {number} [params.customerId] - If different from the authenticated member, the following restrictions apply: - Caller cannot be on requested customer's block list or an empty list will result; - Requested customer cannot have their online activity prefrence set to hidden or an empty list will result; - Only leagues for which the requested customer is an admin and the league roster is not private are returned.
-     * @param {boolean} [params.includeLeague]
+     * @param {GetLeagueMembershipParams} [params] - Optional parameters to specify the customer.
+     * @param {number} [params.customerId] - Customer ID to fetch membership for. Defaults to the authenticated user.
+     *                                     Note: Restrictions apply if fetching for another user (see iRacing docs).
+     * @param {boolean} [params.includeLeague=false] - Include detailed league information in the response.
      *
-     * @returns
+     * @returns A promise resolving to the league membership data, or undefined on error.
      */
     getLeagueMembership = async (params?: GetLeagueMembershipParams) =>
         await this._getData('data/league/membership', {
@@ -109,12 +114,13 @@ export class LeagueAPI extends API {
             include_league: params?.includeLeague,
         })
     /**
+     * Get the seasons for a specific league.
      *
-     * @param {GetLeagueSeasonsParams} params
-     * @param {number} params.leagueId - League ID.
-     * @param {number} [params.retired] - If true include seasons which are no longer active.
+     * @param {GetLeagueSeasonsParams} params - Parameters for the request.
+     * @param {number} params.leagueId - The ID of the league.
+     * @param {boolean} [params.retired=false] - If true, include inactive (retired) seasons.
      *
-     * @returns
+     * @returns A promise resolving to the list of league seasons, or undefined on error.
      */
     getLeagueSeasons = async (params: GetLeagueSeasonsParams) =>
         await this._getData('data/league/seasons', {
@@ -122,14 +128,15 @@ export class LeagueAPI extends API {
             retired: params.retired,
         })
     /**
+     * Get the season standings for a specific league season.
      *
-     * @param {GetLeagueSeasonStandingsParams} params
-     * @param {number} params.leagueId - League ID.
-     * @param {number} params.seasonId - Season ID.
-     * @param {number} [params.carClassId]
-     * @param {number} [params.carId] - If `carClassId` is included then the standings are for the car in that car class, otherwise they are for the car across car classes.
+     * @param {GetLeagueSeasonStandingsParams} params - Parameters for the request.
+     * @param {number} params.leagueId - The ID of the league.
+     * @param {number} params.seasonId - The ID of the season.
+     * @param {number} [params.carClassId] - Optional car class ID to filter standings.
+     * @param {number} [params.carId] - Optional car ID. If `carClassId` is included, filters within the class; otherwise, across classes.
      *
-     * @returns
+     * @returns A promise resolving to the league season standings, or undefined on error.
      */
     getLeagueSeasonStandings = async (params: GetLeagueSeasonStandingsParams) =>
         await this._getData('data/league/season_standings', {
@@ -139,13 +146,14 @@ export class LeagueAPI extends API {
             season_id: params.seasonId,
         })
     /**
+     * Get the sessions for a specific league season.
      *
-     * @param {GetLeagueSeasonSessionsParams} params
-     * @param {number} params.leagueId - League ID.
-     * @param {number} params.seasonId - Season ID.
-     * @param {number} [params.resultsOnly] - If true, include only sessions for which results are available.
+     * @param {GetLeagueSeasonSessionsParams} params - Parameters for the request.
+     * @param {number} params.leagueId - The ID of the league.
+     * @param {number} params.seasonId - The ID of the season.
+     * @param {boolean} [params.resultsOnly=false] - If true, include only sessions for which results are available.
      *
-     * @returns
+     * @returns A promise resolving to the list of league season sessions, or undefined on error.
      */
     getLeagueSeasonSessions = async (params: GetLeagueSeasonSessionsParams) =>
         await this._getData('data/league/season_sessions', {

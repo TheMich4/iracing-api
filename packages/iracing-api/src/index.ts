@@ -23,6 +23,9 @@ export * from './consts.js'
 export * from './helpers.js'
 export * from './types/index.js'
 
+/**
+ * Main client for interacting with the iRacing Data API.
+ */
 export default class IracingAPI {
     //
     fetchCookie: FetchCookie
@@ -45,9 +48,12 @@ export default class IracingAPI {
     track: TrackAPI
 
     /**
+     * Creates an instance of the IracingAPI client.
      *
-     * @param {Options} [options]
-     * @param {boolean} [options.throttleToRateLimit] - If true, will throttle requests to the rate limit.
+     * @param {Options} [options] - Configuration options for the client.
+     * @param {boolean} [options.logger=false] - Enable logging of requests and responses.
+     * @param {boolean} [options.manageRateLimit=false] - Automatically handle rate limiting by delaying requests.
+     * @param {number} [options.rateLimitPadding=5000] - Milliseconds to pad the rate limit reset time when manageRateLimit is true.
      */
     constructor(options?: Options) {
         this.fetchCookie = makeFetchCookie(fetch)
@@ -72,11 +78,13 @@ export default class IracingAPI {
     }
 
     /**
+     * Authenticates the user with the iRacing API using email and password.
+     * Stores the necessary authentication cookies for subsequent requests.
      *
-     * @param email - iRacing account email
-     * @param password - iRacing account password
-     *
-     * @returns
+     * @param email - iRacing account email address.
+     * @param password - iRacing account password.
+     * @returns A promise that resolves with the authentication response JSON on success,
+     *          or an object containing an error message on failure.
      */
     login = async (email: string, password: string) => {
         const hashPassword = encryptPassword(email, password)

@@ -1,14 +1,18 @@
 import { API } from './api'
 import { GetTeamDataParams, GetTeamDataResponse } from '../types'
 
+/**
+ * Provides methods for interacting with team-related endpoints.
+ */
 export class TeamAPI extends API {
     /**
+     * Get detailed information about a specific team.
      *
-     * @param {GetTeamDataParams} params
-     * @param {number} params.teamId
-     * @param {boolean} [params.includeLicenses] - For faster responses, only request when necessary.
+     * @param {GetTeamDataParams} params - Parameters for the request.
+     * @param {number} params.teamId - The ID of the team to retrieve.
+     * @param {boolean} [params.includeLicenses=false] - Include license information for members (can slow down response).
      *
-     * @returns {Promise<GetTeamDataResponse | undefined>} The team data or undefined if there was an error
+     * @returns A promise resolving to the team data, or undefined on error.
      */
     getTeamData = async (
         params: GetTeamDataParams

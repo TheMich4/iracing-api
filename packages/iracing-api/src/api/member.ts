@@ -12,13 +12,17 @@ import {
     MemberParticipationCredit,
 } from '../types'
 
+/**
+ * Provides methods for interacting with member-related endpoints (awards, stats, profile, etc.).
+ */
 export class MemberAPI extends API {
     /**
+     * Get the awards earned by a member.
      *
-     * @param {GetMemberAwardsParams} [params]
-     * @param {number} [params.customerId] - Defaults to the authenticated member.
+     * @param {GetMemberAwardsParams} [params] - Optional parameters to specify the member.
+     * @param {number} [params.customerId] - Customer ID. Defaults to the authenticated member.
      *
-     * @returns {Promise<GetMemberAwardsResponse | undefined>}
+     * @returns A promise resolving to the member awards data, or undefined on error.
      */
     getMemberAwards = async (
         params?: GetMemberAwardsParams
@@ -27,13 +31,14 @@ export class MemberAPI extends API {
             cust_id: params?.customerId,
         })
     /**
+     * Get chart data (iRating, TT Rating, License/SR) for a member in a specific category.
      *
-     * @param {GetMemberChartDataParams} params
-     * @param {number} [params.customerId] - Defaults to the authenticated member.
-     * @param {number} params.categoryId - 1 - Oval; 2 - Road; 3 - Dirt oval; 4 - Dirt road.
-     * @param {number} params.chartType - 1 - iRating; 2 - TT Rating; 3 - License/SR.
+     * @param {GetMemberChartDataParams} params - Parameters for the request.
+     * @param {number} [params.customerId] - Customer ID. Defaults to the authenticated member.
+     * @param {number} params.categoryId - Category ID: 1=Oval, 2=Road, 3=Dirt Oval, 4=Dirt Road.
+     * @param {number} params.chartType - Chart type: 1=iRating, 2=TT Rating, 3=License/SR.
      *
-     * @returns {Promise<GetMemberChartDataResponse | undefined>}
+     * @returns A promise resolving to the member chart data, or undefined on error.
      */
     getMemberChartData = async (
         params: GetMemberChartDataParams
@@ -47,12 +52,13 @@ export class MemberAPI extends API {
             }
         )
     /**
+     * Get basic data for one or more members.
      *
-     * @param {GetMemberDataParams} params
-     * @param {string[]} params.customerIds - Array of customer IDs (as strings).
-     * @param {boolean} [params.includeLicenses]
+     * @param {GetMemberDataParams} params - Parameters for the request.
+     * @param {string[]} params.customerIds - An array of customer IDs (as strings) to retrieve data for.
+     * @param {boolean} [params.includeLicenses=false] - Include license information in the response.
      *
-     * @returns {Promise<GetMemberDataResponse | undefined>}
+     * @returns A promise resolving to the member data, or undefined on error.
      */
     getMemberData = async (
         params: GetMemberDataParams
@@ -62,15 +68,16 @@ export class MemberAPI extends API {
             include_licenses: params.includeLicenses,
         })
     /**
-     * Get detailed information about the authenticated member.
+     * Get detailed information about the **authenticated** member.
      *
-     * @returns {Promise<MemberInfo | undefined>}
+     * @returns A promise resolving to the authenticated member's info, or undefined on error.
      */
     getMemberInfo = async (): Promise<MemberInfo | undefined> =>
         await this._getData<MemberInfo>('data/member/info')
     /**
+     * Get the participation credits earned by the **authenticated** member.
      *
-     * @returns
+     * @returns A promise resolving to an array of participation credit objects, or undefined on error.
      */
     getMemberParticipationCredits = async () =>
         await this._getData<MemberParticipationCredit[]>(
@@ -79,10 +86,10 @@ export class MemberAPI extends API {
     /**
      * Get profile data for a member, including recent awards, activity, licenses, etc.
      *
-     * @param {GetMemberProfileParams} [params]
-     * @param {number} [params.customerId] - Defaults to the authenticated member.
+     * @param {GetMemberProfileParams} [params] - Optional parameters to specify the member.
+     * @param {number} [params.customerId] - Customer ID. Defaults to the authenticated member.
      *
-     * @returns {Promise<GetMemberProfileResponse | undefined>}
+     * @returns A promise resolving to the member profile data, or undefined on error.
      */
     getMemberProfile = async (
         params?: GetMemberProfileParams

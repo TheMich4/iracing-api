@@ -8,14 +8,18 @@ import {
     GetSpectatorSubsessionIdsResponse,
 } from '../types'
 
+/**
+ * Provides methods for interacting with season-related endpoints.
+ */
 export class SeasonAPI extends API {
     /**
+     * Get a list of seasons for a specific year and quarter.
      *
-     * @param {GetSeasonListParams} params
-     * @param {number} params.seasonYear
-     * @param {number} params.seasonQuarter
+     * @param {GetSeasonListParams} params - Parameters for the request.
+     * @param {number} params.seasonYear - The year of the season.
+     * @param {number} params.seasonQuarter - The quarter of the season (1-4).
      *
-     * @returns {Promise<GetSeasonListResponse>}
+     * @returns A promise resolving to the list of seasons, or undefined on error.
      */
     getSeasonList = async (params: GetSeasonListParams) =>
         await this._getData<GetSeasonListResponse>('data/season/list', {
@@ -23,14 +27,15 @@ export class SeasonAPI extends API {
             season_quarter: params.seasonQuarter,
         })
     /**
+     * Get the race guide, showing upcoming sessions.
      *
-     * @param {GetSeasonRaceGuideParams} params
-     * @param {string} [params.from] - `ISO-8601` offset format. Defaults to the current time. Include sessions with start times up to 3 hours after this time. Times in the past will be rewritten to the current time.
-     * @param {boolean} [params.includeEndAfterFrom] - Include sessions which start before 'from' but end after.
+     * @param {GetSeasonRaceGuideParams} [params] - Optional parameters to control the time frame.
+     * @param {string} [params.from] - ISO-8601 offset format start time. Defaults to current time. Includes sessions up to 3 hours after this time.
+     * @param {boolean} [params.includeEndAfterFrom=false] - Include sessions starting before `from` but ending after.
      *
-     * @returns {Promise<GetSeasonRaceGuideResponse>}
+     * @returns A promise resolving to the race guide data, or undefined on error.
      */
-    getSeasonRaceGuide = async (params: GetSeasonRaceGuideParams) =>
+    getSeasonRaceGuide = async (params?: GetSeasonRaceGuideParams) =>
         await this._getData<GetSeasonRaceGuideResponse>(
             'data/season/race_guide',
             {
@@ -39,11 +44,12 @@ export class SeasonAPI extends API {
             }
         )
     /**
+     * Get a list of subsession IDs that are available for spectating.
      *
-     * @param {GetSpectatorSubsessionIdsParams} [params]
-     * @param {number[]} [params.eventTypes] - Types of events to include in the search. Defaults to all.
+     * @param {GetSpectatorSubsessionIdsParams} [params] - Optional parameters to filter by event type.
+     * @param {number[]} [params.eventTypes] - Array of event type IDs to include. Defaults to all.
      *
-     * @returns {Promise<GetSpectatorSubsessionIdsResponse>}
+     * @returns A promise resolving to the list of spectator subsession IDs, or undefined on error.
      */
     getSpectatorSubsessionIds = async (
         params?: GetSpectatorSubsessionIdsParams

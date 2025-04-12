@@ -17,14 +17,20 @@ import {
     SearchHostedResponse,
 } from '../types/results'
 
+/**
+ * Provides methods for interacting with session result endpoints.
+ */
 export class ResultsAPI extends API {
     /**
+     * Get the results of a specific subsession.
      *
-     * @param { GetResultParams} params
-     * @param {number} params.subsessionId
-     * @param {number} [params.includeLicenses]
+     * Note: `series_logo` image paths in response are relative to `https://images-static.iracing.com/img/logos/series/`.
      *
-     * @returns {Promise<GetResultResponse | undefined>} The race result data or undefined if there was an error
+     * @param {GetResultParams} params - Parameters for the request.
+     * @param {number} params.subsessionId - The ID of the subsession.
+     * @param {boolean} [params.includeLicenses=false] - Include license information in the response.
+     *
+     * @returns A promise resolving to the race result data, or undefined on error.
      */
     getResult = async (
         params: GetResultParams
@@ -34,12 +40,13 @@ export class ResultsAPI extends API {
             include_licenses: params.includeLicenses,
         })
     /**
+     * Get the event log for a specific subsession and simsession.
      *
-     * @param {GetResultsEventLogParams} params
-     * @param {number} params.subsessionId
-     * @param {number} [params.simsessionNumber] - The main event is `0`; the preceding event is `-1`, and so on.
+     * @param {GetResultsEventLogParams} params - Parameters for the request.
+     * @param {number} params.subsessionId - The ID of the subsession.
+     * @param {number} params.simsessionNumber - The simsession number (0 for main event, -1 for preceding, etc.).
      *
-     * @returns
+     * @returns A promise resolving to the event log data, or undefined on error.
      */
     getResultsEventLog = async (params: GetResultsEventLogParams) =>
         await this._getData('data/results/event_log', {
@@ -47,12 +54,13 @@ export class ResultsAPI extends API {
             simsession_number: params.simsessionNumber,
         })
     /**
+     * Get lap chart data for a specific subsession and simsession.
      *
-     * @param {GetResultsLapChartDataParams} params
-     * @param {number} params.subsessionId
-     * @param {number} [params.simsessionNumber] - The main event is `0`; the preceding event is `-1`, and so on.
+     * @param {GetResultsLapChartDataParams} params - Parameters for the request.
+     * @param {number} params.subsessionId - The ID of the subsession.
+     * @param {number} params.simsessionNumber - The simsession number (0 for main event, -1 for preceding, etc.).
      *
-     * @returns
+     * @returns A promise resolving to the lap chart data, or undefined on error.
      */
     getResultsLapChartData = async (params: GetResultsLapChartDataParams) =>
         await this._getData('data/results/lap_chart_data', {
@@ -61,17 +69,18 @@ export class ResultsAPI extends API {
         })
 
     /**
+     * Get lap data for a driver or team in a specific subsession and simsession.
      *
-     * @param {GetResultsLapDataParams} params
-     * @param {number} params.subsessionId
-     * @param {number} [params.simsessionNumber] - The main event is `0`; the preceding event is `-1`, and so on.
-     * @param {number} [params.customerId] - Required if the subsession was a single-driver event. Optional for team events. If omitted for a team event then the laps driven by all the team's drivers will be included.
-     * @param {number} [params.teamId] - Required if the subsession was a team event.
+     * @param {GetResultsLapDataParams} params - Parameters for the request.
+     * @param {number} params.subsessionId - The ID of the subsession.
+     * @param {number} params.simsessionNumber - The simsession number (0 for main event, -1 for preceding, etc.).
+     * @param {number} [params.customerId] - Required for single-driver events. Optional for team events (returns all team laps if omitted).
+     * @param {number} [params.teamId] - Required for team events.
      *
-     * @param {GetResultsLapDataOptions} [options]
-     * @param {boolean} [options.getAllChunks] - If true, all chunks will be downloaded and returned.
+     * @param {GetResultsLapDataOptions} [options] - Options for fetching data.
+     * @param {boolean} [options.getAllChunks=false] - If true, fetch and combine data from all chunks (if applicable).
      *
-     * @returns
+     * @returns A promise resolving to the lap data, potentially combined from chunks, or throws an error if fetching fails.
      */
     getResultsLapData = async (
         params: GetResultsLapDataParams,
@@ -110,26 +119,28 @@ export class ResultsAPI extends API {
     }
 
     /**
-     * Search for hosted session results.
-     * Requires start_range_begin/end or finish_range_begin/end, unless one of the optional parameters cust_id, team_id, host_cust_id, session_name, league_id, league_season_id is provided.
-     * Max range allowed is 90 days.
+     * Search for hosted and league session results.
+     *
+     * Note: Maximum time frame is 90 days. Results may be split into chunks.
+     * Requires one time range (`start_range_begin` or `finish_range_begin`).
+     * Requires one identifier (`custId`, `teamId`, `hostCustId`, `sessionName`).
      *
      * @param {SearchHostedParams} [params] - Search parameters.
-     * @param {string} [params.startRangeBegin] - Session start times. ISO-8601 UTC time zero offset: "2022-04-01T15:45Z".
-     * @param {string} [params.startRangeEnd] - Exclusive. ISO-8601 UTC time zero offset: "2022-04-01T15:45Z". May be omitted if startRangeBegin is less than 90 days in the past.
-     * @param {string} [params.finishRangeBegin] - Session finish times. ISO-8601 UTC time zero offset: "2022-04-01T15:45Z".
-     * @param {string} [params.finishRangeEnd] - Exclusive. ISO-8601 UTC time zero offset: "2022-04-01T15:45Z". May be omitted if finishRangeBegin is less than 90 days in the past.
-     * @param {number} [params.custId] - The participant's customer ID. Ignored if teamId is supplied.
-     * @param {number} [params.teamId] - The team ID to search for. Takes priority over custId if both are supplied.
-     * @param {number} [params.hostCustId] - The host's customer ID.
-     * @param {string} [params.sessionName] - Part or all of the session's name.
-     * @param {number} [params.leagueId] - Include only results for the league with this ID.
-     * @param {number} [params.leagueSeasonId] - Include only results for the league season with this ID.
-     * @param {number} [params.carId] - One of the cars used by the session.
-     * @param {number} [params.trackId] - The ID of the track used by the session.
-     * @param {number[]} [params.categoryIds] - Track categories to include in the search. Defaults to all.
+     * @param {string} [params.startRangeBegin] - Session start time range begin (ISO-8601 UTC).
+     * @param {string} [params.startRangeEnd] - Session start time range end (ISO-8601 UTC, exclusive).
+     * @param {string} [params.finishRangeBegin] - Session finish time range begin (ISO-8601 UTC).
+     * @param {string} [params.finishRangeEnd] - Session finish time range end (ISO-8601 UTC, exclusive).
+     * @param {number} [params.custId] - Participant's customer ID (ignored if `teamId` provided).
+     * @param {number} [params.teamId] - Team ID (takes priority over `custId`).
+     * @param {number} [params.hostCustId] - Host's customer ID.
+     * @param {string} [params.sessionName] - Partial or full session name.
+     * @param {number} [params.leagueId] - Filter by league ID.
+     * @param {number} [params.leagueSeasonId] - Filter by league season ID.
+     * @param {number} [params.carId] - Filter by car ID used in the session.
+     * @param {number} [params.trackId] - Filter by track ID used in the session.
+     * @param {number[]} [params.categoryIds] - Filter by track category IDs (defaults to all).
      *
-     * @returns {Promise<SearchHostedResponse | undefined>}
+     * @returns A promise resolving to the search results (possibly chunked), or undefined on error.
      */
     searchHosted = async (
         params?: SearchHostedParams
@@ -153,24 +164,27 @@ export class ResultsAPI extends API {
             }
         )
     /**
-     * Search for series results based on various criteria
+     * Search for official series results.
      *
-     * @param {SearchSeriesParams} params - Search parameters
-     * @param {number} [params.seasonYear] - Required when using seasonQuarter
-     * @param {number} [params.seasonQuarter] - Required when using seasonYear
-     * @param {string} [params.startRangeBegin] - Session start time in ISO-8601 UTC format (e.g. "2022-04-01T15:45Z")
-     * @param {string} [params.startRangeEnd] - Session end time in ISO-8601 UTC format (e.g. "2022-04-01T15:45Z"). Exclusive. May be omitted if startRangeBegin is less than 90 days in the past.
-     * @param {string} [params.finishRangeBegin] - Session finish time in ISO-8601 UTC format (e.g. "2022-04-01T15:45Z")
-     * @param {string} [params.finishRangeEnd] - Session finish time in ISO-8601 UTC format (e.g. "2022-04-01T15:45Z"). Exclusive. May be omitted if finishRangeBegin is less than 90 days in the past.
-     * @param {number} [params.customerId] - Include only sessions in which this customer participated. Ignored if teamId is supplied.
-     * @param {number} [params.teamId] - Include only sessions in which this team participated. Takes priority over customerId if both are supplied.
-     * @param {number} [params.seriesId] - Include only sessions for series with this ID.
-     * @param {number} [params.raceWeekNum] - Include only sessions with this race week number.
-     * @param {boolean} [params.officialOnly] - If true, include only sessions earning championship points. Defaults to all.
-     * @param {number[]} [params.eventTypes] - Types of events to include in the search. Defaults to all.
-     * @param {number[]} [params.categoryIds] - License categories to include in the search. Defaults to all.
+     * Note: Maximum time frame is 90 days. Results may be split into chunks.
+     * Requires at least one time filter (`season_year`/`season_quarter`, `start_range_begin`, or `finish_range_begin`).
      *
-     * @returns {Promise<SearchSeriesResponse | undefined>} The search results
+     * @param {SearchSeriesParams} [params] - Search parameters.
+     * @param {number} [params.seasonYear] - Season year (requires `seasonQuarter`).
+     * @param {number} [params.seasonQuarter] - Season quarter (requires `seasonYear`).
+     * @param {string} [params.startRangeBegin] - Session start time range begin (ISO-8601 UTC).
+     * @param {string} [params.startRangeEnd] - Session start time range end (ISO-8601 UTC, exclusive).
+     * @param {string} [params.finishRangeBegin] - Session finish time range begin (ISO-8601 UTC).
+     * @param {string} [params.finishRangeEnd] - Session finish time range end (ISO-8601 UTC, exclusive).
+     * @param {number} [params.customerId] - Participant's customer ID (ignored if `teamId` provided).
+     * @param {number} [params.teamId] - Team ID (takes priority over `customerId`).
+     * @param {number} [params.seriesId] - Filter by series ID.
+     * @param {number} [params.raceWeekNum] - Filter by race week number (0-based).
+     * @param {boolean} [params.officialOnly=false] - Include only official sessions earning points.
+     * @param {number[]} [params.eventTypes] - Filter by event type IDs (defaults to all).
+     * @param {number[]} [params.categoryIds] - Filter by license category IDs (defaults to all).
+     *
+     * @returns A promise resolving to the search results (potentially combined from chunks), or the raw chunk info response if chunk fetching is not implemented/fails.
      */
     searchSeries = async (params?: SearchSeriesParams) => {
         const responseData = await this._getData<SearchSeriesResponse>(
@@ -214,10 +228,14 @@ export class ResultsAPI extends API {
     }
 
     /**
+     * Get results for a specific season, optionally filtered by event type and race week.
      *
-     * @param params
+     * @param {GetSeasonResultsParams} params - Parameters for the request.
+     * @param {number} params.seasonId - The ID of the season.
+     * @param {number} [params.eventType] - Filter by event type ID (2=Practice, 3=Qualify, 4=Time Trial, 5=Race).
+     * @param {number} [params.raceWeekNumber] - Filter by race week number (0-based).
      *
-     * @returns
+     * @returns A promise resolving to the season results data, or undefined on error.
      */
     getSeasonResults = async (params: GetSeasonResultsParams) =>
         await this._getData<GetSeasonResultsResponse>(
